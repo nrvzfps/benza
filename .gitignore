@@ -1,0 +1,4 @@
+# Configuración local de Claude Code
+.claude/
+# Carpeta temporal de comparación de logos
+assets/marcas/_cand/
