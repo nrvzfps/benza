@@ -298,32 +298,56 @@ async function api(req, res, ruta) {
 // Gratis por regla -> precio real de Correo Argentino (si hay credenciales en .env) -> tabla de zonas de js/envios.json.
 const Envios = require(path.join(ROOT, "js", "envios.js"));
 const ENVIOS_CFG = path.join(ROOT, "js", "envios.json");
+// Credenciales de MiCorreo en .env (ver .env.example). Se usa la librería ylazzari-correoargentino.
 const CORREO = {
-  url: (process.env.CORREO_API_URL || "https://api.correoargentino.com.ar/micorreo/v1").replace(/\/$/, ""),
-  user: process.env.CORREO_USER || "", pass: process.env.CORREO_PASSWORD || "", customerId: process.env.CORREO_CUSTOMER_ID || "",
+  userToken: process.env.CORREO_USER_TOKEN || "",
+  passwordToken: process.env.CORREO_PASSWORD_TOKEN || "",
+  customerId: process.env.CORREO_CUSTOMER_ID || "",
+  email: process.env.CORREO_EMAIL || "",
+  password: process.env.CORREO_PASSWORD || "",
+  ambiente: (process.env.CORREO_AMBIENTE || "TEST").toUpperCase() === "PROD" ? "PROD" : "TEST",
 };
-const correoActivo = () => !!(CORREO.user && CORREO.pass && CORREO.customerId);
-let correoTok = { value: null, exp: 0 };
-async function correoToken() {
-  if (correoTok.value && Date.now() < correoTok.exp - 60_000) return correoTok.value;
-  const r = await fetch(`${CORREO.url}/token`, {
-    method: "POST", headers: { Authorization: "Basic " + Buffer.from(`${CORREO.user}:${CORREO.pass}`).toString("base64") }, signal: AbortSignal.timeout(8000),
-  });
-  if (!r.ok) throw new Error(`token HTTP ${r.status}`);
-  const j = await r.json();
-  correoTok = { value: j.token, exp: j.expire ? Date.parse(j.expire) : Date.now() + 50 * 60_000 };
-  return correoTok.value;
+const correoActivo = () => !!(CORREO.userToken && CORREO.passwordToken && (CORREO.customerId || (CORREO.email && CORREO.password)));
+
+// Cliente de MiCorreo: se inicializa una vez y se renueva cada 50 minutos (la librería no renueva el token sola).
+let correo = { api: null, desde: 0, iniciando: null };
+async function clienteCorreo(forzar) {
+  if (!forzar && correo.api && Date.now() - correo.desde < 50 * 60_000) return correo.api;
+  if (correo.iniciando) return correo.iniciando;
+  correo.iniciando = (async () => {
+    let Lib, Environment;
+    try {
+      Lib = require("ylazzari-correoargentino").default;
+      ({ Environment } = require("ylazzari-correoargentino/enums"));
+    } catch {
+      throw new Error("falta instalar dependencias (npm install)");
+    }
+    const api = new Lib();
+    const environment = CORREO.ambiente === "PROD" ? Environment.PROD : Environment.TEST;
+    if (CORREO.customerId) await api.initializeWithCustomerId({ userToken: CORREO.userToken, passwordToken: CORREO.passwordToken, customerId: CORREO.customerId, environment });
+    else await api.initializeAll({ userToken: CORREO.userToken, passwordToken: CORREO.passwordToken, email: CORREO.email, password: CORREO.password, environment });
+    correo = { api, desde: Date.now(), iniciando: null };
+    console.log(`[correo] conectado a MiCorreo (${CORREO.ambiente})`);
+    return api;
+  })().finally(() => { correo.iniciando = null; });
+  return correo.iniciando;
 }
-// Formato según la documentación de MiCorreo (POST /rates). Verificar contra la documentación vigente al tener credenciales.
+
+const conTimeout = (p, ms) => Promise.race([p, new Promise((_, no) => setTimeout(() => no(new Error("tiempo de espera agotado")), ms))]);
+
 async function cotizarCorreo(cfg, cp, unidades) {
-  const r = await fetch(`${CORREO.url}/rates`, {
-    method: "POST",
-    headers: { Authorization: `Bearer ${await correoToken()}`, "Content-Type": "application/json" },
-    body: JSON.stringify({ customerId: CORREO.customerId, postalCodeOrigin: cfg.origen.cp, postalCodeDestination: cp, dimensions: Envios.paqueteDe(unidades, cfg) }),
-    signal: AbortSignal.timeout(10000),
+  const paq = Envios.paqueteDe(unidades, cfg);
+  const pedido = api => api.getRates({
+    customerId: api.getVarCustomerId(),
+    postalCodeOrigin: cfg.origen.cp,
+    postalCodeDestination: cp,
+    // Un solo bulto con las medidas finales (calculadas según la cantidad en js/envios.json)
+    dimensions: [{ weight: paq.weight, length: paq.length, width: paq.width, height: paq.height, quantity: 1 }],
   });
-  if (!r.ok) throw new Error(`rates HTTP ${r.status}`);
-  const opciones = ((await r.json()).rates || []).map(x => ({
+  let r;
+  try { r = await conTimeout(pedido(await clienteCorreo()), 12000); }
+  catch { r = await conTimeout(pedido(await clienteCorreo(true)), 12000); }   // token vencido: reconectar y reintentar una vez
+  const opciones = ((r && r.rates) || []).map(x => ({
     tipo: x.deliveredType === "S" ? "sucursal" : "domicilio",
     nombre: x.deliveredType === "S" ? "Retiro en sucursal de Correo" : "A domicilio",
     precio: Math.round(+x.price),
@@ -350,7 +374,8 @@ async function cotizarEnvio(q) {
     if (!zonaObj) return { ...base, ok: false, error: "No encontramos la zona de ese código postal. Escribinos y te pasamos el costo." };
     data.opciones = Envios.opcionesTabla(zonaObj, a.unidades);
   }
-  envioCache.set(key, { t: Date.now(), data });
+  // Se guardan sólo las tarifas reales de Correo; si falló, se vuelve a intentar en la próxima consulta.
+  if (data.fuente === "correo") envioCache.set(key, { t: Date.now(), data });
   return { ...base, ...data };
 }
 
@@ -389,4 +414,7 @@ http.createServer(async (req, res) => {
 }).listen(PORT, () => {
   console.log(`Benza en http://localhost:${PORT}  ·  panel en http://localhost:${PORT}/panel`);
   if (!ADMIN_PASSWORD) console.log("ATENCIÓN: falta ADMIN_PASSWORD en .env; el panel no va a dejar ingresar.");
+  console.log(correoActivo()
+    ? `Envíos: Correo Argentino (MiCorreo ${CORREO.ambiente}), con la tabla de js/envios.json como respaldo.`
+    : "Envíos: tabla de js/envios.json (no hay credenciales de MiCorreo en .env).");
 });

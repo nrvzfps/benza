@@ -8,3 +8,5 @@ envios-prueba/.env
 .env
 # Copias automáticas del panel
 data/backups/
+# Dependencias de Node
+node_modules/

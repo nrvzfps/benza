@@ -76,6 +76,19 @@
   const save = () => { try { localStorage.setItem("benza-cart", JSON.stringify(cart)); } catch { /* sin almacenamiento */ } };
   let renderPdpCart = () => {}; // la página de producto la reemplaza para mostrar lo que ya está en el pedido
 
+  // ---------- Envío: código postal del cliente y configuración ----------
+  const getCP = () => { try { return localStorage.getItem("benza-cp") || ""; } catch { return ""; } };
+  const setCP = cp => { try { cp ? localStorage.setItem("benza-cp", cp) : localStorage.removeItem("benza-cp"); } catch { /* sin almacenamiento */ } };
+  let envioCfgP = null;
+  const envioConfig = () => (envioCfgP = envioCfgP || fetch("js/envios.json").then(r => r.json()).catch(() => null));
+  // "calcular" = muestra el costo; "consultar" = sólo pide el CP y el costo se pasa por WhatsApp
+  const modoEnvio = async () => ((await envioConfig()) || {}).modo === "consultar" ? "consultar" : "calcular";
+  const describirCP = (cp, cfg) => {
+    const p = window.BenzaEnvios && window.BenzaEnvios.parseCP(cp);
+    if (!p) return null;
+    return { cp: p.cp, provincia: p.provincia || (cfg ? window.BenzaEnvios.provinciaDe(p.cp, cfg) : null) };
+  };
+
   // ---------- Tarjeta ----------
   function card(g) {
     const q = qtyOf(g);
@@ -409,14 +422,40 @@
     renderPdpCart();
   });
 
-  $("#sendOrder").addEventListener("click", () => {
+  // Código postal en "Mi pedido": se suma al mensaje de WhatsApp para calcular el envío.
+  $("#drawer footer .total").insertAdjacentHTML("beforebegin", `
+    <div class="cart-cp">
+      <label for="cartCp">Código postal para el envío</label>
+      <input id="cartCp" name="postal-code" autocomplete="postal-code" maxlength="8" placeholder="Ej: 1425">
+      <p class="cart-cp-note" id="cartCpNote"></p>
+    </div>`);
+  async function actualizarCpPedido() {
+    const cp = getCP(), cfg = await envioConfig();
+    if ($("#cartCp") !== document.activeElement) $("#cartCp").value = cp;
+    const d = cp ? describirCP(cp, cfg) : null;
+    $("#cartCpNote").textContent = !cp ? "Lo usamos para calcular el costo del envío." :
+      !d ? "Revisá el código postal (4 dígitos, ej. 1425)." :
+      `${d.provincia ? d.provincia + " · " : ""}te pasamos el costo del envío por WhatsApp.`;
+  }
+  $("#cartCp").addEventListener("change", e => {
+    const v = e.target.value.trim().toUpperCase();
+    setCP(v);
+    if ($("#shipCp") && !$("#shipCp").value) $("#shipCp").value = v;
+    actualizarCpPedido();
+  });
+  actualizarCpPedido();
+
+  $("#sendOrder").addEventListener("click", async () => {
     const ls = lines();
     if (!ls.length) return;
     const total = ls.reduce((s, l) => s + l.q * l.p.precio, 0);
+    const cp = getCP(), d = cp ? describirCP(cp, await envioConfig()) : null;
+    const envio = !cp ? "Envío: a coordinar (todavía no puse mi código postal)"
+      : `Envío a CP ${d ? d.cp : cp}${d && d.provincia ? ` (${d.provincia})` : ""}: a coordinar`;
     const msg = [
       "¡Hola Benza! Quiero hacer este pedido:", "",
       ...ls.map(({ p, q }) => `• ${q} x ${titleCase(p.marca)} ${p.nombre}${p.ml ? " " + p.ml + "ml" : ""} — ${fmt(p.precio * q)}`),
-      "", `Total estimado: ${fmt(total)}`, "¿Tienen stock? ¡Gracias!",
+      "", `Total estimado: ${fmt(total)}`, envio, "¿Tienen stock? ¡Gracias!",
     ].join("\n");
     window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
   });
@@ -533,26 +572,36 @@
 
       // ---- Calcular envío (Correo Argentino) ----
       // Con servidor: /api/envio (precio real de Correo si hay credenciales). Sin servidor: tabla de zonas en el navegador.
-      let envioCfg = null, envioCp = null, envioTimer = null;
+      let envioCp = null, envioTimer = null;
       async function cotizarEnvio(cp) {
         const q = { cp, unidades: cant, subtotal: sel.precio * cant };
+        const cfg = await envioConfig();
+        // Modo "consultar": no se da precio; sólo se valida el CP y se avisa si tiene envío gratis.
+        if (cfg && cfg.modo === "consultar" && window.BenzaEnvios) return { ...window.BenzaEnvios.analizar(cfg, q), consultar: true };
         try {
           const r = await fetch(`/api/envio?${new URLSearchParams(q)}`, { signal: AbortSignal.timeout(8000) });
           if ((r.headers.get("content-type") || "").includes("application/json")) return await r.json();
         } catch { /* sin servidor: se calcula acá */ }
-        if (!window.BenzaEnvios) return { ok: false, error: "No pudimos calcular el envío. Escribinos y te pasamos el costo." };
-        envioCfg = envioCfg || await fetch("js/envios.json").then(r => r.json());
-        return window.BenzaEnvios.cotizarTabla(envioCfg, q);
+        if (!window.BenzaEnvios || !cfg) return { ok: false, error: "No pudimos calcular el envío. Escribinos y te pasamos el costo." };
+        return window.BenzaEnvios.cotizarTabla(cfg, q);
       }
       async function calcularEnvio(cp, silencioso) {
         const out = $("#shipResult");
-        if (!silencioso) out.innerHTML = `<p class="ship-loading">Calculando…</p>`;
+        if (!silencioso) out.innerHTML = `<p class="ship-loading">Un momento…</p>`;
         const r = await cotizarEnvio(cp);
         if (!r.ok) { out.innerHTML = `<p class="ship-error">${esc(r.error)}</p>`; envioCp = null; return; }
         envioCp = cp;
-        try { localStorage.setItem("benza-cp", cp); } catch { /* sin almacenamiento */ }
+        setCP(cp);
+        actualizarCpPedido();
         const lugar = [r.cp, r.provincia].filter(Boolean).join(" · ");
         const cuanto = cant > 1 ? ` para ${cant} unidades` : "";
+        if (r.consultar) {
+          out.innerHTML = `
+            <p class="ship-dest">Envío a <b>${esc(lugar)}</b></p>
+            ${r.gratis ? `<p class="ship-free">${esc(r.opciones[0].nombre)}</p>` : `<p class="ship-consult">Te pasamos el costo del envío por WhatsApp junto con tu pedido.</p>`}
+            <p class="ship-note">Enviamos por Correo Argentino, a domicilio o a sucursal.</p>`;
+          return;
+        }
         out.innerHTML = `
           <p class="ship-dest">Envío a <b>${esc(lugar)}</b>${cuanto}</p>
           ${r.gratis ? `<p class="ship-free">${esc(r.opciones[0].nombre)}</p>` : `
@@ -561,7 +610,13 @@
           <p class="ship-note">${r.fuente === "correo" ? "Tarifa de Correo Argentino." : "Costo aproximado con Correo Argentino."} Se confirma al coordinar el pedido.</p>`;
       }
       $("#shipForm").addEventListener("submit", e => { e.preventDefault(); calcularEnvio($("#shipCp").value.trim()); });
-      try { const cpGuardado = localStorage.getItem("benza-cp"); if (cpGuardado) $("#shipCp").value = cpGuardado; } catch { /* sin almacenamiento */ }
+      if (getCP()) $("#shipCp").value = getCP();
+      // Textos del recuadro según el modo
+      modoEnvio().then(m => {
+        if (m !== "consultar") return;
+        $(".pdp-ship .pdp-label").lastChild.textContent = " Envío a tu código postal";
+        $("#shipForm button").textContent = "Confirmar";
+      });
       // Si cambia el tamaño o la cantidad, se recalcula (cambian el peso y el monto para envío gratis).
       const recalcularEnvio = () => { if (!envioCp) return; clearTimeout(envioTimer); envioTimer = setTimeout(() => calcularEnvio(envioCp, true), 250); };
 

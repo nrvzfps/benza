@@ -1,5 +1,7 @@
 {
   "_ayuda": "Configuración de envíos del sitio (la usan el servidor y la página). Los precios de zonas son DE EJEMPLO: reemplazalos por los de tu tarifa de Correo Argentino. Con el servidor andando, los cambios se toman sin reiniciar.",
+  "modo": "calcular",
+  "_modo": "calcular = muestra el costo del envío (tabla de zonas o Correo Argentino si hay credenciales). consultar = sólo pide el código postal y avisa que el costo se pasa por WhatsApp (también avisa si tiene envío gratis).",
   "origen": {
     "cp": "1657",
     "_nota": "Código postal desde donde despachás. Se usa para cotizar con la API de Correo Argentino."

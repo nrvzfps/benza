@@ -533,3 +533,12 @@ select:focus { border-color: var(--gold); outline: 0; }
 .ship-error { color: #a2342f; font-size: .88rem; }
 .ship-note { font-size: .74rem; color: var(--muted); }
 .ship-loading { font-size: .85rem; color: var(--muted); }
+
+/* Código postal en "Mi pedido" y modo "consultar" */
+.cart-cp { margin-bottom: .9rem; }
+.cart-cp label { display: block; font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-bottom: .35rem; }
+.cart-cp input { width: 100%; font: inherit; padding: .6rem .9rem; border: 1px solid var(--sand); border-radius: 999px; background: #fff; color: var(--ink); text-transform: uppercase; }
+.cart-cp input::placeholder { text-transform: none; color: var(--muted); }
+.cart-cp input:focus { outline: 0; border-color: var(--gold); }
+.cart-cp-note { margin: .35rem 0 0; font-size: .76rem; color: var(--muted); }
+.ship-consult { font-size: .9rem; color: var(--ink-3); }
