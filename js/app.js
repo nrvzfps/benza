@@ -3,7 +3,9 @@
 
   const WA_NUMBER = "5491131754109";
   const PAGE = 12;
-  const PRODUCTS = (window.BENZA_PRODUCTOS || []).map((p, i) => ({ ...p, id: i, conc: concentration(p.nombre) }));
+  const PRODUCTS = (window.BENZA_PRODUCTOS || []).map((p, i) => ({ ...p, id: p.id ?? i, conc: concentration(p.nombre) }));
+  // ID fijo de cada producto (no la posición): así agregar o borrar perfumes no mezcla los pedidos guardados.
+  const BY_ID = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
 
   // Un mismo perfume en varios tamaños (misma marca + nombre + género) se muestra como una sola tarjeta.
   const GROUPS = [];
@@ -70,6 +72,7 @@
   // ---------- Pedido (persistente) ----------
   let cart = (() => { try { return JSON.parse(localStorage.getItem("benza-cart")) || {}; } catch { return {}; } })();
   const save = () => { try { localStorage.setItem("benza-cart", JSON.stringify(cart)); } catch { /* sin almacenamiento */ } };
+  let renderPdpCart = () => {}; // la página de producto la reemplaza para mostrar lo que ya está en el pedido
 
   // ---------- Tarjeta ----------
   function card(g) {
@@ -78,18 +81,32 @@
     const sizes = g.variants.filter(v => v.ml).map(v => v.ml + " ml");
     const sizeHtml = multi ? `<span class="sizes">${sizes.map(x => `<span>${x}</span>`).join("")}</span>` : (sizes[0] ? " · " + sizes[0] : "");
     const name = esc(titleCase(g.marca) + " " + g.nombre);
+    const href = productUrl(g);
     return `<article class="card">
-      <div class="card-media${g.foto ? " has-photo" : ""}"><span class="tag ${g.genero}">${g.genero}</span>${g.foto ? `<img src="${g.foto}" alt="${name}" loading="lazy" width="500" height="500">` : bottle(g)}</div>
+      <a class="card-media${g.foto ? " has-photo" : ""}" href="${href}" tabindex="-1" aria-hidden="true"><span class="tag ${g.genero}">${g.genero}</span>${g.foto ? `<img src="${g.foto}" alt="" loading="lazy" width="500" height="500">` : bottle(g)}</a>
       <div class="card-body">
         <span class="brand-sm">${titleCase(g.marca)}</span>
-        <h4>${esc(g.nombre)}</h4>
+        <h4><a href="${href}">${esc(g.nombre)}</a></h4>
         <span class="meta">${g.conc}${sizeHtml}</span>
         <div class="card-foot">
           <span class="price">${multi ? "<small>desde</small>" : ""}${fmt(g.min)}</span>
-          <button class="add${q ? " added" : ""}" data-gid="${g.gid}" aria-label="Agregar ${name} al pedido">${q ? "✓" + (q > 1 ? q : "") : "+"}</button>
+          ${cartCtrl(g, name)}
         </div>
       </div>
     </article>`;
+  }
+
+  const productUrl = g => `producto.html?id=${g.variants[0].id}`;
+
+  // Botón de la tarjeta: "+" si no está en el pedido; "− cantidad +" si ya está.
+  function cartCtrl(g, name = esc(titleCase(g.marca) + " " + g.nombre)) {
+    const q = qtyOf(g);
+    if (!q) return `<span class="cart-ctrl" data-gid="${g.gid}"><button class="add" data-gid="${g.gid}" aria-label="Agregar ${name} al pedido">+</button></span>`;
+    return `<span class="cart-ctrl in" data-gid="${g.gid}">
+      <button class="dec" data-gid="${g.gid}" aria-label="Quitar uno de ${name}">−</button>
+      <b aria-label="${q} en tu pedido">${q}</b>
+      <button class="add" data-gid="${g.gid}" aria-label="Agregar otro ${name}">+</button>
+    </span>`;
   }
 
   // ---------- Datos fijos ----------
@@ -105,7 +122,7 @@
   ].map(([m, n]) => GROUPS.find(g => g.marca === m && g.nombre === n)).filter(Boolean);
   const renderIconos = () => { if ($("#iconos")) $("#iconos").innerHTML = ICONOS.map(card).join(""); };
   $$("[data-scroll]").forEach(b => b.addEventListener("click", () => {
-    const c = $("#iconos");
+    const c = b.closest("section").querySelector(".carousel");
     c.scrollBy({ left: +b.dataset.scroll * c.clientWidth * 0.75, behavior: "smooth" });
   }));
 
@@ -266,17 +283,26 @@
   $("#filtersApply").addEventListener("click", () => { closeAll(); goShop(); });
   }
 
-  // ---------- Agregar al pedido ----------
-  function addToCart(id) {
-    cart[id] = (cart[id] || 0) + 1;
+  // ---------- Agregar / sacar del pedido ----------
+  // Único punto que cambia cantidades: actualiza tarjetas, carrito, selector y página de producto.
+  function changeQty(id, d, silent) {
+    const p = BY_ID[id];
+    if (!p) return;
+    cart[id] = (cart[id] || 0) + d;
+    if (cart[id] <= 0) delete cart[id];
     save();
     refreshCards();
-    updateCart(true);
-    const p = PRODUCTS[id];
-    toast(`${p.nombre}${p.ml ? " " + p.ml + " ml" : ""} agregado a tu pedido`);
+    updateCart(d > 0);
+    if (dlg.open && dlgGroup) renderSizeOptions(dlgGroup);
+    renderPdpCart();
+    if (!silent) {
+      const n = `${p.nombre}${p.ml ? " " + p.ml + " ml" : ""}`;
+      toast(d > 0 ? `${d > 1 ? d + " × " : ""}${n} agregado a tu pedido` : `${n}: quitado del pedido`);
+    }
   }
+  const addToCart = id => changeQty(id, 1);
 
-  // Selector de tamaño
+  // Selector de tamaño: elegir para agregar, o ajustar las cantidades de cada tamaño.
   document.body.insertAdjacentHTML("beforeend", `
     <dialog class="size-dialog" id="sizeDialog" aria-labelledby="sizeTitle">
       <form method="dialog" class="size-inner">
@@ -285,43 +311,64 @@
         <div class="size-info">
           <span class="brand-sm" id="sizeBrand"></span>
           <h3 id="sizeTitle"></h3>
-          <p class="size-ask">¿Qué tamaño necesitás?</p>
+          <p class="size-ask" id="sizeAsk">¿Qué tamaño necesitás?</p>
           <div class="size-options" id="sizeOptions"></div>
+          <button class="btn btn-gold btn-block size-done" value="ok" id="sizeDone" hidden>Listo</button>
+          <a class="size-more" id="sizeMore" href="#">Ver detalle del perfume →</a>
         </div>
       </form>
     </dialog>`);
   const dlg = $("#sizeDialog");
-  function askSize(g) {
+  let dlgGroup = null;
+  function renderSizeOptions(g) {
+    $("#sizeOptions").innerHTML = g.variants.map(v => {
+      const q = cart[v.id] || 0;
+      return `<div class="size-opt${q ? " in" : ""}" data-id="${v.id}">
+        <b>${v.ml ? v.ml + " ml" : "Único"}</b><span>${fmt(v.precio)}</span>
+        ${q ? `<span class="stepper"><button type="button" data-id="${v.id}" data-d="-1" aria-label="Quitar uno">−</button><b>${q}</b><button type="button" data-id="${v.id}" data-d="1" aria-label="Agregar otro">+</button></span>`
+            : `<button type="button" class="size-add" data-id="${v.id}">Agregar</button>`}
+      </div>`;
+    }).join("");
+    $("#sizeDone").hidden = !qtyOf(g);
+  }
+  function askSize(g, manage) {
+    dlgGroup = g;
     $("#sizeMedia").innerHTML = g.foto ? `<img src="${g.foto}" alt="">` : bottle(g);
     $("#sizeBrand").textContent = titleCase(g.marca);
     $("#sizeTitle").textContent = g.nombre;
-    $("#sizeOptions").innerHTML = g.variants.map(v => {
-      const q = cart[v.id] || 0;
-      return `<button type="button" class="size-opt" data-id="${v.id}"><b>${v.ml ? v.ml + " ml" : "Único"}</b><span>${fmt(v.precio)}</span>${q ? `<em>${q} en tu pedido</em>` : ""}</button>`;
-    }).join("");
+    $("#sizeAsk").textContent = manage ? "Ajustá las cantidades de cada tamaño:" : "¿Qué tamaño necesitás?";
+    $("#sizeMore").href = productUrl(g);
+    renderSizeOptions(g);
     dlg.showModal();
   }
   $("#sizeOptions").addEventListener("click", e => {
-    const b = e.target.closest(".size-opt");
-    if (!b) return;
-    addToCart(+b.dataset.id);
-    dlg.close();
+    const step = e.target.closest("button[data-d]");
+    if (step) return changeQty(+step.dataset.id, +step.dataset.d);
+    const add = e.target.closest(".size-add");
+    if (add) { addToCart(+add.dataset.id); dlg.close(); }
   });
   dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
 
   document.addEventListener("click", e => {
-    const b = e.target.closest(".add[data-gid]");
+    const b = e.target.closest(".cart-ctrl button[data-gid]");
     if (!b) return;
     const g = GROUPS[+b.dataset.gid];
-    if (g.variants.length === 1) addToCart(g.variants[0].id);
-    else askSize(g);
+    if (b.classList.contains("add")) {
+      if (g.variants.length === 1) addToCart(g.variants[0].id);
+      else askSize(g);
+    } else {
+      // "−": si hay un solo tamaño en el pedido, se saca uno; si hay varios, se elige cuál.
+      const enPedido = g.variants.filter(v => cart[v.id]);
+      if (enPedido.length === 1) changeQty(enPedido[0].id, -1);
+      else if (enPedido.length > 1) askSize(g, true);
+    }
   });
 
   function refreshCards() {
-    $$(".add[data-gid]").forEach(b => {
-      const q = qtyOf(GROUPS[+b.dataset.gid]);
-      b.classList.toggle("added", !!q);
-      b.textContent = q ? "✓" + (q > 1 ? q : "") : "+";
+    $$(".cart-ctrl[data-gid]").forEach(el => {
+      const had = el.contains(document.activeElement) ? document.activeElement.className : null;
+      el.outerHTML = cartCtrl(GROUPS[+el.dataset.gid]);
+      if (had) { const again = $(`.cart-ctrl[data-gid="${el.dataset.gid}"] .${had.split(" ")[0]}`); again?.focus(); }
     });
   }
 
@@ -331,7 +378,7 @@
   scrim.addEventListener("click", closeAll);
   document.addEventListener("keydown", e => { if (e.key === "Escape") closeAll(); });
 
-  const lines = () => Object.entries(cart).filter(([id, q]) => PRODUCTS[id] && q > 0).map(([id, q]) => ({ p: PRODUCTS[id], q }));
+  const lines = () => Object.entries(cart).filter(([id, q]) => BY_ID[id] && q > 0).map(([id, q]) => ({ p: BY_ID[id], q }));
 
   function updateCart(bump) {
     const ls = lines();
@@ -353,12 +400,12 @@
   $("#cartItems").addEventListener("click", e => {
     const b = e.target.closest("button[data-d]");
     if (!b) return;
-    const id = b.dataset.id;
-    cart[id] = (cart[id] || 0) + +b.dataset.d;
-    if (cart[id] <= 0) delete cart[id];
-    save(); updateCart(); refreshCards();
+    changeQty(+b.dataset.id, +b.dataset.d, true);
   });
-  $("#clearCart").addEventListener("click", () => { cart = {}; save(); updateCart(); refreshCards(); });
+  $("#clearCart").addEventListener("click", () => {
+    cart = {}; save(); updateCart(); refreshCards();
+    renderPdpCart();
+  });
 
   $("#sendOrder").addEventListener("click", () => {
     const ls = lines();
@@ -379,6 +426,139 @@
     el.classList.add("show");
     clearTimeout(tt);
     tt = setTimeout(() => el.classList.remove("show"), 2200);
+  }
+
+  // ---------- Página de producto (producto.html?id=N) ----------
+  const pdp = $("#pdp");
+  if (pdp) {
+    const pedido = BY_ID[new URLSearchParams(location.search).get("id")];
+    if (!pedido) {
+      pdp.innerHTML = `<div class="pdp-404"><h1>No encontramos ese perfume</h1><p>Puede que ya no esté en el catálogo.</p><a class="btn btn-gold" href="catalogo.html">Ver catálogo</a></div>`;
+    } else {
+      const g = GROUPS[pedido.gid];
+      let sel = pedido;      // tamaño elegido
+      let cant = 1;          // cantidad a agregar
+      const multi = g.variants.length > 1;
+      const marca = titleCase(g.marca);
+      const generoTxt = { Masculino: "Hombre", Femenino: "Mujer", Unisex: "Unisex" }[g.genero];
+      const fotos = [...new Set(g.variants.map(v => v.foto).filter(Boolean))];
+      const waTxt = encodeURIComponent(`¡Hola Benza! Quería consultar por ${marca} ${g.nombre}.`);
+
+      document.title = `${marca} ${g.nombre} · Benza Importaciones`;
+      pdp.innerHTML = `
+        <nav class="crumbs pdp-crumbs" aria-label="Ruta">
+          <a href="index.html">Inicio</a><span>/</span><a href="catalogo.html">Catálogo</a><span>/</span>
+          <a href="catalogo.html?genero=${g.genero}">${generoTxt}</a><span>/</span><span aria-current="page">${esc(g.nombre)}</span>
+        </nav>
+        <div class="pdp-grid">
+          <div class="pdp-gallery">
+            <div class="pdp-main${fotos.length ? " has-photo" : ""}" id="pdpMain">
+              <span class="tag ${g.genero}">${g.genero}</span>
+              ${fotos.length ? `<img src="${fotos[0]}" alt="${esc(marca + " " + g.nombre)}" width="600" height="600">` : bottle(g)}
+            </div>
+            ${fotos.length > 1 ? `<div class="pdp-thumbs">${fotos.map((f, i) => `<button class="${i ? "" : "on"}" data-src="${f}" aria-label="Ver foto ${i + 1}"><img src="${f}" alt=""></button>`).join("")}</div>` : ""}
+          </div>
+
+          <div class="pdp-info">
+            <a class="pdp-brand" href="catalogo.html?marca=${encodeURIComponent(g.marca)}" aria-label="Ver todo ${esc(marca)}">
+              <img src="${logoSrc(g.marca)}" alt="${esc(marca)}" onerror="this.replaceWith(document.createTextNode(this.alt))">
+            </a>
+            <h1>${esc(g.nombre)}</h1>
+            <p class="pdp-sub">${g.conc} · ${generoTxt}</p>
+
+            <div class="pdp-price"><span id="pdpPrice"></span><small id="pdpPriceSize"></small></div>
+
+            <div class="pdp-block">
+              <span class="pdp-label">Tamaño</span>
+              <div class="pdp-sizes" role="radiogroup" aria-label="Tamaño">
+                ${g.variants.map(v => `<button class="pdp-size" role="radio" data-id="${v.id}">${v.ml ? v.ml + " ml" : "Único"}${multi ? `<small>${fmt(v.precio)}</small>` : ""}</button>`).join("")}
+              </div>
+            </div>
+
+            <div class="pdp-buy">
+              <div class="pdp-qty" aria-label="Cantidad">
+                <button type="button" data-q="-1" aria-label="Uno menos">−</button>
+                <output id="pdpCant">1</output>
+                <button type="button" data-q="1" aria-label="Uno más">+</button>
+              </div>
+              <button class="btn btn-gold pdp-add" id="pdpAdd">Agregar al pedido</button>
+            </div>
+            <div class="pdp-incart" id="pdpInCart" aria-live="polite"></div>
+
+            <ul class="pdp-perks">
+              <li>✦ Productos 100% originales</li>
+              <li>✦ Envíos a todo el país</li>
+              <li>✦ Pedido y pago coordinados por WhatsApp</li>
+            </ul>
+
+            <details class="pdp-acc" open>
+              <summary>Detalles del perfume</summary>
+              <dl>
+                <div><dt>Marca</dt><dd><a href="catalogo.html?marca=${encodeURIComponent(g.marca)}">${esc(marca)}</a></dd></div>
+                <div><dt>Perfume</dt><dd>${esc(g.nombre)}</dd></div>
+                <div><dt>Concentración</dt><dd>${g.conc}</dd></div>
+                <div><dt>Para</dt><dd>${generoTxt}</dd></div>
+                <div><dt>Tamaños</dt><dd>${g.variants.map(v => (v.ml ? v.ml + " ml" : "Único")).join(" · ")}</dd></div>
+              </dl>
+            </details>
+            <details class="pdp-acc">
+              <summary>Envíos y pagos</summary>
+              <p>Enviamos a todo el país por Correo Argentino, a domicilio o a sucursal. El costo depende del código postal y te lo confirmamos junto con el pedido. En algunas zonas el envío es gratis.</p>
+              <p>Al enviar el pedido por WhatsApp coordinamos stock, forma de pago y entrega.</p>
+            </details>
+            <a class="pdp-wa" href="https://wa.me/${WA_NUMBER}?text=${waTxt}" target="_blank" rel="noopener">Consultar por este perfume en WhatsApp</a>
+          </div>
+        </div>`;
+
+      const pintarSel = () => {
+        $$(".pdp-size", pdp).forEach(b => { const on = +b.dataset.id === sel.id; b.classList.toggle("on", on); b.setAttribute("aria-checked", on); });
+        $("#pdpPrice").textContent = fmt(sel.precio);
+        $("#pdpPriceSize").textContent = sel.ml ? `${sel.ml} ml` : "";
+        $("#pdpCant").textContent = cant;
+        $("#pdpAdd").textContent = cant > 1 ? `Agregar ${cant} al pedido · ${fmt(sel.precio * cant)}` : "Agregar al pedido";
+        history.replaceState(null, "", `producto.html?id=${sel.id}`);
+      };
+
+      renderPdpCart = () => {
+        const en = g.variants.filter(v => cart[v.id]);
+        $("#pdpInCart").innerHTML = en.length ? `
+          <p class="pdp-incart-title">En tu pedido</p>
+          ${en.map(v => `<div class="pdp-line">
+            <span>${v.ml ? v.ml + " ml" : g.nombre}</span>
+            <span class="stepper"><button data-id="${v.id}" data-d="-1" aria-label="Quitar uno de ${v.ml || ""} ml">−</button><b>${cart[v.id]}</b><button data-id="${v.id}" data-d="1" aria-label="Agregar otro de ${v.ml || ""} ml">+</button></span>
+            <span class="pdp-line-total">${fmt(v.precio * cart[v.id])}</span>
+          </div>`).join("")}
+          <button class="link-btn pdp-ver" id="pdpVer">Ver pedido completo</button>` : "";
+      };
+
+      pdp.addEventListener("click", e => {
+        const size = e.target.closest(".pdp-size");
+        if (size) { sel = BY_ID[size.dataset.id]; return pintarSel(); }
+        const q = e.target.closest("[data-q]");
+        if (q) { cant = Math.max(1, Math.min(20, cant + +q.dataset.q)); return pintarSel(); }
+        if (e.target.closest("#pdpAdd")) { changeQty(sel.id, cant); cant = 1; return pintarSel(); }
+        const step = e.target.closest(".pdp-line button[data-d]");
+        if (step) return changeQty(+step.dataset.id, +step.dataset.d);
+        if (e.target.closest("#pdpVer")) return $("#cartOpen").click();
+        const th = e.target.closest(".pdp-thumbs button");
+        if (th) {
+          $("#pdpMain img").src = th.dataset.src;
+          $$(".pdp-thumbs button", pdp).forEach(b => b.classList.toggle("on", b === th));
+        }
+      });
+
+      pintarSel();
+      renderPdpCart();
+
+      // Relacionados: misma marca; si hay pocos, se completa con el mismo género.
+      let rel = GROUPS.filter(x => x !== g && x.marca === g.marca);
+      if (rel.length < 4) rel = rel.concat(GROUPS.filter(x => x !== g && x.marca !== g.marca && x.genero === g.genero).slice(0, 8 - rel.length));
+      if (rel.length) {
+        $("#relTitulo").textContent = rel.every(x => x.marca === g.marca) ? `Más de ${marca}` : "También te puede gustar";
+        $("#relCarousel").innerHTML = rel.slice(0, 10).map(card).join("");
+        $("#relacionados").hidden = false;
+      }
+    }
   }
 
   renderIconos();

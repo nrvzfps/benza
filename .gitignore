@@ -2,3 +2,9 @@
 .claude/
 # Carpeta temporal de comparación de logos
 assets/marcas/_cand/
+# Credenciales de Correo Argentino de la prueba de envíos
+envios-prueba/.env
+# Configuración y credenciales del servidor
+.env
+# Copias automáticas del panel
+data/backups/

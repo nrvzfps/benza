@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Panel · Benza</title>
+  <link rel="icon" href="/assets/monograma.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/panel/panel.css">
+</head>
+<body>
+
+<!-- Ingreso -->
+<section class="login" id="login" hidden>
+  <form class="login-box" id="loginForm">
+    <img src="/assets/logo-benza.png" alt="Benza Importaciones" width="150" height="150">
+    <h1>Panel de administración</h1>
+    <label>Contraseña<input type="password" id="password" autocomplete="current-password" required autofocus></label>
+    <button class="btn btn-dark" type="submit">Ingresar</button>
+    <p class="error" id="loginError" role="alert"></p>
+  </form>
+</section>
+
+<!-- Panel -->
+<div id="app" hidden>
+  <header class="top">
+    <span class="brand"><img src="/assets/monograma-light.png" alt="" width="26" height="30"> BENZA <small>Panel</small></span>
+    <nav>
+      <button class="link" id="btnHistorial">Historial</button>
+      <a class="link" href="/" target="_blank" rel="noopener">Ver tienda ↗</a>
+      <button class="link" id="btnSalir">Salir</button>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <div class="head">
+      <div>
+        <h1>Perfumes</h1>
+        <p class="sub" id="resumen"></p>
+      </div>
+      <div class="head-actions">
+        <button class="btn" id="btnAumento">% Ajustar precios</button>
+        <button class="btn btn-dark" id="btnNuevo">+ Nuevo perfume</button>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <input type="search" id="buscar" placeholder="Buscar por nombre o marca…" aria-label="Buscar">
+      <select id="fMarca" aria-label="Filtrar por marca"><option value="">Todas las marcas</option></select>
+      <select id="fGenero" aria-label="Filtrar por género">
+        <option value="">Todos los géneros</option><option>Masculino</option><option>Femenino</option><option>Unisex</option>
+      </select>
+      <select id="orden" aria-label="Ordenar">
+        <option value="marca">Ordenar: marca</option><option value="precio-asc">Precio: menor a mayor</option>
+        <option value="precio-desc">Precio: mayor a menor</option><option value="nuevos">Últimos agregados</option>
+      </select>
+    </div>
+
+    <div class="selbar" id="selbar" hidden>
+      <span id="selCount"></span>
+      <button class="btn btn-sm" id="selAumento">% Ajustar precio</button>
+      <button class="btn btn-sm btn-danger" id="selEliminar">Eliminar</button>
+      <button class="link" id="selLimpiar">Quitar selección</button>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="c-check"><input type="checkbox" id="checkTodos" aria-label="Seleccionar todos los visibles"></th>
+            <th class="c-foto">Foto</th>
+            <th>Perfume</th>
+            <th class="c-gen">Género</th>
+            <th class="c-ml">Tamaño</th>
+            <th class="c-precio">Precio</th>
+            <th class="c-acc"></th>
+          </tr>
+        </thead>
+        <tbody id="filas"></tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<!-- Alta / edición -->
+<dialog class="modal" id="dlgProducto" aria-labelledby="dlgProductoTitulo">
+  <form method="dialog" id="formProducto">
+    <header><h2 id="dlgProductoTitulo">Nuevo perfume</h2><button class="x" value="cancel" formnovalidate aria-label="Cerrar">✕</button></header>
+    <div class="form-grid">
+      <div class="foto-box">
+        <div class="foto-prev" id="fotoPrev"><span>Sin foto</span></div>
+        <label class="btn btn-sm">Elegir foto<input type="file" id="fotoInput" accept="image/*" hidden></label>
+        <button type="button" class="link" id="fotoQuitar" hidden>Quitar foto</button>
+      </div>
+      <div class="campos">
+        <label>Marca<input id="pMarca" list="marcas" required placeholder="Ej: DIOR"></label>
+        <datalist id="marcas"></datalist>
+        <label>Nombre<input id="pNombre" required placeholder="Ej: Sauvage EDT"></label>
+        <label>Género<select id="pGenero" required><option>Masculino</option><option>Femenino</option><option>Unisex</option></select></label>
+        <div class="tamanos">
+          <div class="tam-head"><span>Tamaño (ml)</span><span>Precio ($)</span><span></span></div>
+          <div id="tamLista"></div>
+          <button type="button" class="link" id="tamAgregar">+ Agregar tamaño</button>
+          <p class="hint">En la tienda se muestra como una sola tarjeta y el cliente elige el tamaño al agregarlo.</p>
+        </div>
+      </div>
+    </div>
+    <p class="error" id="productoError" role="alert"></p>
+    <footer>
+      <button class="btn" value="cancel" formnovalidate>Cancelar</button>
+      <button class="btn btn-dark" id="btnGuardar" value="ok">Guardar</button>
+    </footer>
+  </form>
+</dialog>
+
+<!-- Ajuste masivo -->
+<dialog class="modal modal-wide" id="dlgAumento" aria-labelledby="dlgAumentoTitulo">
+  <form method="dialog" id="formAumento">
+    <header><h2 id="dlgAumentoTitulo">Ajustar precios</h2><button class="x" value="cancel" formnovalidate aria-label="Cerrar">✕</button></header>
+    <div class="aum-grid">
+      <fieldset>
+        <legend>Aplicar a</legend>
+        <label class="radio"><input type="radio" name="alcance" value="todos" checked> Todos los perfumes</label>
+        <label class="radio"><input type="radio" name="alcance" value="marca"> Marca:
+          <select id="aMarca"></select></label>
+        <label class="radio"><input type="radio" name="alcance" value="genero"> Género:
+          <select id="aGenero"><option>Masculino</option><option>Femenino</option><option>Unisex</option></select></label>
+        <label class="radio" id="radioSel"><input type="radio" name="alcance" value="ids"> <span id="aSelTxt">Seleccionados</span></label>
+      </fieldset>
+      <fieldset>
+        <legend>Cambio</legend>
+        <label>Porcentaje
+          <span class="pct"><input id="aPct" type="number" step="0.5" value="10" required><b>%</b></span>
+        </label>
+        <p class="hint">Usá un número negativo para bajar precios (ej. -5).</p>
+        <label>Redondear a
+          <select id="aRedondeo"><option value="0">Sin redondeo</option><option value="100">$100</option><option value="500">$500</option><option value="1000" selected>$1.000</option><option value="5000">$5.000</option></select>
+        </label>
+      </fieldset>
+    </div>
+    <div class="preview" id="aPreview"><p class="hint">Calculando vista previa…</p></div>
+    <p class="error" id="aumentoError" role="alert"></p>
+    <footer>
+      <button class="btn" value="cancel" formnovalidate>Cancelar</button>
+      <button class="btn btn-dark" id="btnAplicar" value="ok" disabled>Aplicar</button>
+    </footer>
+  </form>
+</dialog>
+
+<!-- Historial -->
+<dialog class="modal" id="dlgHistorial" aria-labelledby="dlgHistTitulo">
+  <form method="dialog">
+    <header><h2 id="dlgHistTitulo">Últimos cambios</h2><button class="x" value="cancel" aria-label="Cerrar">✕</button></header>
+    <ol class="historial" id="historial"></ol>
+    <footer>
+      <button class="btn" value="cancel">Cerrar</button>
+      <button class="btn btn-dark" type="button" id="btnDeshacerHist">Deshacer el último</button>
+    </footer>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastTxt"></span><button class="link" id="toastDeshacer" hidden>Deshacer</button></div>
+
+<script src="/panel/panel.js"></script>
+</body>
+</html>
