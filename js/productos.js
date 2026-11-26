@@ -9,7 +9,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 155000,
   "foto": "assets/productos/0.jpg",
   "fotos": [
-   "assets/productos/0.jpg"
+   "assets/productos/0.jpg",
+   "assets/productos/0-2.jpg"
   ]
  },
  {
@@ -21,7 +22,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 200000,
   "foto": "assets/productos/1.jpg",
   "fotos": [
-   "assets/productos/1.jpg"
+   "assets/productos/1.jpg",
+   "assets/productos/1-2.jpg"
   ]
  },
  {
@@ -110,8 +112,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 155000,
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/8.jpg",
+  "fotos": [
+   "assets/productos/8.jpg",
+   "assets/productos/8-2.jpg"
+  ]
  },
  {
   "id": 9,
@@ -199,8 +204,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 180000,
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/15.jpg",
+  "fotos": [
+   "assets/productos/15.jpg",
+   "assets/productos/15-2.jpg"
+  ]
  },
  {
   "id": 16,
@@ -237,7 +245,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 195000,
   "foto": "assets/productos/18.jpg",
   "fotos": [
-   "assets/productos/18.jpg"
+   "assets/productos/18.jpg",
+   "assets/productos/18-2.jpg"
   ]
  },
  {
@@ -302,7 +311,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 175000,
   "foto": "assets/productos/23.jpg",
   "fotos": [
-   "assets/productos/23.jpg"
+   "assets/productos/23.jpg",
+   "assets/productos/23-2.jpg"
   ]
  },
  {
@@ -314,7 +324,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 220000,
   "foto": "assets/productos/24.jpg",
   "fotos": [
-   "assets/productos/24.jpg"
+   "assets/productos/24.jpg",
+   "assets/productos/24-2.jpg"
   ]
  },
  {
@@ -352,7 +363,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 165000,
   "foto": "assets/productos/27.jpg",
   "fotos": [
-   "assets/productos/27.jpg"
+   "assets/productos/27.jpg",
+   "assets/productos/27-2.jpg"
   ]
  },
  {
@@ -507,7 +519,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 185000,
   "foto": "assets/productos/39.jpg",
   "fotos": [
-   "assets/productos/39.jpg"
+   "assets/productos/39.jpg",
+   "assets/productos/39-2.jpg"
   ]
  },
  {
@@ -571,7 +584,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 160000,
   "foto": "assets/productos/44.jpg",
   "fotos": [
-   "assets/productos/44.jpg"
+   "assets/productos/44.jpg",
+   "assets/productos/44-2.jpg"
   ]
  },
  {
@@ -635,7 +649,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 225000,
   "foto": "assets/productos/49.jpg",
   "fotos": [
-   "assets/productos/49.jpg"
+   "assets/productos/49.jpg",
+   "assets/productos/49-2.jpg"
   ]
  },
  {
@@ -687,7 +702,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 280000,
   "foto": "assets/productos/53.jpg",
   "fotos": [
-   "assets/productos/53.jpg"
+   "assets/productos/53.jpg",
+   "assets/productos/53-2.jpg"
   ]
  },
  {
@@ -711,8 +727,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 90,
   "precio": 280000,
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/55.jpg",
+  "fotos": [
+   "assets/productos/55.jpg",
+   "assets/productos/55-2.jpg"
+  ]
  },
  {
   "id": 56,
@@ -723,7 +742,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 250000,
   "foto": "assets/productos/56.jpg",
   "fotos": [
-   "assets/productos/56.jpg"
+   "assets/productos/56.jpg",
+   "assets/productos/56-2.jpg"
   ]
  },
  {
@@ -735,7 +755,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 225000,
   "foto": "assets/productos/57.jpg",
   "fotos": [
-   "assets/productos/57.jpg"
+   "assets/productos/57.jpg",
+   "assets/productos/57-2.jpg"
   ]
  },
  {
@@ -773,7 +794,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 200000,
   "foto": "assets/productos/60.jpg",
   "fotos": [
-   "assets/productos/60.jpg"
+   "assets/productos/60.jpg",
+   "assets/productos/60-2.jpg"
   ]
  },
  {
@@ -835,8 +857,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 230000,
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/65.jpg",
+  "fotos": [
+   "assets/productos/65.jpg",
+   "assets/productos/65-2.jpg"
+  ]
  },
  {
   "id": 66,
@@ -845,8 +870,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 210000,
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/66.jpg",
+  "fotos": [
+   "assets/productos/66.jpg",
+   "assets/productos/66-2.jpg"
+  ]
  },
  {
   "id": 67,
@@ -857,7 +885,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 150000,
   "foto": "assets/productos/67.jpg",
   "fotos": [
-   "assets/productos/67.jpg"
+   "assets/productos/67.jpg",
+   "assets/productos/67-2.jpg"
   ]
  },
  {
@@ -973,7 +1002,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 155000,
   "foto": "assets/productos/76.jpg",
   "fotos": [
-   "assets/productos/76.jpg"
+   "assets/productos/76.jpg",
+   "assets/productos/76-2.jpg"
   ]
  },
  {
@@ -1024,7 +1054,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 165000,
   "foto": "assets/productos/80.jpg",
   "fotos": [
-   "assets/productos/80.jpg"
+   "assets/productos/80.jpg",
+   "assets/productos/80-2.jpg"
   ]
  },
  {
@@ -1089,7 +1120,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 180000,
   "foto": "assets/productos/85.jpg",
   "fotos": [
-   "assets/productos/85.jpg"
+   "assets/productos/85.jpg",
+   "assets/productos/85-2.jpg"
   ]
  },
  {
@@ -1114,7 +1146,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 180000,
   "foto": "assets/productos/87.jpg",
   "fotos": [
-   "assets/productos/87.jpg"
+   "assets/productos/87.jpg",
+   "assets/productos/87-2.jpg"
   ]
  },
  {
@@ -1243,7 +1276,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 240000,
   "foto": "assets/productos/97.jpg",
   "fotos": [
-   "assets/productos/97.jpg"
+   "assets/productos/97.jpg",
+   "assets/productos/97-2.jpg"
   ]
  },
  {
@@ -1331,8 +1365,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 155000,
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/104.jpg",
+  "fotos": [
+   "assets/productos/104.jpg",
+   "assets/productos/104-2.jpg"
+  ]
  },
  {
   "id": 105,
@@ -1405,7 +1442,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 180000,
   "foto": "assets/productos/110.jpg",
   "fotos": [
-   "assets/productos/110.jpg"
+   "assets/productos/110.jpg",
+   "assets/productos/110-2.jpg"
   ]
  },
  {
@@ -1417,7 +1455,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 155000,
   "foto": "assets/productos/111.jpg",
   "fotos": [
-   "assets/productos/111.jpg"
+   "assets/productos/111.jpg",
+   "assets/productos/111-2.jpg"
   ]
  },
  {
@@ -1429,7 +1468,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 170000,
   "foto": "assets/productos/112.jpg",
   "fotos": [
-   "assets/productos/112.jpg"
+   "assets/productos/112.jpg",
+   "assets/productos/112-2.jpg"
   ]
  },
  {
@@ -1454,7 +1494,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 200000,
   "foto": "assets/productos/114.jpg",
   "fotos": [
-   "assets/productos/114.jpg"
+   "assets/productos/114.jpg",
+   "assets/productos/114-2.jpg"
   ]
  },
  {
@@ -1466,7 +1507,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 240000,
   "foto": "assets/productos/115.jpg",
   "fotos": [
-   "assets/productos/115.jpg"
+   "assets/productos/115.jpg",
+   "assets/productos/115-2.jpg"
   ]
  },
  {
@@ -1555,7 +1597,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 250000,
   "foto": "assets/productos/122.jpg",
   "fotos": [
-   "assets/productos/122.jpg"
+   "assets/productos/122.jpg",
+   "assets/productos/122-2.jpg"
   ]
  },
  {
@@ -1641,7 +1684,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 200000,
   "foto": "assets/productos/129.jpg",
   "fotos": [
-   "assets/productos/129.jpg"
+   "assets/productos/129.jpg",
+   "assets/productos/129-2.jpg"
   ]
  },
  {
@@ -1689,8 +1733,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 75000,
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/133.jpg",
+  "fotos": [
+   "assets/productos/133.jpg",
+   "assets/productos/133-2.jpg"
+  ]
  },
  {
   "id": 134,
@@ -1699,8 +1746,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 75000,
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/134.jpg",
+  "fotos": [
+   "assets/productos/134.jpg",
+   "assets/productos/134-2.jpg"
+  ]
  },
  {
   "id": 135,
@@ -1761,8 +1811,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 245000,
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/139.jpg",
+  "fotos": [
+   "assets/productos/139.jpg",
+   "assets/productos/139-2.jpg"
+  ]
  },
  {
   "id": 140,
@@ -1851,8 +1904,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 265000,
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/146.jpg",
+  "fotos": [
+   "assets/productos/146.jpg",
+   "assets/productos/146-2.jpg"
+  ]
  },
  {
   "id": 147,
@@ -1902,8 +1958,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 190000,
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/150.jpg",
+  "fotos": [
+   "assets/productos/150.jpg",
+   "assets/productos/150-2.jpg"
+  ]
  },
  {
   "id": 151,
@@ -1912,8 +1971,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 200000,
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/151.jpg",
+  "fotos": [
+   "assets/productos/151.jpg",
+   "assets/productos/151-2.jpg"
+  ]
  },
  {
   "id": 152,
@@ -1962,7 +2024,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 295000,
   "foto": "assets/productos/155.jpg",
   "fotos": [
-   "assets/productos/155.jpg"
+   "assets/productos/155.jpg",
+   "assets/productos/155-2.jpg"
   ]
  },
  {
@@ -1974,7 +2037,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 250000,
   "foto": "assets/productos/156.jpg",
   "fotos": [
-   "assets/productos/156.jpg"
+   "assets/productos/156.jpg",
+   "assets/productos/156-2.jpg"
   ]
  },
  {
@@ -2012,7 +2076,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 270000,
   "foto": "assets/productos/159.jpg",
   "fotos": [
-   "assets/productos/159.jpg"
+   "assets/productos/159.jpg",
+   "assets/productos/159-2.jpg"
   ]
  },
  {
@@ -2037,7 +2102,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 350000,
   "foto": "assets/productos/161.jpg",
   "fotos": [
-   "assets/productos/161.jpg"
+   "assets/productos/161.jpg",
+   "assets/productos/161-2.jpg"
   ]
  },
  {
@@ -2079,7 +2145,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 255000,
   "foto": "assets/productos/165.jpg",
   "fotos": [
-   "assets/productos/165.jpg"
+   "assets/productos/165.jpg",
+   "assets/productos/165-2.jpg"
   ]
  },
  {
@@ -2091,7 +2158,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 285000,
   "foto": "assets/productos/166.jpg",
   "fotos": [
-   "assets/productos/166.jpg"
+   "assets/productos/166.jpg",
+   "assets/productos/166-2.jpg"
   ]
  },
  {
@@ -2180,7 +2248,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 190000,
   "foto": "assets/productos/173.jpg",
   "fotos": [
-   "assets/productos/173.jpg"
+   "assets/productos/173.jpg",
+   "assets/productos/173-2.jpg"
   ]
  },
  {
@@ -2205,7 +2274,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 200000,
   "foto": "assets/productos/175.jpg",
   "fotos": [
-   "assets/productos/175.jpg"
+   "assets/productos/175.jpg",
+   "assets/productos/175-2.jpg"
   ]
  },
  {
@@ -2217,7 +2287,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 240000,
   "foto": "assets/productos/176.jpg",
   "fotos": [
-   "assets/productos/176.jpg"
+   "assets/productos/176.jpg",
+   "assets/productos/176-2.jpg"
   ]
  },
  {
@@ -2256,7 +2327,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 215000,
   "foto": "assets/productos/179.jpg",
   "fotos": [
-   "assets/productos/179.jpg"
+   "assets/productos/179.jpg",
+   "assets/productos/179-2.jpg"
   ]
  },
  {
@@ -2381,7 +2453,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 140000,
   "foto": "assets/productos/189.jpg",
   "fotos": [
-   "assets/productos/189.jpg"
+   "assets/productos/189.jpg",
+   "assets/productos/189-2.jpg"
   ]
  },
  {
@@ -2406,7 +2479,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 95000,
   "foto": "assets/productos/191.jpg",
   "fotos": [
-   "assets/productos/191.jpg"
+   "assets/productos/191.jpg",
+   "assets/productos/191-2.jpg"
   ]
  },
  {
@@ -2431,7 +2505,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 125000,
   "foto": "assets/productos/193.jpg",
   "fotos": [
-   "assets/productos/193.jpg"
+   "assets/productos/193.jpg",
+   "assets/productos/193-2.jpg"
   ]
  },
  {
@@ -2441,8 +2516,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 75,
   "precio": 85000,
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/194.jpg",
+  "fotos": [
+   "assets/productos/194.jpg",
+   "assets/productos/194-2.jpg"
+  ]
  },
  {
   "id": 195,
@@ -2453,7 +2531,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 130000,
   "foto": "assets/productos/195.jpg",
   "fotos": [
-   "assets/productos/195.jpg"
+   "assets/productos/195.jpg",
+   "assets/productos/195-2.jpg"
   ]
  },
  {
@@ -2465,7 +2544,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 145000,
   "foto": "assets/productos/196.jpg",
   "fotos": [
-   "assets/productos/196.jpg"
+   "assets/productos/196.jpg",
+   "assets/productos/196-2.jpg"
   ]
  },
  {
@@ -2516,7 +2596,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 220000,
   "foto": "assets/productos/200.jpg",
   "fotos": [
-   "assets/productos/200.jpg"
+   "assets/productos/200.jpg",
+   "assets/productos/200-2.jpg"
   ]
  },
  {
@@ -2604,8 +2685,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 180000,
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/207.jpg",
+  "fotos": [
+   "assets/productos/207.jpg",
+   "assets/productos/207-2.jpg"
+  ]
  },
  {
   "id": 208,
@@ -2642,7 +2726,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 180000,
   "foto": "assets/productos/210.jpg",
   "fotos": [
-   "assets/productos/210.jpg"
+   "assets/productos/210.jpg",
+   "assets/productos/210-2.jpg"
   ]
  },
  {
@@ -2706,7 +2791,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 150000,
   "foto": "assets/productos/215.jpg",
   "fotos": [
-   "assets/productos/215.jpg"
+   "assets/productos/215.jpg",
+   "assets/productos/215-2.jpg"
   ]
  },
  {
@@ -2744,7 +2830,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 300000,
   "foto": "assets/productos/218.jpg",
   "fotos": [
-   "assets/productos/218.jpg"
+   "assets/productos/218.jpg",
+   "assets/productos/218-2.jpg"
   ]
  },
  {
@@ -2756,7 +2843,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 360000,
   "foto": "assets/productos/219.jpg",
   "fotos": [
-   "assets/productos/219.jpg"
+   "assets/productos/219.jpg",
+   "assets/productos/219-2.jpg"
   ]
  },
  {
@@ -2768,7 +2856,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 500000,
   "foto": "assets/productos/220.jpg",
   "fotos": [
-   "assets/productos/220.jpg"
+   "assets/productos/220.jpg",
+   "assets/productos/220-2.jpg"
   ]
  },
  {
@@ -2792,7 +2881,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 355000,
   "foto": "assets/productos/222.jpg",
   "fotos": [
-   "assets/productos/222.jpg"
+   "assets/productos/222.jpg",
+   "assets/productos/222-2.jpg"
   ]
  },
  {
@@ -2804,7 +2894,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 375000,
   "foto": "assets/productos/223.jpg",
   "fotos": [
-   "assets/productos/223.jpg"
+   "assets/productos/223.jpg",
+   "assets/productos/223-2.jpg"
   ]
  },
  {
@@ -2816,7 +2907,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 450000,
   "foto": "assets/productos/224.jpg",
   "fotos": [
-   "assets/productos/224.jpg"
+   "assets/productos/224.jpg",
+   "assets/productos/224-2.jpg"
   ]
  },
  {
@@ -2828,7 +2920,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 300000,
   "foto": "assets/productos/225.jpg",
   "fotos": [
-   "assets/productos/225.jpg"
+   "assets/productos/225.jpg",
+   "assets/productos/225-2.jpg"
   ]
  },
  {
@@ -2840,7 +2933,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 500000,
   "foto": "assets/productos/226.jpg",
   "fotos": [
-   "assets/productos/226.jpg"
+   "assets/productos/226.jpg",
+   "assets/productos/226-2.jpg"
   ]
  },
  {
@@ -2852,7 +2946,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 325000,
   "foto": "assets/productos/227.jpg",
   "fotos": [
-   "assets/productos/227.jpg"
+   "assets/productos/227.jpg",
+   "assets/productos/227-2.jpg"
   ]
  },
  {
@@ -2864,7 +2959,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 400000,
   "foto": "assets/productos/228.jpg",
   "fotos": [
-   "assets/productos/228.jpg"
+   "assets/productos/228.jpg",
+   "assets/productos/228-2.jpg"
   ]
  },
  {
@@ -2876,7 +2972,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 320000,
   "foto": "assets/productos/229.jpg",
   "fotos": [
-   "assets/productos/229.jpg"
+   "assets/productos/229.jpg",
+   "assets/productos/229-2.jpg"
   ]
  },
  {
@@ -2888,7 +2985,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 330000,
   "foto": "assets/productos/230.jpg",
   "fotos": [
-   "assets/productos/230.jpg"
+   "assets/productos/230.jpg",
+   "assets/productos/230-2.jpg"
   ]
  },
  {
@@ -2900,7 +2998,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 365000,
   "foto": "assets/productos/231.jpg",
   "fotos": [
-   "assets/productos/231.jpg"
+   "assets/productos/231.jpg",
+   "assets/productos/231-2.jpg"
   ]
  },
  {
@@ -2912,7 +3011,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 90000,
   "foto": "assets/productos/232.jpg",
   "fotos": [
-   "assets/productos/232.jpg"
+   "assets/productos/232.jpg",
+   "assets/productos/232-2.jpg"
   ]
  },
  {
@@ -2924,7 +3024,8 @@ window.BENZA_PRODUCTOS = [
   "precio": 140000,
   "foto": "assets/productos/233.jpg",
   "fotos": [
-   "assets/productos/233.jpg"
+   "assets/productos/233.jpg",
+   "assets/productos/233-2.jpg"
   ]
  },
  {
@@ -2934,8 +3035,12 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 120000,
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/234.jpg",
+  "fotos": [
+   "assets/productos/234.jpg",
+   "assets/productos/234-2.jpg",
+   "assets/productos/234-3.jpg"
+  ]
  },
  {
   "id": 235,
@@ -2975,7 +3080,9 @@ window.BENZA_PRODUCTOS = [
   "linea": "arabe",
   "foto": "assets/productos/237.jpg",
   "fotos": [
-   "assets/productos/237.jpg"
+   "assets/productos/237.jpg",
+   "assets/productos/237-2.jpg",
+   "assets/productos/237-3.jpg"
   ]
  },
  {
@@ -3086,7 +3193,8 @@ window.BENZA_PRODUCTOS = [
   "linea": "arabe",
   "foto": "assets/productos/245.jpg",
   "fotos": [
-   "assets/productos/245.jpg"
+   "assets/productos/245.jpg",
+   "assets/productos/245-2.jpg"
   ]
  },
  {
@@ -3211,8 +3319,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 90,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/254.jpg",
+  "fotos": [
+   "assets/productos/254.jpg",
+   "assets/productos/254-2.jpg"
+  ]
  },
  {
   "id": 255,
@@ -3222,8 +3333,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/255.jpg",
+  "fotos": [
+   "assets/productos/255.jpg",
+   "assets/productos/255-2.jpg"
+  ]
  },
  {
   "id": 256,
@@ -3233,8 +3347,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/256.jpg",
+  "fotos": [
+   "assets/productos/256.jpg",
+   "assets/productos/256-2.jpg"
+  ]
  },
  {
   "id": 257,
@@ -3244,8 +3361,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/257.jpg",
+  "fotos": [
+   "assets/productos/257.jpg",
+   "assets/productos/257-2.jpg"
+  ]
  },
  {
   "id": 258,
@@ -3255,8 +3375,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/258.jpg",
+  "fotos": [
+   "assets/productos/258.jpg",
+   "assets/productos/258-2.jpg"
+  ]
  },
  {
   "id": 259,
@@ -3280,8 +3403,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/260.jpg",
+  "fotos": [
+   "assets/productos/260.jpg",
+   "assets/productos/260-2.jpg"
+  ]
  },
  {
   "id": 261,
@@ -3305,8 +3431,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/262.jpg",
+  "fotos": [
+   "assets/productos/262.jpg",
+   "assets/productos/262-2.jpg"
+  ]
  },
  {
   "id": 263,
@@ -3316,8 +3445,10 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/263.jpg",
+  "fotos": [
+   "assets/productos/263.jpg"
+  ]
  },
  {
   "id": 264,
@@ -3327,8 +3458,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/264.jpg",
+  "fotos": [
+   "assets/productos/264.jpg",
+   "assets/productos/264-2.jpg"
+  ]
  },
  {
   "id": 265,
@@ -3338,8 +3472,10 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/265.jpg",
+  "fotos": [
+   "assets/productos/265.jpg"
+  ]
  },
  {
   "id": 266,
@@ -3363,8 +3499,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/267.jpg",
+  "fotos": [
+   "assets/productos/267.jpg",
+   "assets/productos/267-2.jpg"
+  ]
  },
  {
   "id": 268,
@@ -3374,8 +3513,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/268.jpg",
+  "fotos": [
+   "assets/productos/268.jpg",
+   "assets/productos/268-2.jpg"
+  ]
  },
  {
   "id": 269,
@@ -3385,8 +3527,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/269.jpg",
+  "fotos": [
+   "assets/productos/269.jpg",
+   "assets/productos/269-2.jpg"
+  ]
  },
  {
   "id": 270,
@@ -3407,8 +3552,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/271.jpg",
+  "fotos": [
+   "assets/productos/271.jpg",
+   "assets/productos/271-2.jpg"
+  ]
  },
  {
   "id": 272,
@@ -3432,8 +3580,10 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/273.jpg",
+  "fotos": [
+   "assets/productos/273.jpg"
+  ]
  },
  {
   "id": 274,
@@ -3443,8 +3593,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/274.jpg",
+  "fotos": [
+   "assets/productos/274.jpg",
+   "assets/productos/274-2.jpg"
+  ]
  },
  {
   "id": 275,
@@ -3454,8 +3607,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/275.jpg",
+  "fotos": [
+   "assets/productos/275.jpg",
+   "assets/productos/275-2.jpg"
+  ]
  },
  {
   "id": 276,
@@ -3476,8 +3632,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/277.jpg",
+  "fotos": [
+   "assets/productos/277.jpg",
+   "assets/productos/277-2.jpg"
+  ]
  },
  {
   "id": 278,
@@ -3498,8 +3657,10 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/279.jpg",
+  "fotos": [
+   "assets/productos/279.jpg"
+  ]
  },
  {
   "id": 280,
@@ -3509,8 +3670,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/280.jpg",
+  "fotos": [
+   "assets/productos/280.jpg",
+   "assets/productos/280-2.jpg"
+  ]
  },
  {
   "id": 281,
@@ -3520,8 +3684,12 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/281.jpg",
+  "fotos": [
+   "assets/productos/281.jpg",
+   "assets/productos/281-2.jpg",
+   "assets/productos/281-3.jpg"
+  ]
  },
  {
   "id": 282,
@@ -3531,8 +3699,10 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/282.jpg",
+  "fotos": [
+   "assets/productos/282.jpg"
+  ]
  },
  {
   "id": 283,
@@ -3542,8 +3712,10 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/283.jpg",
+  "fotos": [
+   "assets/productos/283.jpg"
+  ]
  },
  {
   "id": 284,
@@ -3553,8 +3725,10 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/284.jpg",
+  "fotos": [
+   "assets/productos/284.jpg"
+  ]
  },
  {
   "id": 285,
@@ -3564,8 +3738,10 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/285.jpg",
+  "fotos": [
+   "assets/productos/285.jpg"
+  ]
  },
  {
   "id": 286,
@@ -3589,8 +3765,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 200,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/287.jpg",
+  "fotos": [
+   "assets/productos/287.jpg",
+   "assets/productos/287-2.jpg"
+  ]
  },
  {
   "id": 288,
@@ -3600,8 +3779,10 @@ window.BENZA_PRODUCTOS = [
   "ml": 105,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/288.jpg",
+  "fotos": [
+   "assets/productos/288.jpg"
+  ]
  },
  {
   "id": 289,
@@ -3611,8 +3792,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 105,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/289.jpg",
+  "fotos": [
+   "assets/productos/289.jpg",
+   "assets/productos/289-2.jpg"
+  ]
  },
  {
   "id": 290,
@@ -3622,8 +3806,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 105,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/290.jpg",
+  "fotos": [
+   "assets/productos/290.jpg",
+   "assets/productos/290-2.jpg"
+  ]
  },
  {
   "id": 291,
@@ -3633,8 +3820,10 @@ window.BENZA_PRODUCTOS = [
   "ml": 105,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/291.jpg",
+  "fotos": [
+   "assets/productos/291.jpg"
+  ]
  },
  {
   "id": 292,
@@ -3658,8 +3847,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 105,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/293.jpg",
+  "fotos": [
+   "assets/productos/293.jpg",
+   "assets/productos/293-2.jpg"
+  ]
  },
  {
   "id": 294,
@@ -3694,8 +3886,10 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/296.jpg",
+  "fotos": [
+   "assets/productos/296.jpg"
+  ]
  },
  {
   "id": 297,
@@ -3705,8 +3899,10 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/297.jpg",
+  "fotos": [
+   "assets/productos/297.jpg"
+  ]
  },
  {
   "id": 298,
@@ -3727,8 +3923,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/299.jpg",
+  "fotos": [
+   "assets/productos/299.jpg",
+   "assets/productos/299-2.jpg"
+  ]
  },
  {
   "id": 300,
@@ -3738,8 +3937,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/300.jpg",
+  "fotos": [
+   "assets/productos/300.jpg",
+   "assets/productos/300-2.jpg"
+  ]
  },
  {
   "id": 301,
@@ -3749,8 +3951,10 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/301.jpg",
+  "fotos": [
+   "assets/productos/301.jpg"
+  ]
  },
  {
   "id": 302,
@@ -3760,8 +3964,12 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/302.jpg",
+  "fotos": [
+   "assets/productos/302.jpg",
+   "assets/productos/302-2.jpg",
+   "assets/productos/302-3.jpg"
+  ]
  },
  {
   "id": 303,
@@ -3771,8 +3979,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/303.jpg",
+  "fotos": [
+   "assets/productos/303.jpg",
+   "assets/productos/303-2.jpg"
+  ]
  },
  {
   "id": 304,
@@ -3782,8 +3993,10 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/304.jpg",
+  "fotos": [
+   "assets/productos/304.jpg"
+  ]
  },
  {
   "id": 305,
@@ -3793,8 +4006,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/305.jpg",
+  "fotos": [
+   "assets/productos/305.jpg",
+   "assets/productos/305-2.jpg"
+  ]
  },
  {
   "id": 306,
@@ -3804,8 +4020,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/306.jpg",
+  "fotos": [
+   "assets/productos/306.jpg",
+   "assets/productos/306-2.jpg"
+  ]
  },
  {
   "id": 307,
@@ -3815,8 +4034,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/307.jpg",
+  "fotos": [
+   "assets/productos/307.jpg",
+   "assets/productos/307-2.jpg"
+  ]
  },
  {
   "id": 308,
@@ -3826,8 +4048,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/308.jpg",
+  "fotos": [
+   "assets/productos/308.jpg",
+   "assets/productos/308-2.jpg"
+  ]
  },
  {
   "id": 309,
@@ -3837,8 +4062,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/309.jpg",
+  "fotos": [
+   "assets/productos/309.jpg",
+   "assets/productos/309-2.jpg"
+  ]
  },
  {
   "id": 310,
@@ -3848,8 +4076,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/310.jpg",
+  "fotos": [
+   "assets/productos/310.jpg",
+   "assets/productos/310-2.jpg"
+  ]
  },
  {
   "id": 311,
@@ -3859,8 +4090,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/311.jpg",
+  "fotos": [
+   "assets/productos/311.jpg",
+   "assets/productos/311-2.jpg"
+  ]
  },
  {
   "id": 312,
@@ -3884,8 +4118,10 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/313.jpg",
+  "fotos": [
+   "assets/productos/313.jpg"
+  ]
  },
  {
   "id": 314,
@@ -3895,8 +4131,11 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/314.jpg",
+  "fotos": [
+   "assets/productos/314.jpg",
+   "assets/productos/314-2.jpg"
+  ]
  },
  {
   "id": 315,
@@ -3928,7 +4167,10 @@ window.BENZA_PRODUCTOS = [
   "ml": 100,
   "precio": null,
   "linea": "arabe",
-  "foto": null,
-  "fotos": []
+  "foto": "assets/productos/317.jpg",
+  "fotos": [
+   "assets/productos/317.jpg",
+   "assets/productos/317-2.jpg"
+  ]
  }
 ];
