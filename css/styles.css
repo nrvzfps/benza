@@ -544,7 +544,8 @@ select:focus { border-color: var(--gold); outline: 0; }
 .ship-consult { font-size: .9rem; color: var(--ink-3); }
 
 /* ---------- Sin stock (regla: sin precio = sin stock) ---------- */
-.card.sin-stock .card-media img, .card.sin-stock .card-media svg { opacity: .55; filter: grayscale(.6); }
+/* El "apagado" va con filter (no con opacity) para no pisar la transparencia de la foto de hover */
+.card.sin-stock .card-media img, .card.sin-stock .card-media svg { filter: grayscale(.6) opacity(.55); }
 .tag-stock { position: absolute; top: .7rem; right: .7rem; z-index: 1; font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; padding: .22rem .55rem; border-radius: 999px; background: #fff; color: var(--ink-3); border: 1px solid var(--sand); }
 .price-na { white-space: nowrap; font-family: var(--sans) !important; font-size: .7rem !important; font-weight: 500 !important; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .ask { display: inline-flex; align-items: center; height: 34px; padding: 0 .85rem; border-radius: 999px; border: 1px solid var(--ink); color: var(--ink); text-decoration: none; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; white-space: nowrap; transition: background .2s, color .2s; }
