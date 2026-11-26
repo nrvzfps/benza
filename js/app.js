@@ -80,7 +80,8 @@
   const getCP = () => { try { return localStorage.getItem("benza-cp") || ""; } catch { return ""; } };
   const setCP = cp => { try { cp ? localStorage.setItem("benza-cp", cp) : localStorage.removeItem("benza-cp"); } catch { /* sin almacenamiento */ } };
   let envioCfgP = null;
-  const envioConfig = () => (envioCfgP = envioCfgP || fetch("js/envios.json").then(r => r.json()).catch(() => null));
+  // cache "no-cache": el navegador siempre verifica la versión vigente (así un cambio de modo o de precios se ve enseguida)
+  const envioConfig = () => (envioCfgP = envioCfgP || fetch("js/envios.json", { cache: "no-cache" }).then(r => r.json()).catch(() => null));
   // "calcular" = muestra el costo; "consultar" = sólo pide el CP y el costo se pasa por WhatsApp
   const modoEnvio = async () => ((await envioConfig()) || {}).modo === "consultar" ? "consultar" : "calcular";
   const describirCP = (cp, cfg) => {
