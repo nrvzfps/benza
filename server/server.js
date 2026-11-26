@@ -72,9 +72,26 @@ function guardarFoto(id, dataUrl) {
   if (buf.length > 3 * 1024 * 1024) throw new Error("La foto es demasiado grande.");
   const ext = m[1] === "jpeg" ? "jpg" : m[1];
   fs.mkdirSync(FOTOS, { recursive: true });
-  fs.writeFileSync(path.join(FOTOS, `${id}.${ext}`), buf);
-  return `assets/productos/${id}.${ext}?v=${Date.now().toString(36)}`;
+  // Nombre único: así las fotos anteriores siguen existiendo (sirve para "Deshacer").
+  const nombre = `${id}-${Date.now().toString(36)}${crypto.randomBytes(2).toString("hex")}.${ext}`;
+  fs.writeFileSync(path.join(FOTOS, nombre), buf);
+  return `assets/productos/${nombre}`;
 }
+
+// Lista ordenada de fotos del panel: cada elemento es una ruta existente (se conserva) o una data URL (se guarda).
+const MAX_FOTOS = 8;
+function procesarFotos(id, lista) {
+  if (!Array.isArray(lista)) throw new Error("Lista de fotos inválida.");
+  if (lista.length > MAX_FOTOS) throw new Error(`Máximo ${MAX_FOTOS} fotos por perfume.`);
+  return lista.map(f => {
+    if (typeof f !== "string") throw new Error("Foto inválida.");
+    if (f.startsWith("data:")) return guardarFoto(id, f);
+    const ruta = f.replace(/^\//, "");
+    if (!/^assets\/productos\/[\w.-]+\.(jpg|png|webp)(\?[\w=.-]*)?$/.test(ruta) || ruta.includes("..")) throw new Error("Ruta de foto inválida.");
+    return ruta;
+  });
+}
+const conFotos = (p, fotos) => ({ ...p, fotos, foto: fotos[0] || null });
 
 function redondear(n, paso) {
   return paso > 0 ? Math.round(n / paso) * paso : Math.round(n);
@@ -152,7 +169,7 @@ async function api(req, res, ruta) {
     const lista = leer();
     const datos = validar(b, false);
     const id = lista.reduce((m, p) => Math.max(m, p.id), -1) + 1;
-    const nuevo = { id, ...datos, foto: b.foto ? guardarFoto(id, b.foto) : null };
+    const nuevo = conFotos({ id, ...datos }, Array.isArray(b.fotos) ? procesarFotos(id, b.fotos) : b.foto ? [guardarFoto(id, b.foto)] : []);
     lista.push(nuevo);
     guardar(lista, `Alta: ${nuevo.marca} ${nuevo.nombre}`);
     return json(res, 201, nuevo);
@@ -178,14 +195,20 @@ async function api(req, res, ruta) {
     if (choca) throw new Error("Ya existe un perfume con esa marca, nombre y género. Editalo desde la lista para sumarle tamaños.");
 
     let sigId = lista.reduce((m, p) => Math.max(m, p.id), -1) + 1;
-    const fotoActual = (lista.find(p => originales.has(p.id) && p.foto) || {}).foto || null;
-    const quedan = tamanos.map(t => {
+    const conFoto = lista.find(p => originales.has(p.id) && (p.fotos?.length || p.foto));
+    const fotosActuales = conFoto ? (conFoto.fotos?.length ? conFoto.fotos : [conFoto.foto]) : [];
+    let quedan = tamanos.map(t => {
       const prev = t.id != null ? lista.find(p => p.id === t.id) : null;
-      return { id: prev ? prev.id : sigId++, ...base, ml: t.ml ?? null, precio: t.precio, foto: prev ? prev.foto : fotoActual };
+      const fotos = prev ? (prev.fotos?.length ? prev.fotos : prev.foto ? [prev.foto] : []) : fotosActuales;
+      return conFotos({ id: prev ? prev.id : sigId++, ...base, ml: t.ml ?? null, precio: t.precio }, fotos);
     });
-    if ("foto" in b) {
-      const foto = b.foto ? guardarFoto(quedan[0].id, b.foto) : null;
-      quedan.forEach(p => (p.foto = foto));
+    // Las fotos se comparten entre todos los tamaños del perfume
+    if ("fotos" in b) {
+      const fotos = procesarFotos(quedan[0].id, b.fotos);
+      quedan = quedan.map(p => conFotos(p, fotos));
+    } else if ("foto" in b) {
+      const fotos = b.foto ? [guardarFoto(quedan[0].id, b.foto)] : [];
+      quedan = quedan.map(p => conFotos(p, fotos));
     }
     const ids = new Set(quedan.map(p => p.id));
     const nueva = lista.filter(p => !originales.has(p.id) || ids.has(p.id)).map(p => quedan.find(q => q.id === p.id) || p);
@@ -202,8 +225,9 @@ async function api(req, res, ruta) {
     const i = lista.findIndex(p => p.id === +m[1]);
     if (i < 0) return json(res, 404, { error: "No existe ese producto." });
     const cambios = validar(b, true);
-    if ("foto" in b) cambios.foto = b.foto ? guardarFoto(lista[i].id, b.foto) : null;
     lista[i] = { ...lista[i], ...cambios };
+    if (Array.isArray(b.fotos)) lista[i] = conFotos(lista[i], procesarFotos(lista[i].id, b.fotos));
+    else if ("foto" in b) lista[i] = conFotos(lista[i], b.foto ? [guardarFoto(lista[i].id, b.foto)] : []);
     guardar(lista, `Edición: ${lista[i].marca} ${lista[i].nombre}`);
     return json(res, 200, lista[i]);
   }

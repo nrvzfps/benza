@@ -91,9 +91,9 @@
     <header><h2 id="dlgProductoTitulo">Nuevo perfume</h2><button class="x" value="cancel" formnovalidate aria-label="Cerrar">✕</button></header>
     <div class="form-grid">
       <div class="foto-box">
-        <div class="foto-prev" id="fotoPrev"><span>Sin foto</span></div>
-        <label class="btn btn-sm">Elegir foto<input type="file" id="fotoInput" accept="image/*" hidden></label>
-        <button type="button" class="link" id="fotoQuitar" hidden>Quitar foto</button>
+        <div class="fotos-grid" id="fotosGrid"></div>
+        <label class="btn btn-sm">+ Agregar fotos<input type="file" id="fotoInput" accept="image/*" multiple hidden></label>
+        <p class="hint">La ★ es la foto principal. Podés subir varias (frasco, caja, etc.).</p>
       </div>
       <div class="campos">
         <label>Marca<input id="pMarca" list="marcas" required placeholder="Ej: DIOR"></label>

@@ -18,7 +18,9 @@
     }
     for (const g of GROUPS) {
       g.variants.sort((a, b) => (a.ml || 0) - (b.ml || 0));
-      g.foto = (g.variants.find(v => v.foto) || {}).foto || null;
+      // Todas las fotos del perfume (de todos sus tamaños, sin repetir); la primera es la principal.
+      g.fotos = [...new Set(g.variants.flatMap(v => (v.fotos && v.fotos.length ? v.fotos : v.foto ? [v.foto] : [])))];
+      g.foto = g.fotos[0] || null;
       g.min = Math.min(...g.variants.map(v => v.precio));
       g.variants.forEach(v => (v.gid = g.gid));
     }
@@ -83,7 +85,7 @@
     const name = esc(titleCase(g.marca) + " " + g.nombre);
     const href = productUrl(g);
     return `<article class="card">
-      <a class="card-media${g.foto ? " has-photo" : ""}" href="${href}" tabindex="-1" aria-hidden="true"><span class="tag ${g.genero}">${g.genero}</span>${g.foto ? `<img src="${g.foto}" alt="" loading="lazy" width="500" height="500">` : bottle(g)}</a>
+      <a class="card-media${g.foto ? " has-photo" : ""}" href="${href}" tabindex="-1" aria-hidden="true"><span class="tag ${g.genero}">${g.genero}</span>${g.foto ? `<img src="${g.foto}" alt="" loading="lazy" width="500" height="500">${g.fotos[1] ? `<img class="alt" src="${g.fotos[1]}" alt="" loading="lazy" width="500" height="500">` : ""}` : bottle(g)}</a>
       <div class="card-body">
         <span class="brand-sm">${titleCase(g.marca)}</span>
         <h4><a href="${href}">${esc(g.nombre)}</a></h4>
@@ -441,7 +443,9 @@
       const multi = g.variants.length > 1;
       const marca = titleCase(g.marca);
       const generoTxt = { Masculino: "Hombre", Femenino: "Mujer", Unisex: "Unisex" }[g.genero];
-      const fotos = [...new Set(g.variants.map(v => v.foto).filter(Boolean))];
+      const fotos = g.fotos;
+      const fotoDe = v => (v.fotos && v.fotos[0]) || v.foto;
+      let fi = Math.max(0, fotos.indexOf(fotoDe(pedido)));   // foto que se está viendo
       const waTxt = encodeURIComponent(`¡Hola Benza! Quería consultar por ${marca} ${g.nombre}.`);
 
       document.title = `${marca} ${g.nombre} · Benza Importaciones`;
@@ -454,9 +458,13 @@
           <div class="pdp-gallery">
             <div class="pdp-main${fotos.length ? " has-photo" : ""}" id="pdpMain">
               <span class="tag ${g.genero}">${g.genero}</span>
-              ${fotos.length ? `<img src="${fotos[0]}" alt="${esc(marca + " " + g.nombre)}" width="600" height="600">` : bottle(g)}
+              ${fotos.length ? `<img src="${fotos[fi]}" alt="${esc(marca + " " + g.nombre)}" width="600" height="600">` : bottle(g)}
+              ${fotos.length > 1 ? `
+                <button class="pdp-nav prev" data-nav="-1" aria-label="Foto anterior">‹</button>
+                <button class="pdp-nav next" data-nav="1" aria-label="Foto siguiente">›</button>
+                <span class="pdp-count" id="pdpCount">${fi + 1} / ${fotos.length}</span>` : ""}
             </div>
-            ${fotos.length > 1 ? `<div class="pdp-thumbs">${fotos.map((f, i) => `<button class="${i ? "" : "on"}" data-src="${f}" aria-label="Ver foto ${i + 1}"><img src="${f}" alt=""></button>`).join("")}</div>` : ""}
+            ${fotos.length > 1 ? `<div class="pdp-thumbs">${fotos.map((f, i) => `<button class="${i === fi ? "on" : ""}" data-i="${i}" aria-label="Ver foto ${i + 1}"><img src="${f}" alt="" loading="lazy"></button>`).join("")}</div>` : ""}
           </div>
 
           <div class="pdp-info">
@@ -531,9 +539,32 @@
           <button class="link-btn pdp-ver" id="pdpVer">Ver pedido completo</button>` : "";
       };
 
+      const verFoto = i => {
+        if (!fotos.length) return;
+        fi = (i + fotos.length) % fotos.length;
+        $("#pdpMain img").src = fotos[fi];
+        if ($("#pdpCount")) $("#pdpCount").textContent = `${fi + 1} / ${fotos.length}`;
+        $$(".pdp-thumbs button", pdp).forEach(b => b.classList.toggle("on", +b.dataset.i === fi));
+      };
+      // Deslizar con el dedo en el celular
+      let x0 = null;
+      pdp.addEventListener("touchstart", e => { if (e.target.closest("#pdpMain")) x0 = e.touches[0].clientX; }, { passive: true });
+      pdp.addEventListener("touchend", e => {
+        if (x0 === null) return;
+        const dx = e.changedTouches[0].clientX - x0; x0 = null;
+        if (Math.abs(dx) > 40) verFoto(fi + (dx < 0 ? 1 : -1));
+      });
+
       pdp.addEventListener("click", e => {
         const size = e.target.closest(".pdp-size");
-        if (size) { sel = BY_ID[size.dataset.id]; return pintarSel(); }
+        if (size) {
+          sel = BY_ID[size.dataset.id];
+          const f = fotos.indexOf(fotoDe(sel));   // si ese tamaño tiene su propia foto, mostrarla
+          if (f >= 0 && f !== fi) verFoto(f);
+          return pintarSel();
+        }
+        const nav = e.target.closest("[data-nav]");
+        if (nav) return verFoto(fi + +nav.dataset.nav);
         const q = e.target.closest("[data-q]");
         if (q) { cant = Math.max(1, Math.min(20, cant + +q.dataset.q)); return pintarSel(); }
         if (e.target.closest("#pdpAdd")) { changeQty(sel.id, cant); cant = 1; return pintarSel(); }
@@ -541,10 +572,12 @@
         if (step) return changeQty(+step.dataset.id, +step.dataset.d);
         if (e.target.closest("#pdpVer")) return $("#cartOpen").click();
         const th = e.target.closest(".pdp-thumbs button");
-        if (th) {
-          $("#pdpMain img").src = th.dataset.src;
-          $$(".pdp-thumbs button", pdp).forEach(b => b.classList.toggle("on", b === th));
-        }
+        if (th) verFoto(+th.dataset.i);
+      });
+      document.addEventListener("keydown", e => {
+        if (document.querySelector("dialog[open]") || $("#drawer").classList.contains("open") || /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) return;
+        if (e.key === "ArrowLeft") verFoto(fi - 1);
+        if (e.key === "ArrowRight") verFoto(fi + 1);
       });
 
       pintarSel();

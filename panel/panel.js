@@ -151,7 +151,9 @@
   // ---------- Alta / edición ----------
   const dlgP = $("#dlgProducto");
   let editando = null;   // producto en edición o null
-  let fotoNueva;         // undefined = sin cambios, null = quitar, string = data URL nueva
+  // Fotos del perfume en edición: [{ valor: "assets/..." (existente) o "data:..." (nueva) }]. La primera es la principal.
+  let fotos = [], fotosCambiadas = false;
+  const MAX_FOTOS = 8;
 
   // Al editar se abre el perfume completo: todos sus tamaños (misma marca, nombre y género).
   const grupoDe = p => productos.filter(x => x.marca === p.marca && x.nombre === p.nombre && x.genero === p.genero)
@@ -189,7 +191,6 @@
   function abrirProducto(p) {
     const grupo = p ? grupoDe(p) : [];
     editando = p ? grupo : null;
-    fotoNueva = undefined;
     $("#dlgProductoTitulo").textContent = p ? "Editar perfume" : "Nuevo perfume";
     $("#pMarca").value = p ? p.marca : ($("#fMarca").value || "");
     $("#pNombre").value = p ? p.nombre : "";
@@ -197,8 +198,10 @@
     $("#tamLista").innerHTML = "";
     (grupo.length ? grupo : [{}]).forEach(t => filaTamano(t));
     $("#fotoInput").value = "";
-    const foto = grupo.find(x => x.foto);
-    pintarFoto(foto ? "/" + foto.foto : null);
+    const conFoto = grupo.find(x => (x.fotos && x.fotos.length) || x.foto);
+    fotos = (conFoto ? (conFoto.fotos && conFoto.fotos.length ? conFoto.fotos : [conFoto.foto]) : []).map(valor => ({ valor }));
+    fotosCambiadas = false;
+    pintarFotos();
     $("#productoError").textContent = "";
     dlgP.showModal();
     if (p) { const fila = $(`#tamLista .tam-row[data-id="${p.id}"] .t-precio`); (fila || $("#pMarca")).focus(); }
@@ -206,10 +209,33 @@
   }
   $("#btnNuevo").addEventListener("click", () => abrirProducto(null));
 
-  function pintarFoto(src) {
-    $("#fotoPrev").innerHTML = src ? `<img src="${esc(src)}" alt="">` : "<span>Sin foto</span>";
-    $("#fotoQuitar").hidden = !src;
+  function pintarFotos() {
+    const src = v => (v.startsWith("data:") ? v : "/" + v);
+    $("#fotosGrid").innerHTML = fotos.length ? fotos.map((f, i) => `
+      <figure class="foto-item${i === 0 ? " principal" : ""}" data-i="${i}">
+        <img src="${esc(src(f.valor))}" alt="Foto ${i + 1}">
+        ${i === 0 ? `<span class="foto-badge">★ Principal</span>` : `<button type="button" class="foto-btn" data-acc="principal" title="Usar como principal" aria-label="Usar como foto principal">★</button>`}
+        <div class="foto-acc">
+          <button type="button" class="foto-btn" data-acc="izq" title="Mover a la izquierda" aria-label="Mover a la izquierda" ${i === 0 ? "disabled" : ""}>←</button>
+          <button type="button" class="foto-btn" data-acc="der" title="Mover a la derecha" aria-label="Mover a la derecha" ${i === fotos.length - 1 ? "disabled" : ""}>→</button>
+          <button type="button" class="foto-btn danger" data-acc="quitar" title="Quitar foto" aria-label="Quitar foto">✕</button>
+        </div>
+      </figure>`).join("") : `<div class="foto-vacia">Sin fotos</div>`;
+    $("#fotoInput").closest("label").classList.toggle("disabled", fotos.length >= MAX_FOTOS);
   }
+
+  $("#fotosGrid").addEventListener("click", e => {
+    const b = e.target.closest(".foto-btn");
+    if (!b || b.disabled) return;
+    const i = +b.closest(".foto-item").dataset.i;
+    const mover = (a, c) => { [fotos[a], fotos[c]] = [fotos[c], fotos[a]]; };
+    if (b.dataset.acc === "principal") fotos.unshift(fotos.splice(i, 1)[0]);
+    if (b.dataset.acc === "izq" && i > 0) mover(i, i - 1);
+    if (b.dataset.acc === "der" && i < fotos.length - 1) mover(i, i + 1);
+    if (b.dataset.acc === "quitar") fotos.splice(i, 1);
+    fotosCambiadas = true;
+    pintarFotos();
+  });
 
   // Achica la foto a 600×600 (fondo blanco, JPEG) antes de subirla.
   function prepararFoto(file) {
@@ -233,12 +259,16 @@
   }
 
   $("#fotoInput").addEventListener("change", async e => {
-    const f = e.target.files[0];
-    if (!f) return;
-    try { fotoNueva = await prepararFoto(f); pintarFoto(fotoNueva); }
-    catch (err) { $("#productoError").textContent = err.message; }
+    const files = [...e.target.files];
+    e.target.value = "";
+    $("#productoError").textContent = "";
+    for (const f of files) {
+      if (fotos.length >= MAX_FOTOS) { $("#productoError").textContent = `Máximo ${MAX_FOTOS} fotos por perfume.`; break; }
+      try { fotos.push({ valor: await prepararFoto(f) }); fotosCambiadas = true; }
+      catch (err) { $("#productoError").textContent = `${f.name}: ${err.message}`; }
+    }
+    pintarFotos();
   });
-  $("#fotoQuitar").addEventListener("click", () => { fotoNueva = null; $("#fotoInput").value = ""; pintarFoto(null); });
 
   $("#formProducto").addEventListener("submit", async e => {
     if (e.submitter && e.submitter.value === "cancel") return;
@@ -252,7 +282,7 @@
       ids: editando ? editando.map(p => p.id) : [],
       marca: $("#pMarca").value, nombre: $("#pNombre").value, genero: $("#pGenero").value, tamanos,
     };
-    if (fotoNueva !== undefined) body.foto = fotoNueva;
+    if (fotosCambiadas || !editando) body.fotos = fotos.map(f => f.valor);
     const quitados = editando ? editando.filter(p => !tamanos.some(t => t.id == p.id)) : [];
     if (quitados.length && !confirm(`Vas a quitar ${quitados.map(p => (p.ml ? p.ml + " ml" : "sin tamaño")).join(", ")} de "${body.nombre}". ¿Seguir?`)) return;
     $("#btnGuardar").disabled = true;

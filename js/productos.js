@@ -7,7 +7,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 155000,
-  "foto": "assets/productos/0.jpg"
+  "foto": "assets/productos/0.jpg",
+  "fotos": [
+   "assets/productos/0.jpg"
+  ]
  },
  {
   "id": 1,
@@ -16,7 +19,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 200000,
-  "foto": "assets/productos/1.jpg"
+  "foto": "assets/productos/1.jpg",
+  "fotos": [
+   "assets/productos/1.jpg"
+  ]
  },
  {
   "id": 2,
@@ -25,7 +31,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 260000,
-  "foto": "assets/productos/2.jpg"
+  "foto": "assets/productos/2.jpg",
+  "fotos": [
+   "assets/productos/2.jpg",
+   "assets/productos/2-2.jpg"
+  ]
  },
  {
   "id": 3,
@@ -34,7 +44,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 150000,
-  "foto": "assets/productos/3.jpg"
+  "foto": "assets/productos/3.jpg",
+  "fotos": [
+   "assets/productos/3.jpg",
+   "assets/productos/3-2.jpg"
+  ]
  },
  {
   "id": 4,
@@ -43,7 +57,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 170000,
-  "foto": "assets/productos/4.jpg"
+  "foto": "assets/productos/4.jpg",
+  "fotos": [
+   "assets/productos/4.jpg",
+   "assets/productos/4-2.jpg"
+  ]
  },
  {
   "id": 5,
@@ -52,7 +70,12 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 210000,
-  "foto": "assets/productos/5.jpg"
+  "foto": "assets/productos/5.jpg",
+  "fotos": [
+   "assets/productos/5.jpg",
+   "assets/productos/5-2.jpg",
+   "assets/productos/5-3.jpg"
+  ]
  },
  {
   "id": 6,
@@ -61,7 +84,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 165000,
-  "foto": "assets/productos/6.jpg"
+  "foto": "assets/productos/6.jpg",
+  "fotos": [
+   "assets/productos/6.jpg",
+   "assets/productos/6-2.jpg"
+  ]
  },
  {
   "id": 7,
@@ -70,7 +97,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 180000,
-  "foto": "assets/productos/7.jpg"
+  "foto": "assets/productos/7.jpg",
+  "fotos": [
+   "assets/productos/7.jpg",
+   "assets/productos/7-2.jpg"
+  ]
  },
  {
   "id": 8,
@@ -79,7 +110,8 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 155000,
-  "foto": null
+  "foto": null,
+  "fotos": []
  },
  {
   "id": 9,
@@ -88,7 +120,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 180000,
-  "foto": "assets/productos/9.jpg"
+  "foto": "assets/productos/9.jpg",
+  "fotos": [
+   "assets/productos/9.jpg",
+   "assets/productos/9-2.jpg"
+  ]
  },
  {
   "id": 10,
@@ -97,7 +133,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 175000,
-  "foto": "assets/productos/10.jpg"
+  "foto": "assets/productos/10.jpg",
+  "fotos": [
+   "assets/productos/10.jpg",
+   "assets/productos/10-2.jpg"
+  ]
  },
  {
   "id": 11,
@@ -106,7 +146,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 90,
   "precio": 145000,
-  "foto": "assets/productos/11.jpg"
+  "foto": "assets/productos/11.jpg",
+  "fotos": [
+   "assets/productos/11.jpg",
+   "assets/productos/11-2.jpg"
+  ]
  },
  {
   "id": 12,
@@ -115,7 +159,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 200,
   "precio": 175000,
-  "foto": "assets/productos/12.jpg"
+  "foto": "assets/productos/12.jpg",
+  "fotos": [
+   "assets/productos/12.jpg",
+   "assets/productos/12-2.jpg"
+  ]
  },
  {
   "id": 13,
@@ -124,7 +172,12 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 165000,
-  "foto": "assets/productos/13.jpg"
+  "foto": "assets/productos/13.jpg",
+  "fotos": [
+   "assets/productos/13.jpg",
+   "assets/productos/13-2.jpg",
+   "assets/productos/13-3.jpg"
+  ]
  },
  {
   "id": 14,
@@ -133,7 +186,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 280000,
-  "foto": "assets/productos/14.jpg"
+  "foto": "assets/productos/14.jpg",
+  "fotos": [
+   "assets/productos/14.jpg",
+   "assets/productos/14-2.jpg"
+  ]
  },
  {
   "id": 15,
@@ -142,7 +199,8 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 180000,
-  "foto": null
+  "foto": null,
+  "fotos": []
  },
  {
   "id": 16,
@@ -151,7 +209,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 220000,
-  "foto": "assets/productos/16.jpg"
+  "foto": "assets/productos/16.jpg",
+  "fotos": [
+   "assets/productos/16.jpg",
+   "assets/productos/16-2.jpg"
+  ]
  },
  {
   "id": 17,
@@ -160,7 +222,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 125,
   "precio": 165000,
-  "foto": "assets/productos/17.jpg?v=2"
+  "foto": "assets/productos/17.jpg?v=2",
+  "fotos": [
+   "assets/productos/17.jpg?v=2",
+   "assets/productos/17-2.jpg"
+  ]
  },
  {
   "id": 18,
@@ -169,7 +235,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 125,
   "precio": 195000,
-  "foto": "assets/productos/18.jpg"
+  "foto": "assets/productos/18.jpg",
+  "fotos": [
+   "assets/productos/18.jpg"
+  ]
  },
  {
   "id": 19,
@@ -178,7 +247,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 125,
   "precio": 210000,
-  "foto": "assets/productos/19.jpg"
+  "foto": "assets/productos/19.jpg",
+  "fotos": [
+   "assets/productos/19.jpg"
+  ]
  },
  {
   "id": 20,
@@ -187,7 +259,12 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 125,
   "precio": 240000,
-  "foto": "assets/productos/20.jpg"
+  "foto": "assets/productos/20.jpg",
+  "fotos": [
+   "assets/productos/20.jpg",
+   "assets/productos/20-2.jpg",
+   "assets/productos/20-3.jpg"
+  ]
  },
  {
   "id": 21,
@@ -196,7 +273,12 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 200,
   "precio": 295000,
-  "foto": "assets/productos/21.jpg"
+  "foto": "assets/productos/21.jpg",
+  "fotos": [
+   "assets/productos/21.jpg",
+   "assets/productos/21-2.jpg",
+   "assets/productos/21-3.jpg"
+  ]
  },
  {
   "id": 22,
@@ -205,7 +287,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 125,
   "precio": 225000,
-  "foto": "assets/productos/22.jpg"
+  "foto": "assets/productos/22.jpg",
+  "fotos": [
+   "assets/productos/22.jpg",
+   "assets/productos/22-2.jpg"
+  ]
  },
  {
   "id": 23,
@@ -214,7 +300,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 125,
   "precio": 175000,
-  "foto": "assets/productos/23.jpg"
+  "foto": "assets/productos/23.jpg",
+  "fotos": [
+   "assets/productos/23.jpg"
+  ]
  },
  {
   "id": 24,
@@ -223,7 +312,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 125,
   "precio": 220000,
-  "foto": "assets/productos/24.jpg"
+  "foto": "assets/productos/24.jpg",
+  "fotos": [
+   "assets/productos/24.jpg"
+  ]
  },
  {
   "id": 25,
@@ -232,7 +324,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 125,
   "precio": 210000,
-  "foto": "assets/productos/25.jpg"
+  "foto": "assets/productos/25.jpg",
+  "fotos": [
+   "assets/productos/25.jpg",
+   "assets/productos/25-2.jpg"
+  ]
  },
  {
   "id": 26,
@@ -241,7 +337,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 125,
   "precio": 200000,
-  "foto": "assets/productos/26.jpg"
+  "foto": "assets/productos/26.jpg",
+  "fotos": [
+   "assets/productos/26.jpg",
+   "assets/productos/26-2.jpg"
+  ]
  },
  {
   "id": 27,
@@ -250,7 +350,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 165000,
-  "foto": "assets/productos/27.jpg"
+  "foto": "assets/productos/27.jpg",
+  "fotos": [
+   "assets/productos/27.jpg"
+  ]
  },
  {
   "id": 28,
@@ -259,7 +362,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 187000,
-  "foto": "assets/productos/28.jpg?v=2"
+  "foto": "assets/productos/28.jpg?v=2",
+  "fotos": [
+   "assets/productos/28.jpg?v=2",
+   "assets/productos/28-2.jpg"
+  ]
  },
  {
   "id": 29,
@@ -268,7 +375,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 180000,
-  "foto": "assets/productos/29.jpg"
+  "foto": "assets/productos/29.jpg",
+  "fotos": [
+   "assets/productos/29.jpg",
+   "assets/productos/29-2.jpg"
+  ]
  },
  {
   "id": 30,
@@ -277,7 +388,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 190000,
-  "foto": "assets/productos/30.jpg?v=2"
+  "foto": "assets/productos/30.jpg?v=2",
+  "fotos": [
+   "assets/productos/30.jpg?v=2",
+   "assets/productos/30-2.jpg"
+  ]
  },
  {
   "id": 31,
@@ -286,7 +401,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 225000,
-  "foto": "assets/productos/31.jpg"
+  "foto": "assets/productos/31.jpg",
+  "fotos": [
+   "assets/productos/31.jpg",
+   "assets/productos/31-2.jpg"
+  ]
  },
  {
   "id": 32,
@@ -295,7 +414,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 200000,
-  "foto": "assets/productos/32.jpg"
+  "foto": "assets/productos/32.jpg",
+  "fotos": [
+   "assets/productos/32.jpg",
+   "assets/productos/32-2.jpg"
+  ]
  },
  {
   "id": 33,
@@ -304,7 +427,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 228000,
-  "foto": "assets/productos/33.jpg"
+  "foto": "assets/productos/33.jpg",
+  "fotos": [
+   "assets/productos/33.jpg",
+   "assets/productos/33-2.jpg"
+  ]
  },
  {
   "id": 34,
@@ -313,7 +440,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 245000,
-  "foto": "assets/productos/34.jpg"
+  "foto": "assets/productos/34.jpg",
+  "fotos": [
+   "assets/productos/34.jpg",
+   "assets/productos/34-2.jpg"
+  ]
  },
  {
   "id": 35,
@@ -322,7 +453,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 170000,
-  "foto": "assets/productos/35.jpg"
+  "foto": "assets/productos/35.jpg",
+  "fotos": [
+   "assets/productos/35.jpg",
+   "assets/productos/35-2.jpg"
+  ]
  },
  {
   "id": 36,
@@ -331,7 +466,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 185000,
-  "foto": "assets/productos/36.jpg"
+  "foto": "assets/productos/36.jpg",
+  "fotos": [
+   "assets/productos/36.jpg",
+   "assets/productos/36-2.jpg"
+  ]
  },
  {
   "id": 37,
@@ -340,7 +479,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 190000,
-  "foto": "assets/productos/37.jpg"
+  "foto": "assets/productos/37.jpg",
+  "fotos": [
+   "assets/productos/37.jpg",
+   "assets/productos/37-2.jpg"
+  ]
  },
  {
   "id": 38,
@@ -349,7 +492,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 220000,
-  "foto": "assets/productos/38.jpg"
+  "foto": "assets/productos/38.jpg",
+  "fotos": [
+   "assets/productos/38.jpg",
+   "assets/productos/38-2.jpg"
+  ]
  },
  {
   "id": 39,
@@ -358,7 +505,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 185000,
-  "foto": "assets/productos/39.jpg"
+  "foto": "assets/productos/39.jpg",
+  "fotos": [
+   "assets/productos/39.jpg"
+  ]
  },
  {
   "id": 40,
@@ -367,7 +517,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 210000,
-  "foto": "assets/productos/40.jpg"
+  "foto": "assets/productos/40.jpg",
+  "fotos": [
+   "assets/productos/40.jpg",
+   "assets/productos/40-2.jpg"
+  ]
  },
  {
   "id": 41,
@@ -376,7 +530,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 210000,
-  "foto": "assets/productos/41.jpg"
+  "foto": "assets/productos/41.jpg",
+  "fotos": [
+   "assets/productos/41.jpg",
+   "assets/productos/41-2.jpg"
+  ]
  },
  {
   "id": 42,
@@ -385,7 +543,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 280000,
-  "foto": "assets/productos/42.jpg"
+  "foto": "assets/productos/42.jpg",
+  "fotos": [
+   "assets/productos/42.jpg",
+   "assets/productos/42-2.jpg"
+  ]
  },
  {
   "id": 43,
@@ -394,7 +556,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 285000,
-  "foto": "assets/productos/43.jpg"
+  "foto": "assets/productos/43.jpg",
+  "fotos": [
+   "assets/productos/43.jpg",
+   "assets/productos/43-2.jpg"
+  ]
  },
  {
   "id": 44,
@@ -403,7 +569,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 160000,
-  "foto": "assets/productos/44.jpg"
+  "foto": "assets/productos/44.jpg",
+  "fotos": [
+   "assets/productos/44.jpg"
+  ]
  },
  {
   "id": 45,
@@ -412,7 +581,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 75,
   "precio": 200000,
-  "foto": "assets/productos/45.jpg"
+  "foto": "assets/productos/45.jpg",
+  "fotos": [
+   "assets/productos/45.jpg",
+   "assets/productos/45-2.jpg"
+  ]
  },
  {
   "id": 46,
@@ -421,7 +594,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 280000,
-  "foto": "assets/productos/46.jpg"
+  "foto": "assets/productos/46.jpg",
+  "fotos": [
+   "assets/productos/46.jpg",
+   "assets/productos/46-2.jpg"
+  ]
  },
  {
   "id": 47,
@@ -430,7 +607,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 200000,
-  "foto": "assets/productos/47.jpg"
+  "foto": "assets/productos/47.jpg",
+  "fotos": [
+   "assets/productos/47.jpg",
+   "assets/productos/47-2.jpg"
+  ]
  },
  {
   "id": 48,
@@ -439,7 +620,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 245000,
-  "foto": "assets/productos/48.jpg"
+  "foto": "assets/productos/48.jpg",
+  "fotos": [
+   "assets/productos/48.jpg",
+   "assets/productos/48-2.jpg"
+  ]
  },
  {
   "id": 49,
@@ -448,7 +633,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 225000,
-  "foto": "assets/productos/49.jpg"
+  "foto": "assets/productos/49.jpg",
+  "fotos": [
+   "assets/productos/49.jpg"
+  ]
  },
  {
   "id": 50,
@@ -457,7 +645,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 50,
   "precio": 275000,
-  "foto": "assets/productos/50.jpg"
+  "foto": "assets/productos/50.jpg",
+  "fotos": [
+   "assets/productos/50.jpg",
+   "assets/productos/50-2.jpg"
+  ]
  },
  {
   "id": 51,
@@ -466,7 +658,12 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 125,
   "precio": 165000,
-  "foto": "assets/productos/51.jpg"
+  "foto": "assets/productos/51.jpg",
+  "fotos": [
+   "assets/productos/51.jpg",
+   "assets/productos/51-2.jpg",
+   "assets/productos/51-3.jpg"
+  ]
  },
  {
   "id": 52,
@@ -475,7 +672,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 125,
   "precio": 225000,
-  "foto": "assets/productos/52.jpg"
+  "foto": "assets/productos/52.jpg",
+  "fotos": [
+   "assets/productos/52.jpg",
+   "assets/productos/52-2.jpg"
+  ]
  },
  {
   "id": 53,
@@ -484,7 +685,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 125,
   "precio": 280000,
-  "foto": "assets/productos/53.jpg"
+  "foto": "assets/productos/53.jpg",
+  "fotos": [
+   "assets/productos/53.jpg"
+  ]
  },
  {
   "id": 54,
@@ -493,7 +697,12 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 190000,
-  "foto": "assets/productos/54.jpg"
+  "foto": "assets/productos/54.jpg",
+  "fotos": [
+   "assets/productos/54.jpg",
+   "assets/productos/54-2.jpg",
+   "assets/productos/54-3.jpg"
+  ]
  },
  {
   "id": 55,
@@ -502,7 +711,8 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 90,
   "precio": 280000,
-  "foto": null
+  "foto": null,
+  "fotos": []
  },
  {
   "id": 56,
@@ -511,7 +721,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 250000,
-  "foto": "assets/productos/56.jpg"
+  "foto": "assets/productos/56.jpg",
+  "fotos": [
+   "assets/productos/56.jpg"
+  ]
  },
  {
   "id": 57,
@@ -520,7 +733,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 225000,
-  "foto": "assets/productos/57.jpg"
+  "foto": "assets/productos/57.jpg",
+  "fotos": [
+   "assets/productos/57.jpg"
+  ]
  },
  {
   "id": 58,
@@ -529,7 +745,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 75,
   "precio": 200000,
-  "foto": "assets/productos/58.jpg"
+  "foto": "assets/productos/58.jpg",
+  "fotos": [
+   "assets/productos/58.jpg",
+   "assets/productos/58-2.jpg"
+  ]
  },
  {
   "id": 59,
@@ -538,7 +758,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 180000,
-  "foto": "assets/productos/59.jpg"
+  "foto": "assets/productos/59.jpg",
+  "fotos": [
+   "assets/productos/59.jpg",
+   "assets/productos/59-2.jpg"
+  ]
  },
  {
   "id": 60,
@@ -547,7 +771,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 200000,
-  "foto": "assets/productos/60.jpg"
+  "foto": "assets/productos/60.jpg",
+  "fotos": [
+   "assets/productos/60.jpg"
+  ]
  },
  {
   "id": 61,
@@ -556,7 +783,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 230000,
-  "foto": "assets/productos/61.jpg"
+  "foto": "assets/productos/61.jpg",
+  "fotos": [
+   "assets/productos/61.jpg",
+   "assets/productos/61-2.jpg"
+  ]
  },
  {
   "id": 62,
@@ -565,7 +796,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 290000,
-  "foto": "assets/productos/62.jpg"
+  "foto": "assets/productos/62.jpg",
+  "fotos": [
+   "assets/productos/62.jpg"
+  ]
  },
  {
   "id": 63,
@@ -574,7 +808,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 90,
   "precio": 290000,
-  "foto": "assets/productos/63.jpg"
+  "foto": "assets/productos/63.jpg",
+  "fotos": [
+   "assets/productos/63.jpg",
+   "assets/productos/63-2.jpg"
+  ]
  },
  {
   "id": 64,
@@ -583,7 +821,12 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 190000,
-  "foto": "assets/productos/64.jpg"
+  "foto": "assets/productos/64.jpg",
+  "fotos": [
+   "assets/productos/64.jpg",
+   "assets/productos/64-2.jpg",
+   "assets/productos/64-3.jpg"
+  ]
  },
  {
   "id": 65,
@@ -592,7 +835,8 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 230000,
-  "foto": null
+  "foto": null,
+  "fotos": []
  },
  {
   "id": 66,
@@ -601,7 +845,8 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 210000,
-  "foto": null
+  "foto": null,
+  "fotos": []
  },
  {
   "id": 67,
@@ -610,7 +855,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 150000,
-  "foto": "assets/productos/67.jpg"
+  "foto": "assets/productos/67.jpg",
+  "fotos": [
+   "assets/productos/67.jpg"
+  ]
  },
  {
   "id": 68,
@@ -619,7 +867,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 175000,
-  "foto": "assets/productos/68.jpg"
+  "foto": "assets/productos/68.jpg",
+  "fotos": [
+   "assets/productos/68.jpg",
+   "assets/productos/68-2.jpg"
+  ]
  },
  {
   "id": 69,
@@ -628,7 +880,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 195000,
-  "foto": "assets/productos/69.jpg"
+  "foto": "assets/productos/69.jpg",
+  "fotos": [
+   "assets/productos/69.jpg",
+   "assets/productos/69-2.jpg"
+  ]
  },
  {
   "id": 70,
@@ -637,7 +893,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 190000,
-  "foto": "assets/productos/70.jpg"
+  "foto": "assets/productos/70.jpg",
+  "fotos": [
+   "assets/productos/70.jpg",
+   "assets/productos/70-2.jpg"
+  ]
  },
  {
   "id": 71,
@@ -646,7 +906,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 185000,
-  "foto": "assets/productos/71.jpg"
+  "foto": "assets/productos/71.jpg",
+  "fotos": [
+   "assets/productos/71.jpg",
+   "assets/productos/71-2.jpg"
+  ]
  },
  {
   "id": 72,
@@ -655,7 +919,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 140000,
-  "foto": "assets/productos/72.jpg"
+  "foto": "assets/productos/72.jpg",
+  "fotos": [
+   "assets/productos/72.jpg",
+   "assets/productos/72-2.jpg"
+  ]
  },
  {
   "id": 73,
@@ -664,7 +932,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 165000,
-  "foto": "assets/productos/73.jpg"
+  "foto": "assets/productos/73.jpg",
+  "fotos": [
+   "assets/productos/73.jpg",
+   "assets/productos/73-2.jpg"
+  ]
  },
  {
   "id": 74,
@@ -673,7 +945,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 185000,
-  "foto": "assets/productos/74.jpg"
+  "foto": "assets/productos/74.jpg",
+  "fotos": [
+   "assets/productos/74.jpg",
+   "assets/productos/74-2.jpg"
+  ]
  },
  {
   "id": 75,
@@ -682,7 +958,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 180000,
-  "foto": "assets/productos/75.jpg"
+  "foto": "assets/productos/75.jpg",
+  "fotos": [
+   "assets/productos/75.jpg",
+   "assets/productos/75-2.jpg"
+  ]
  },
  {
   "id": 76,
@@ -691,7 +971,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 155000,
-  "foto": "assets/productos/76.jpg"
+  "foto": "assets/productos/76.jpg",
+  "fotos": [
+   "assets/productos/76.jpg"
+  ]
  },
  {
   "id": 77,
@@ -700,7 +983,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 160000,
-  "foto": "assets/productos/77.jpg"
+  "foto": "assets/productos/77.jpg",
+  "fotos": [
+   "assets/productos/77.jpg",
+   "assets/productos/77-2.jpg"
+  ]
  },
  {
   "id": 78,
@@ -709,7 +996,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 200000,
-  "foto": "assets/productos/78.jpg"
+  "foto": "assets/productos/78.jpg",
+  "fotos": [
+   "assets/productos/78.jpg",
+   "assets/productos/78-2.jpg"
+  ]
  },
  {
   "id": 79,
@@ -718,7 +1009,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 180000,
-  "foto": "assets/productos/79.jpg"
+  "foto": "assets/productos/79.jpg",
+  "fotos": [
+   "assets/productos/79.jpg",
+   "assets/productos/79-2.jpg"
+  ]
  },
  {
   "id": 80,
@@ -727,7 +1022,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 165000,
-  "foto": "assets/productos/80.jpg"
+  "foto": "assets/productos/80.jpg",
+  "fotos": [
+   "assets/productos/80.jpg"
+  ]
  },
  {
   "id": 81,
@@ -736,7 +1034,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 190000,
-  "foto": "assets/productos/81.jpg"
+  "foto": "assets/productos/81.jpg",
+  "fotos": [
+   "assets/productos/81.jpg",
+   "assets/productos/81-2.jpg"
+  ]
  },
  {
   "id": 82,
@@ -745,7 +1047,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 200000,
-  "foto": "assets/productos/82.jpg"
+  "foto": "assets/productos/82.jpg",
+  "fotos": [
+   "assets/productos/82.jpg",
+   "assets/productos/82-2.jpg"
+  ]
  },
  {
   "id": 83,
@@ -754,7 +1060,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 220000,
-  "foto": "assets/productos/83.jpg"
+  "foto": "assets/productos/83.jpg",
+  "fotos": [
+   "assets/productos/83.jpg",
+   "assets/productos/83-2.jpg"
+  ]
  },
  {
   "id": 84,
@@ -763,7 +1073,12 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 165000,
-  "foto": "assets/productos/84.jpg"
+  "foto": "assets/productos/84.jpg",
+  "fotos": [
+   "assets/productos/84.jpg",
+   "assets/productos/84-2.jpg",
+   "assets/productos/84-3.jpg"
+  ]
  },
  {
   "id": 85,
@@ -772,7 +1087,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 180000,
-  "foto": "assets/productos/85.jpg"
+  "foto": "assets/productos/85.jpg",
+  "fotos": [
+   "assets/productos/85.jpg"
+  ]
  },
  {
   "id": 86,
@@ -781,7 +1099,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 90,
   "precio": 190000,
-  "foto": "assets/productos/86.jpg"
+  "foto": "assets/productos/86.jpg",
+  "fotos": [
+   "assets/productos/86.jpg",
+   "assets/productos/86-2.jpg"
+  ]
  },
  {
   "id": 87,
@@ -790,7 +1112,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 180000,
-  "foto": "assets/productos/87.jpg"
+  "foto": "assets/productos/87.jpg",
+  "fotos": [
+   "assets/productos/87.jpg"
+  ]
  },
  {
   "id": 88,
@@ -799,7 +1124,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 185000,
-  "foto": "assets/productos/88.jpg"
+  "foto": "assets/productos/88.jpg",
+  "fotos": [
+   "assets/productos/88.jpg",
+   "assets/productos/88-2.jpg"
+  ]
  },
  {
   "id": 89,
@@ -808,7 +1137,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 185000,
-  "foto": "assets/productos/89.jpg"
+  "foto": "assets/productos/89.jpg",
+  "fotos": [
+   "assets/productos/89.jpg",
+   "assets/productos/89-2.jpg"
+  ]
  },
  {
   "id": 90,
@@ -817,7 +1150,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 260000,
-  "foto": "assets/productos/90.jpg"
+  "foto": "assets/productos/90.jpg",
+  "fotos": [
+   "assets/productos/90.jpg",
+   "assets/productos/90-2.jpg"
+  ]
  },
  {
   "id": 91,
@@ -826,7 +1163,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 155000,
-  "foto": "assets/productos/91.jpg"
+  "foto": "assets/productos/91.jpg",
+  "fotos": [
+   "assets/productos/91.jpg",
+   "assets/productos/91-2.jpg"
+  ]
  },
  {
   "id": 92,
@@ -835,7 +1176,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 165000,
-  "foto": "assets/productos/92.jpg"
+  "foto": "assets/productos/92.jpg",
+  "fotos": [
+   "assets/productos/92.jpg",
+   "assets/productos/92-2.jpg"
+  ]
  },
  {
   "id": 93,
@@ -844,7 +1189,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 160000,
-  "foto": "assets/productos/93.jpg"
+  "foto": "assets/productos/93.jpg",
+  "fotos": [
+   "assets/productos/93.jpg",
+   "assets/productos/93-2.jpg"
+  ]
  },
  {
   "id": 94,
@@ -853,7 +1202,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 180000,
-  "foto": "assets/productos/94.jpg"
+  "foto": "assets/productos/94.jpg",
+  "fotos": [
+   "assets/productos/94.jpg",
+   "assets/productos/94-2.jpg"
+  ]
  },
  {
   "id": 95,
@@ -862,7 +1215,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 170000,
-  "foto": "assets/productos/95.jpg"
+  "foto": "assets/productos/95.jpg",
+  "fotos": [
+   "assets/productos/95.jpg",
+   "assets/productos/95-2.jpg"
+  ]
  },
  {
   "id": 96,
@@ -871,7 +1228,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 170000,
-  "foto": "assets/productos/96.jpg"
+  "foto": "assets/productos/96.jpg",
+  "fotos": [
+   "assets/productos/96.jpg",
+   "assets/productos/96-2.jpg"
+  ]
  },
  {
   "id": 97,
@@ -880,7 +1241,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 150,
   "precio": 240000,
-  "foto": "assets/productos/97.jpg"
+  "foto": "assets/productos/97.jpg",
+  "fotos": [
+   "assets/productos/97.jpg"
+  ]
  },
  {
   "id": 98,
@@ -889,7 +1253,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 190000,
-  "foto": "assets/productos/98.jpg"
+  "foto": "assets/productos/98.jpg",
+  "fotos": [
+   "assets/productos/98.jpg",
+   "assets/productos/98-2.jpg"
+  ]
  },
  {
   "id": 99,
@@ -898,7 +1266,12 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 180000,
-  "foto": "assets/productos/99.jpg"
+  "foto": "assets/productos/99.jpg",
+  "fotos": [
+   "assets/productos/99.jpg",
+   "assets/productos/99-2.jpg",
+   "assets/productos/99-3.jpg"
+  ]
  },
  {
   "id": 100,
@@ -907,7 +1280,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 200000,
-  "foto": "assets/productos/100.jpg"
+  "foto": "assets/productos/100.jpg",
+  "fotos": [
+   "assets/productos/100.jpg"
+  ]
  },
  {
   "id": 101,
@@ -916,7 +1292,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 210000,
-  "foto": "assets/productos/101.jpg"
+  "foto": "assets/productos/101.jpg",
+  "fotos": [
+   "assets/productos/101.jpg",
+   "assets/productos/101-2.jpg"
+  ]
  },
  {
   "id": 102,
@@ -925,7 +1305,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 195000,
-  "foto": "assets/productos/102.jpg"
+  "foto": "assets/productos/102.jpg",
+  "fotos": [
+   "assets/productos/102.jpg",
+   "assets/productos/102-2.jpg"
+  ]
  },
  {
   "id": 103,
@@ -934,7 +1318,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 230000,
-  "foto": "assets/productos/103.jpg"
+  "foto": "assets/productos/103.jpg",
+  "fotos": [
+   "assets/productos/103.jpg",
+   "assets/productos/103-2.jpg"
+  ]
  },
  {
   "id": 104,
@@ -943,7 +1331,8 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 155000,
-  "foto": null
+  "foto": null,
+  "fotos": []
  },
  {
   "id": 105,
@@ -952,7 +1341,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 170000,
-  "foto": "assets/productos/105.jpg"
+  "foto": "assets/productos/105.jpg",
+  "fotos": [
+   "assets/productos/105.jpg",
+   "assets/productos/105-2.jpg"
+  ]
  },
  {
   "id": 106,
@@ -961,7 +1354,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 185000,
-  "foto": "assets/productos/106.jpg"
+  "foto": "assets/productos/106.jpg",
+  "fotos": [
+   "assets/productos/106.jpg",
+   "assets/productos/106-2.jpg"
+  ]
  },
  {
   "id": 107,
@@ -970,7 +1367,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 210000,
-  "foto": "assets/productos/107.jpg"
+  "foto": "assets/productos/107.jpg",
+  "fotos": [
+   "assets/productos/107.jpg",
+   "assets/productos/107-2.jpg"
+  ]
  },
  {
   "id": 108,
@@ -979,7 +1380,8 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 110000,
-  "foto": null
+  "foto": null,
+  "fotos": []
  },
  {
   "id": 109,
@@ -988,7 +1390,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 120000,
-  "foto": "assets/productos/109.jpg"
+  "foto": "assets/productos/109.jpg",
+  "fotos": [
+   "assets/productos/109.jpg",
+   "assets/productos/109-2.jpg"
+  ]
  },
  {
   "id": 110,
@@ -997,7 +1403,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 180000,
-  "foto": "assets/productos/110.jpg"
+  "foto": "assets/productos/110.jpg",
+  "fotos": [
+   "assets/productos/110.jpg"
+  ]
  },
  {
   "id": 111,
@@ -1006,7 +1415,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 155000,
-  "foto": "assets/productos/111.jpg"
+  "foto": "assets/productos/111.jpg",
+  "fotos": [
+   "assets/productos/111.jpg"
+  ]
  },
  {
   "id": 112,
@@ -1015,7 +1427,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 170000,
-  "foto": "assets/productos/112.jpg"
+  "foto": "assets/productos/112.jpg",
+  "fotos": [
+   "assets/productos/112.jpg"
+  ]
  },
  {
   "id": 113,
@@ -1024,7 +1439,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 200000,
-  "foto": "assets/productos/113.jpg"
+  "foto": "assets/productos/113.jpg",
+  "fotos": [
+   "assets/productos/113.jpg",
+   "assets/productos/113-2.jpg"
+  ]
  },
  {
   "id": 114,
@@ -1033,7 +1452,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 200000,
-  "foto": "assets/productos/114.jpg"
+  "foto": "assets/productos/114.jpg",
+  "fotos": [
+   "assets/productos/114.jpg"
+  ]
  },
  {
   "id": 115,
@@ -1042,7 +1464,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 240000,
-  "foto": "assets/productos/115.jpg"
+  "foto": "assets/productos/115.jpg",
+  "fotos": [
+   "assets/productos/115.jpg"
+  ]
  },
  {
   "id": 116,
@@ -1051,7 +1476,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 300000,
-  "foto": "assets/productos/116.jpg"
+  "foto": "assets/productos/116.jpg",
+  "fotos": [
+   "assets/productos/116.jpg",
+   "assets/productos/116-2.jpg"
+  ]
  },
  {
   "id": 117,
@@ -1060,7 +1489,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 265000,
-  "foto": "assets/productos/117.jpg"
+  "foto": "assets/productos/117.jpg",
+  "fotos": [
+   "assets/productos/117.jpg"
+  ]
  },
  {
   "id": 118,
@@ -1069,7 +1501,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 60,
   "precio": 300000,
-  "foto": "assets/productos/118.jpg"
+  "foto": "assets/productos/118.jpg",
+  "fotos": [
+   "assets/productos/118.jpg",
+   "assets/productos/118-2.jpg"
+  ]
  },
  {
   "id": 119,
@@ -1078,7 +1514,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 50,
   "precio": 375000,
-  "foto": "assets/productos/119.jpg"
+  "foto": "assets/productos/119.jpg",
+  "fotos": [
+   "assets/productos/119.jpg",
+   "assets/productos/119-2.jpg"
+  ]
  },
  {
   "id": 120,
@@ -1087,7 +1527,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 225000,
-  "foto": "assets/productos/120.jpg"
+  "foto": "assets/productos/120.jpg",
+  "fotos": [
+   "assets/productos/120.jpg",
+   "assets/productos/120-2.jpg"
+  ]
  },
  {
   "id": 121,
@@ -1096,7 +1540,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 280000,
-  "foto": "assets/productos/121.jpg"
+  "foto": "assets/productos/121.jpg",
+  "fotos": [
+   "assets/productos/121.jpg",
+   "assets/productos/121-2.jpg"
+  ]
  },
  {
   "id": 122,
@@ -1105,7 +1553,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 125,
   "precio": 250000,
-  "foto": "assets/productos/122.jpg"
+  "foto": "assets/productos/122.jpg",
+  "fotos": [
+   "assets/productos/122.jpg"
+  ]
  },
  {
   "id": 123,
@@ -1114,7 +1565,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 225000,
-  "foto": "assets/productos/123.jpg"
+  "foto": "assets/productos/123.jpg",
+  "fotos": [
+   "assets/productos/123.jpg"
+  ]
  },
  {
   "id": 124,
@@ -1123,7 +1577,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 280000,
-  "foto": "assets/productos/124.jpg"
+  "foto": "assets/productos/124.jpg",
+  "fotos": [
+   "assets/productos/124.jpg",
+   "assets/productos/124-2.jpg"
+  ]
  },
  {
   "id": 125,
@@ -1132,7 +1590,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 260000,
-  "foto": "assets/productos/125.jpg"
+  "foto": "assets/productos/125.jpg",
+  "fotos": [
+   "assets/productos/125.jpg",
+   "assets/productos/125-2.jpg"
+  ]
  },
  {
   "id": 126,
@@ -1141,7 +1603,12 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 280000,
-  "foto": "assets/productos/126.jpg"
+  "foto": "assets/productos/126.jpg",
+  "fotos": [
+   "assets/productos/126.jpg",
+   "assets/productos/126-2.jpg",
+   "assets/productos/126-3.jpg"
+  ]
  },
  {
   "id": 127,
@@ -1150,7 +1617,8 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 250000,
-  "foto": null
+  "foto": null,
+  "fotos": []
  },
  {
   "id": 128,
@@ -1159,7 +1627,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 270000,
-  "foto": "assets/productos/128.jpg"
+  "foto": "assets/productos/128.jpg",
+  "fotos": [
+   "assets/productos/128.jpg"
+  ]
  },
  {
   "id": 129,
@@ -1168,7 +1639,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 200000,
-  "foto": "assets/productos/129.jpg"
+  "foto": "assets/productos/129.jpg",
+  "fotos": [
+   "assets/productos/129.jpg"
+  ]
  },
  {
   "id": 130,
@@ -1177,7 +1651,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 220000,
-  "foto": "assets/productos/130.jpg"
+  "foto": "assets/productos/130.jpg",
+  "fotos": [
+   "assets/productos/130.jpg"
+  ]
  },
  {
   "id": 131,
@@ -1186,7 +1663,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Unisex",
   "ml": 100,
   "precio": 65000,
-  "foto": "assets/productos/131.jpg"
+  "foto": "assets/productos/131.jpg",
+  "fotos": [
+   "assets/productos/131.jpg",
+   "assets/productos/131-2.jpg"
+  ]
  },
  {
   "id": 132,
@@ -1195,7 +1676,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Unisex",
   "ml": 200,
   "precio": 80000,
-  "foto": "assets/productos/132.jpg"
+  "foto": "assets/productos/132.jpg",
+  "fotos": [
+   "assets/productos/132.jpg",
+   "assets/productos/132-2.jpg"
+  ]
  },
  {
   "id": 133,
@@ -1204,7 +1689,8 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 75000,
-  "foto": null
+  "foto": null,
+  "fotos": []
  },
  {
   "id": 134,
@@ -1213,7 +1699,8 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 75000,
-  "foto": null
+  "foto": null,
+  "fotos": []
  },
  {
   "id": 135,
@@ -1222,7 +1709,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Unisex",
   "ml": 100,
   "precio": 70000,
-  "foto": "assets/productos/135.jpg"
+  "foto": "assets/productos/135.jpg",
+  "fotos": [
+   "assets/productos/135.jpg",
+   "assets/productos/135-2.jpg"
+  ]
  },
  {
   "id": 136,
@@ -1231,7 +1722,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 220000,
-  "foto": "assets/productos/136.jpg"
+  "foto": "assets/productos/136.jpg",
+  "fotos": [
+   "assets/productos/136.jpg",
+   "assets/productos/136-2.jpg"
+  ]
  },
  {
   "id": 137,
@@ -1240,7 +1735,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 240000,
-  "foto": "assets/productos/137.jpg"
+  "foto": "assets/productos/137.jpg",
+  "fotos": [
+   "assets/productos/137.jpg",
+   "assets/productos/137-2.jpg"
+  ]
  },
  {
   "id": 138,
@@ -1249,7 +1748,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 280000,
-  "foto": "assets/productos/138.jpg"
+  "foto": "assets/productos/138.jpg",
+  "fotos": [
+   "assets/productos/138.jpg",
+   "assets/productos/138-2.jpg"
+  ]
  },
  {
   "id": 139,
@@ -1258,7 +1761,8 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 245000,
-  "foto": null
+  "foto": null,
+  "fotos": []
  },
  {
   "id": 140,
@@ -1267,7 +1771,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 235000,
-  "foto": "assets/productos/140.jpg"
+  "foto": "assets/productos/140.jpg",
+  "fotos": [
+   "assets/productos/140.jpg",
+   "assets/productos/140-2.jpg"
+  ]
  },
  {
   "id": 141,
@@ -1276,7 +1784,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 330000,
-  "foto": "assets/productos/141.jpg"
+  "foto": "assets/productos/141.jpg",
+  "fotos": [
+   "assets/productos/141.jpg",
+   "assets/productos/141-2.jpg"
+  ]
  },
  {
   "id": 142,
@@ -1285,7 +1797,12 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 295000,
-  "foto": "assets/productos/142.jpg"
+  "foto": "assets/productos/142.jpg",
+  "fotos": [
+   "assets/productos/142.jpg",
+   "assets/productos/142-2.jpg",
+   "assets/productos/142-3.jpg"
+  ]
  },
  {
   "id": 143,
@@ -1294,7 +1811,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 255000,
-  "foto": "assets/productos/143.jpg"
+  "foto": "assets/productos/143.jpg",
+  "fotos": [
+   "assets/productos/143.jpg",
+   "assets/productos/143-2.jpg"
+  ]
  },
  {
   "id": 144,
@@ -1303,7 +1824,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 320000,
-  "foto": "assets/productos/144.jpg"
+  "foto": "assets/productos/144.jpg",
+  "fotos": [
+   "assets/productos/144.jpg",
+   "assets/productos/144-2.jpg"
+  ]
  },
  {
   "id": 145,
@@ -1312,7 +1837,12 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 265000,
-  "foto": "assets/productos/145.jpg"
+  "foto": "assets/productos/145.jpg",
+  "fotos": [
+   "assets/productos/145.jpg",
+   "assets/productos/145-2.jpg",
+   "assets/productos/145-3.jpg"
+  ]
  },
  {
   "id": 146,
@@ -1321,7 +1851,8 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 265000,
-  "foto": null
+  "foto": null,
+  "fotos": []
  },
  {
   "id": 147,
@@ -1330,7 +1861,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 290000,
-  "foto": "assets/productos/147.jpg"
+  "foto": "assets/productos/147.jpg",
+  "fotos": [
+   "assets/productos/147.jpg",
+   "assets/productos/147-2.jpg"
+  ]
  },
  {
   "id": 148,
@@ -1339,7 +1874,12 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 340000,
-  "foto": "assets/productos/148.jpg"
+  "foto": "assets/productos/148.jpg",
+  "fotos": [
+   "assets/productos/148.jpg",
+   "assets/productos/148-2.jpg",
+   "assets/productos/148-3.jpg"
+  ]
  },
  {
   "id": 149,
@@ -1348,7 +1888,12 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 360000,
-  "foto": "assets/productos/149.jpg"
+  "foto": "assets/productos/149.jpg",
+  "fotos": [
+   "assets/productos/149.jpg",
+   "assets/productos/149-2.jpg",
+   "assets/productos/149-3.jpg"
+  ]
  },
  {
   "id": 150,
@@ -1357,7 +1902,8 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 190000,
-  "foto": null
+  "foto": null,
+  "fotos": []
  },
  {
   "id": 151,
@@ -1366,7 +1912,8 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 200000,
-  "foto": null
+  "foto": null,
+  "fotos": []
  },
  {
   "id": 152,
@@ -1375,7 +1922,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 90,
   "precio": 270000,
-  "foto": "assets/productos/152.jpg"
+  "foto": "assets/productos/152.jpg",
+  "fotos": [
+   "assets/productos/152.jpg"
+  ]
  },
  {
   "id": 153,
@@ -1384,7 +1934,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 90,
   "precio": 290000,
-  "foto": "assets/productos/153.jpg"
+  "foto": "assets/productos/153.jpg",
+  "fotos": [
+   "assets/productos/153.jpg",
+   "assets/productos/153-2.jpg"
+  ]
  },
  {
   "id": 154,
@@ -1393,7 +1947,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 250000,
-  "foto": "assets/productos/154.jpg"
+  "foto": "assets/productos/154.jpg",
+  "fotos": [
+   "assets/productos/154.jpg",
+   "assets/productos/154-2.jpg"
+  ]
  },
  {
   "id": 155,
@@ -1402,7 +1960,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 295000,
-  "foto": "assets/productos/155.jpg"
+  "foto": "assets/productos/155.jpg",
+  "fotos": [
+   "assets/productos/155.jpg"
+  ]
  },
  {
   "id": 156,
@@ -1411,7 +1972,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 250000,
-  "foto": "assets/productos/156.jpg"
+  "foto": "assets/productos/156.jpg",
+  "fotos": [
+   "assets/productos/156.jpg"
+  ]
  },
  {
   "id": 157,
@@ -1420,7 +1984,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 310000,
-  "foto": "assets/productos/157.jpg"
+  "foto": "assets/productos/157.jpg",
+  "fotos": [
+   "assets/productos/157.jpg",
+   "assets/productos/157-2.jpg"
+  ]
  },
  {
   "id": 158,
@@ -1429,7 +1997,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 60,
   "precio": 285000,
-  "foto": "assets/productos/158.jpg"
+  "foto": "assets/productos/158.jpg",
+  "fotos": [
+   "assets/productos/158.jpg",
+   "assets/productos/158-2.jpg"
+  ]
  },
  {
   "id": 159,
@@ -1438,7 +2010,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 270000,
-  "foto": "assets/productos/159.jpg"
+  "foto": "assets/productos/159.jpg",
+  "fotos": [
+   "assets/productos/159.jpg"
+  ]
  },
  {
   "id": 160,
@@ -1447,7 +2022,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 300000,
-  "foto": "assets/productos/160.jpg"
+  "foto": "assets/productos/160.jpg",
+  "fotos": [
+   "assets/productos/160.jpg",
+   "assets/productos/160-2.jpg"
+  ]
  },
  {
   "id": 161,
@@ -1456,7 +2035,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 350000,
-  "foto": "assets/productos/161.jpg"
+  "foto": "assets/productos/161.jpg",
+  "fotos": [
+   "assets/productos/161.jpg"
+  ]
  },
  {
   "id": 162,
@@ -1465,7 +2047,8 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 170000,
-  "foto": null
+  "foto": null,
+  "fotos": []
  },
  {
   "id": 163,
@@ -1474,7 +2057,8 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 220000,
-  "foto": null
+  "foto": null,
+  "fotos": []
  },
  {
   "id": 164,
@@ -1483,7 +2067,8 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 280000,
-  "foto": null
+  "foto": null,
+  "fotos": []
  },
  {
   "id": 165,
@@ -1492,7 +2077,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 90,
   "precio": 255000,
-  "foto": "assets/productos/165.jpg"
+  "foto": "assets/productos/165.jpg",
+  "fotos": [
+   "assets/productos/165.jpg"
+  ]
  },
  {
   "id": 166,
@@ -1501,7 +2089,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 90,
   "precio": 285000,
-  "foto": "assets/productos/166.jpg"
+  "foto": "assets/productos/166.jpg",
+  "fotos": [
+   "assets/productos/166.jpg"
+  ]
  },
  {
   "id": 167,
@@ -1510,7 +2101,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 90,
   "precio": 300000,
-  "foto": "assets/productos/167.jpg"
+  "foto": "assets/productos/167.jpg",
+  "fotos": [
+   "assets/productos/167.jpg"
+  ]
  },
  {
   "id": 168,
@@ -1519,7 +2113,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 90,
   "precio": 290000,
-  "foto": "assets/productos/168.jpg"
+  "foto": "assets/productos/168.jpg",
+  "fotos": [
+   "assets/productos/168.jpg",
+   "assets/productos/168-2.jpg"
+  ]
  },
  {
   "id": 169,
@@ -1528,7 +2126,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 90,
   "precio": 270000,
-  "foto": "assets/productos/169.jpg"
+  "foto": "assets/productos/169.jpg",
+  "fotos": [
+   "assets/productos/169.jpg",
+   "assets/productos/169-2.jpg"
+  ]
  },
  {
   "id": 170,
@@ -1537,7 +2139,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 90,
   "precio": 230000,
-  "foto": "assets/productos/170.jpg"
+  "foto": "assets/productos/170.jpg",
+  "fotos": [
+   "assets/productos/170.jpg",
+   "assets/productos/170-2.jpg"
+  ]
  },
  {
   "id": 171,
@@ -1546,7 +2152,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 90,
   "precio": 260000,
-  "foto": "assets/productos/171.jpg"
+  "foto": "assets/productos/171.jpg",
+  "fotos": [
+   "assets/productos/171.jpg",
+   "assets/productos/171-2.jpg"
+  ]
  },
  {
   "id": 172,
@@ -1555,7 +2165,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 145000,
-  "foto": "assets/productos/172.jpg"
+  "foto": "assets/productos/172.jpg",
+  "fotos": [
+   "assets/productos/172.jpg",
+   "assets/productos/172-2.jpg"
+  ]
  },
  {
   "id": 173,
@@ -1564,7 +2178,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 190000,
-  "foto": "assets/productos/173.jpg"
+  "foto": "assets/productos/173.jpg",
+  "fotos": [
+   "assets/productos/173.jpg"
+  ]
  },
  {
   "id": 174,
@@ -1573,7 +2190,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 225000,
-  "foto": "assets/productos/174.jpg"
+  "foto": "assets/productos/174.jpg",
+  "fotos": [
+   "assets/productos/174.jpg",
+   "assets/productos/174-2.jpg"
+  ]
  },
  {
   "id": 175,
@@ -1582,7 +2203,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 200000,
-  "foto": "assets/productos/175.jpg"
+  "foto": "assets/productos/175.jpg",
+  "fotos": [
+   "assets/productos/175.jpg"
+  ]
  },
  {
   "id": 176,
@@ -1591,7 +2215,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 240000,
-  "foto": "assets/productos/176.jpg"
+  "foto": "assets/productos/176.jpg",
+  "fotos": [
+   "assets/productos/176.jpg"
+  ]
  },
  {
   "id": 177,
@@ -1600,7 +2227,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 230000,
-  "foto": "assets/productos/177.jpg"
+  "foto": "assets/productos/177.jpg",
+  "fotos": [
+   "assets/productos/177.jpg",
+   "assets/productos/177-2.jpg"
+  ]
  },
  {
   "id": 178,
@@ -1609,7 +2240,12 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 250000,
-  "foto": "assets/productos/178.jpg"
+  "foto": "assets/productos/178.jpg",
+  "fotos": [
+   "assets/productos/178.jpg",
+   "assets/productos/178-2.jpg",
+   "assets/productos/178-3.jpg"
+  ]
  },
  {
   "id": 179,
@@ -1618,7 +2254,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 215000,
-  "foto": "assets/productos/179.jpg"
+  "foto": "assets/productos/179.jpg",
+  "fotos": [
+   "assets/productos/179.jpg"
+  ]
  },
  {
   "id": 180,
@@ -1627,7 +2266,12 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 240000,
-  "foto": "assets/productos/180.jpg"
+  "foto": "assets/productos/180.jpg",
+  "fotos": [
+   "assets/productos/180.jpg",
+   "assets/productos/180-2.jpg",
+   "assets/productos/180-3.jpg"
+  ]
  },
  {
   "id": 181,
@@ -1636,7 +2280,12 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 230000,
-  "foto": "assets/productos/181.jpg"
+  "foto": "assets/productos/181.jpg",
+  "fotos": [
+   "assets/productos/181.jpg",
+   "assets/productos/181-2.jpg",
+   "assets/productos/181-3.jpg"
+  ]
  },
  {
   "id": 182,
@@ -1645,7 +2294,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 170000,
-  "foto": "assets/productos/182.jpg"
+  "foto": "assets/productos/182.jpg",
+  "fotos": [
+   "assets/productos/182.jpg"
+  ]
  },
  {
   "id": 183,
@@ -1654,7 +2306,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 195000,
-  "foto": "assets/productos/183.jpg"
+  "foto": "assets/productos/183.jpg",
+  "fotos": [
+   "assets/productos/183.jpg"
+  ]
  },
  {
   "id": 184,
@@ -1663,7 +2318,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 275000,
-  "foto": "assets/productos/184.jpg"
+  "foto": "assets/productos/184.jpg",
+  "fotos": [
+   "assets/productos/184.jpg"
+  ]
  },
  {
   "id": 185,
@@ -1672,7 +2330,8 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 300000,
-  "foto": null
+  "foto": null,
+  "fotos": []
  },
  {
   "id": 186,
@@ -1681,7 +2340,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 120000,
-  "foto": "assets/productos/186.jpg"
+  "foto": "assets/productos/186.jpg",
+  "fotos": [
+   "assets/productos/186.jpg",
+   "assets/productos/186-2.jpg"
+  ]
  },
  {
   "id": 187,
@@ -1690,7 +2353,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 180000,
-  "foto": "assets/productos/187.jpg"
+  "foto": "assets/productos/187.jpg",
+  "fotos": [
+   "assets/productos/187.jpg",
+   "assets/productos/187-2.jpg"
+  ]
  },
  {
   "id": 188,
@@ -1699,7 +2366,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 200000,
-  "foto": "assets/productos/188.jpg"
+  "foto": "assets/productos/188.jpg",
+  "fotos": [
+   "assets/productos/188.jpg",
+   "assets/productos/188-2.jpg"
+  ]
  },
  {
   "id": 189,
@@ -1708,7 +2379,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 140000,
-  "foto": "assets/productos/189.jpg"
+  "foto": "assets/productos/189.jpg",
+  "fotos": [
+   "assets/productos/189.jpg"
+  ]
  },
  {
   "id": 190,
@@ -1717,7 +2391,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 190000,
-  "foto": "assets/productos/190.jpg"
+  "foto": "assets/productos/190.jpg",
+  "fotos": [
+   "assets/productos/190.jpg",
+   "assets/productos/190-2.jpg"
+  ]
  },
  {
   "id": 191,
@@ -1726,7 +2404,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 125,
   "precio": 95000,
-  "foto": "assets/productos/191.jpg"
+  "foto": "assets/productos/191.jpg",
+  "fotos": [
+   "assets/productos/191.jpg"
+  ]
  },
  {
   "id": 192,
@@ -1735,7 +2416,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 125,
   "precio": 130000,
-  "foto": "assets/productos/192.jpg"
+  "foto": "assets/productos/192.jpg",
+  "fotos": [
+   "assets/productos/192.jpg",
+   "assets/productos/192-2.jpg"
+  ]
  },
  {
   "id": 193,
@@ -1744,7 +2429,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": null,
   "precio": 125000,
-  "foto": "assets/productos/193.jpg"
+  "foto": "assets/productos/193.jpg",
+  "fotos": [
+   "assets/productos/193.jpg"
+  ]
  },
  {
   "id": 194,
@@ -1753,7 +2441,8 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 75,
   "precio": 85000,
-  "foto": null
+  "foto": null,
+  "fotos": []
  },
  {
   "id": 195,
@@ -1762,7 +2451,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 80,
   "precio": 130000,
-  "foto": "assets/productos/195.jpg"
+  "foto": "assets/productos/195.jpg",
+  "fotos": [
+   "assets/productos/195.jpg"
+  ]
  },
  {
   "id": 196,
@@ -1771,7 +2463,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 145000,
-  "foto": "assets/productos/196.jpg"
+  "foto": "assets/productos/196.jpg",
+  "fotos": [
+   "assets/productos/196.jpg"
+  ]
  },
  {
   "id": 197,
@@ -1780,7 +2475,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 135000,
-  "foto": "assets/productos/197.jpg"
+  "foto": "assets/productos/197.jpg",
+  "fotos": [
+   "assets/productos/197.jpg",
+   "assets/productos/197-2.jpg"
+  ]
  },
  {
   "id": 198,
@@ -1789,7 +2488,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 170000,
-  "foto": "assets/productos/198.jpg"
+  "foto": "assets/productos/198.jpg",
+  "fotos": [
+   "assets/productos/198.jpg",
+   "assets/productos/198-2.jpg"
+  ]
  },
  {
   "id": 199,
@@ -1798,7 +2501,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 200000,
-  "foto": "assets/productos/199.jpg"
+  "foto": "assets/productos/199.jpg",
+  "fotos": [
+   "assets/productos/199.jpg",
+   "assets/productos/199-2.jpg"
+  ]
  },
  {
   "id": 200,
@@ -1807,7 +2514,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 220000,
-  "foto": "assets/productos/200.jpg"
+  "foto": "assets/productos/200.jpg",
+  "fotos": [
+   "assets/productos/200.jpg"
+  ]
  },
  {
   "id": 201,
@@ -1816,7 +2526,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 150000,
-  "foto": "assets/productos/201.jpg"
+  "foto": "assets/productos/201.jpg",
+  "fotos": [
+   "assets/productos/201.jpg",
+   "assets/productos/201-2.jpg"
+  ]
  },
  {
   "id": 202,
@@ -1825,7 +2539,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 200000,
-  "foto": "assets/productos/202.jpg"
+  "foto": "assets/productos/202.jpg",
+  "fotos": [
+   "assets/productos/202.jpg",
+   "assets/productos/202-2.jpg"
+  ]
  },
  {
   "id": 203,
@@ -1834,7 +2552,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 140000,
-  "foto": "assets/productos/203.jpg"
+  "foto": "assets/productos/203.jpg",
+  "fotos": [
+   "assets/productos/203.jpg",
+   "assets/productos/203-2.jpg"
+  ]
  },
  {
   "id": 204,
@@ -1843,7 +2565,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 140000,
-  "foto": "assets/productos/204.jpg"
+  "foto": "assets/productos/204.jpg",
+  "fotos": [
+   "assets/productos/204.jpg",
+   "assets/productos/204-2.jpg"
+  ]
  },
  {
   "id": 205,
@@ -1852,7 +2578,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 160000,
-  "foto": "assets/productos/205.jpg"
+  "foto": "assets/productos/205.jpg",
+  "fotos": [
+   "assets/productos/205.jpg",
+   "assets/productos/205-2.jpg"
+  ]
  },
  {
   "id": 206,
@@ -1861,7 +2591,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 240000,
-  "foto": "assets/productos/206.jpg"
+  "foto": "assets/productos/206.jpg",
+  "fotos": [
+   "assets/productos/206.jpg",
+   "assets/productos/206-2.jpg"
+  ]
  },
  {
   "id": 207,
@@ -1870,7 +2604,8 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 180000,
-  "foto": null
+  "foto": null,
+  "fotos": []
  },
  {
   "id": 208,
@@ -1879,7 +2614,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 240000,
-  "foto": "assets/productos/208.jpg"
+  "foto": "assets/productos/208.jpg",
+  "fotos": [
+   "assets/productos/208.jpg",
+   "assets/productos/208-2.jpg"
+  ]
  },
  {
   "id": 209,
@@ -1888,7 +2627,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 160000,
-  "foto": "assets/productos/209.jpg"
+  "foto": "assets/productos/209.jpg",
+  "fotos": [
+   "assets/productos/209.jpg",
+   "assets/productos/209-2.jpg"
+  ]
  },
  {
   "id": 210,
@@ -1897,7 +2640,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 180000,
-  "foto": "assets/productos/210.jpg"
+  "foto": "assets/productos/210.jpg",
+  "fotos": [
+   "assets/productos/210.jpg"
+  ]
  },
  {
   "id": 211,
@@ -1906,7 +2652,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": null,
   "precio": 220000,
-  "foto": "assets/productos/211.jpg"
+  "foto": "assets/productos/211.jpg",
+  "fotos": [
+   "assets/productos/211.jpg",
+   "assets/productos/211-2.jpg"
+  ]
  },
  {
   "id": 212,
@@ -1915,7 +2665,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 150000,
-  "foto": "assets/productos/212.jpg"
+  "foto": "assets/productos/212.jpg",
+  "fotos": [
+   "assets/productos/212.jpg",
+   "assets/productos/212-2.jpg"
+  ]
  },
  {
   "id": 213,
@@ -1924,7 +2678,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 200000,
-  "foto": "assets/productos/213.jpg"
+  "foto": "assets/productos/213.jpg",
+  "fotos": [
+   "assets/productos/213.jpg",
+   "assets/productos/213-2.jpg"
+  ]
  },
  {
   "id": 214,
@@ -1933,7 +2691,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 145000,
-  "foto": "assets/productos/214.jpg"
+  "foto": "assets/productos/214.jpg",
+  "fotos": [
+   "assets/productos/214.jpg",
+   "assets/productos/214-2.jpg"
+  ]
  },
  {
   "id": 215,
@@ -1942,7 +2704,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 150000,
-  "foto": "assets/productos/215.jpg"
+  "foto": "assets/productos/215.jpg",
+  "fotos": [
+   "assets/productos/215.jpg"
+  ]
  },
  {
   "id": 216,
@@ -1951,7 +2716,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 170000,
-  "foto": "assets/productos/216.jpg"
+  "foto": "assets/productos/216.jpg",
+  "fotos": [
+   "assets/productos/216.jpg",
+   "assets/productos/216-2.jpg"
+  ]
  },
  {
   "id": 217,
@@ -1960,7 +2729,11 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 75,
   "precio": 145000,
-  "foto": "assets/productos/217.jpg"
+  "foto": "assets/productos/217.jpg",
+  "fotos": [
+   "assets/productos/217.jpg",
+   "assets/productos/217-2.jpg"
+  ]
  },
  {
   "id": 218,
@@ -1969,7 +2742,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 300000,
-  "foto": "assets/productos/218.jpg"
+  "foto": "assets/productos/218.jpg",
+  "fotos": [
+   "assets/productos/218.jpg"
+  ]
  },
  {
   "id": 219,
@@ -1978,7 +2754,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 360000,
-  "foto": "assets/productos/219.jpg"
+  "foto": "assets/productos/219.jpg",
+  "fotos": [
+   "assets/productos/219.jpg"
+  ]
  },
  {
   "id": 220,
@@ -1987,7 +2766,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 500000,
-  "foto": "assets/productos/220.jpg"
+  "foto": "assets/productos/220.jpg",
+  "fotos": [
+   "assets/productos/220.jpg"
+  ]
  },
  {
   "id": 221,
@@ -1996,7 +2778,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 650000,
-  "foto": "assets/productos/221.jpg"
+  "foto": "assets/productos/221.jpg",
+  "fotos": [
+   "assets/productos/221.jpg"
+  ]
  },
  {
   "id": 222,
@@ -2005,7 +2790,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 355000,
-  "foto": "assets/productos/222.jpg"
+  "foto": "assets/productos/222.jpg",
+  "fotos": [
+   "assets/productos/222.jpg"
+  ]
  },
  {
   "id": 223,
@@ -2014,7 +2802,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 375000,
-  "foto": "assets/productos/223.jpg"
+  "foto": "assets/productos/223.jpg",
+  "fotos": [
+   "assets/productos/223.jpg"
+  ]
  },
  {
   "id": 224,
@@ -2023,7 +2814,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 450000,
-  "foto": "assets/productos/224.jpg"
+  "foto": "assets/productos/224.jpg",
+  "fotos": [
+   "assets/productos/224.jpg"
+  ]
  },
  {
   "id": 225,
@@ -2032,7 +2826,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 300000,
-  "foto": "assets/productos/225.jpg"
+  "foto": "assets/productos/225.jpg",
+  "fotos": [
+   "assets/productos/225.jpg"
+  ]
  },
  {
   "id": 226,
@@ -2041,7 +2838,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 500000,
-  "foto": "assets/productos/226.jpg"
+  "foto": "assets/productos/226.jpg",
+  "fotos": [
+   "assets/productos/226.jpg"
+  ]
  },
  {
   "id": 227,
@@ -2050,7 +2850,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 325000,
-  "foto": "assets/productos/227.jpg"
+  "foto": "assets/productos/227.jpg",
+  "fotos": [
+   "assets/productos/227.jpg"
+  ]
  },
  {
   "id": 228,
@@ -2059,7 +2862,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 400000,
-  "foto": "assets/productos/228.jpg"
+  "foto": "assets/productos/228.jpg",
+  "fotos": [
+   "assets/productos/228.jpg"
+  ]
  },
  {
   "id": 229,
@@ -2068,7 +2874,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 320000,
-  "foto": "assets/productos/229.jpg"
+  "foto": "assets/productos/229.jpg",
+  "fotos": [
+   "assets/productos/229.jpg"
+  ]
  },
  {
   "id": 230,
@@ -2077,7 +2886,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 330000,
-  "foto": "assets/productos/230.jpg"
+  "foto": "assets/productos/230.jpg",
+  "fotos": [
+   "assets/productos/230.jpg"
+  ]
  },
  {
   "id": 231,
@@ -2086,7 +2898,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Femenino",
   "ml": 100,
   "precio": 365000,
-  "foto": "assets/productos/231.jpg"
+  "foto": "assets/productos/231.jpg",
+  "fotos": [
+   "assets/productos/231.jpg"
+  ]
  },
  {
   "id": 232,
@@ -2095,7 +2910,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 75,
   "precio": 90000,
-  "foto": "assets/productos/232.jpg"
+  "foto": "assets/productos/232.jpg",
+  "fotos": [
+   "assets/productos/232.jpg"
+  ]
  },
  {
   "id": 233,
@@ -2104,7 +2922,10 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 140000,
-  "foto": "assets/productos/233.jpg"
+  "foto": "assets/productos/233.jpg",
+  "fotos": [
+   "assets/productos/233.jpg"
+  ]
  },
  {
   "id": 234,
@@ -2113,6 +2934,7 @@ window.BENZA_PRODUCTOS = [
   "genero": "Masculino",
   "ml": 100,
   "precio": 120000,
-  "foto": null
+  "foto": null,
+  "fotos": []
  }
 ];
