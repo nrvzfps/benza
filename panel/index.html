@@ -50,8 +50,9 @@
     <div class="toolbar">
       <input type="search" id="buscar" placeholder="Buscar por nombre o marca…" aria-label="Buscar">
       <select id="fMarca" aria-label="Filtrar por marca"><option value="">Todas las marcas</option></select>
+      <select id="fLinea" aria-label="Filtrar por línea"><option value="">Todas las líneas</option><option value="disenador">Diseñador</option><option value="arabe">Árabes</option></select>
       <select id="fGenero" aria-label="Filtrar por género">
-        <option value="">Todos los géneros</option><option>Masculino</option><option>Femenino</option><option>Unisex</option>
+        <option value="">Todos los géneros</option><option>Masculino</option><option>Femenino</option><option>Unisex</option><option value="-">Sin especificar</option>
       </select>
       <select id="orden" aria-label="Ordenar">
         <option value="marca">Ordenar: marca</option><option value="precio-asc">Precio: menor a mayor</option>
@@ -99,12 +100,15 @@
         <label>Marca<input id="pMarca" list="marcas" required placeholder="Ej: DIOR"></label>
         <datalist id="marcas"></datalist>
         <label>Nombre<input id="pNombre" required placeholder="Ej: Sauvage EDT"></label>
-        <label>Género<select id="pGenero" required><option>Masculino</option><option>Femenino</option><option>Unisex</option></select></label>
+        <div class="dos">
+          <label>Línea<select id="pLinea"><option value="disenador">Diseñador</option><option value="arabe">Árabe</option></select></label>
+          <label>Género<select id="pGenero"><option value="">Sin especificar</option><option>Masculino</option><option>Femenino</option><option>Unisex</option></select></label>
+        </div>
         <div class="tamanos">
           <div class="tam-head"><span>Tamaño (ml)</span><span>Precio ($)</span><span></span></div>
           <div id="tamLista"></div>
           <button type="button" class="link" id="tamAgregar">+ Agregar tamaño</button>
-          <p class="hint">En la tienda se muestra como una sola tarjeta y el cliente elige el tamaño al agregarlo.</p>
+          <p class="hint">En la tienda se muestra como una sola tarjeta y el cliente elige el tamaño al agregarlo. <b>Sin precio = sin stock</b>: se muestra pero no se puede pedir.</p>
         </div>
       </div>
     </div>

@@ -56,9 +56,9 @@
 
   function visibles() {
     const q = $("#buscar").value.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
-    const m = $("#fMarca").value, g = $("#fGenero").value, o = $("#orden").value;
+    const m = $("#fMarca").value, g = $("#fGenero").value, o = $("#orden").value, l = $("#fLinea").value;
     const lista = productos.filter(p =>
-      (!m || p.marca === m) && (!g || p.genero === g) &&
+      (!m || p.marca === m) && (!g || (g === "-" ? !p.genero : p.genero === g)) && (!l || (p.linea || "disenador") === l) &&
       (!q || `${p.marca} ${p.nombre}`.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().includes(q)));
     if (o === "precio-asc") lista.sort((a, b) => a.precio - b.precio);
     else if (o === "precio-desc") lista.sort((a, b) => b.precio - a.precio);
@@ -76,9 +76,9 @@
         <td class="c-check"><input type="checkbox" class="chk" ${seleccion.has(p.id) ? "checked" : ""} aria-label="Seleccionar ${esc(p.nombre)}"></td>
         <td class="c-foto">${p.foto ? `<img src="/${esc(p.foto)}" alt="" loading="lazy" width="44" height="44">` : `<span class="nofoto">—</span>`}</td>
         <td><span class="marca">${esc(titulo(p.marca))}</span><b class="nombre">${esc(p.nombre)}</b></td>
-        <td class="c-gen"><span class="tag ${p.genero}">${p.genero}</span></td>
+        <td class="c-gen">${p.genero ? `<span class="tag ${p.genero}">${p.genero}</span>` : `<span class="tag-na">Sin especificar</span>`}${p.linea === "arabe" ? `<span class="tag-linea">Árabe</span>` : ""}</td>
         <td class="c-ml">${p.ml ? p.ml + " ml" : "—"}</td>
-        <td class="c-precio"><span class="peso">$</span><input class="precio" type="text" inputmode="numeric" value="${p.precio.toLocaleString("es-AR")}" aria-label="Precio de ${esc(p.nombre)}"></td>
+        <td class="c-precio"><span class="peso">$</span><input class="precio${p.precio ? "" : " vacio"}" type="text" inputmode="numeric" placeholder="Sin stock" value="${p.precio ? p.precio.toLocaleString("es-AR") : ""}" aria-label="Precio de ${esc(p.nombre)} (vacío = sin stock)"></td>
         <td class="c-acc">
           <button class="icon" data-acc="editar" title="Editar" aria-label="Editar ${esc(p.nombre)}">✎</button>
           <button class="icon danger" data-acc="eliminar" title="Eliminar" aria-label="Eliminar ${esc(p.nombre)}">🗑</button>
@@ -94,7 +94,7 @@
     $("#selCount").textContent = `${n} seleccionado${n === 1 ? "" : "s"}`;
   }
 
-  ["#buscar", "#fMarca", "#fGenero", "#orden"].forEach(s => $(s).addEventListener("input", render));
+  ["#buscar", "#fMarca", "#fGenero", "#fLinea", "#orden"].forEach(s => $(s).addEventListener("input", render));
 
   $("#checkTodos").addEventListener("change", e => {
     for (const p of visibles()) e.target.checked ? seleccion.add(p.id) : seleccion.delete(p.id);
@@ -114,16 +114,17 @@
     }
     if (e.target.classList.contains("precio")) {
       const p = productos.find(x => x.id === id);
-      const mostrar = n => (e.target.value = n.toLocaleString("es-AR"));
-      const nuevo = +e.target.value.replace(/[^\d]/g, "");   // acepta "200.000", "$200000", etc.
-      if (!(nuevo > 0)) { mostrar(p.precio); return toast("El precio tiene que ser mayor a 0."); }
+      const mostrar = n => (e.target.value = n ? n.toLocaleString("es-AR") : "");
+      const nuevo = +e.target.value.replace(/[^\d]/g, "") || null;   // acepta "200.000", "$200000"; vacío = sin stock
       mostrar(nuevo);
-      if (nuevo === p.precio) return;
+      if (nuevo === (p.precio || null)) return;
       try {
         await api(`productos/${id}`, { method: "PUT", body: { precio: nuevo } });
         e.target.classList.add("ok"); setTimeout(() => e.target.classList.remove("ok"), 1200);
-        toast(`${p.nombre}: ${fmt(p.precio)} → ${fmt(nuevo)}`, true);
+        const txt = v => (v ? fmt(v) : "sin stock");
+        toast(`${p.nombre}: ${txt(p.precio)} → ${txt(nuevo)}`, true);
         p.precio = nuevo;
+        e.target.classList.toggle("vacio", !nuevo);
       } catch (err) { mostrar(p.precio); toast(err.message); }
     }
   });
@@ -165,7 +166,7 @@
     if (t.id != null) div.dataset.id = t.id;
     div.innerHTML = `
       <input class="t-ml" type="number" min="1" max="4999" step="1" placeholder="100" value="${t.ml ?? ""}" aria-label="Tamaño en ml">
-      <input class="t-precio" type="text" inputmode="numeric" placeholder="150.000" value="${t.precio ? t.precio.toLocaleString("es-AR") : ""}" aria-label="Precio" required>
+      <input class="t-precio" type="text" inputmode="numeric" placeholder="Sin stock" value="${t.precio ? t.precio.toLocaleString("es-AR") : ""}" aria-label="Precio (vacío = sin stock)">
       <button type="button" class="icon t-quitar" title="Quitar tamaño" aria-label="Quitar tamaño">✕</button>`;
     $("#tamLista").appendChild(div);
     actualizarQuitar();
@@ -194,7 +195,8 @@
     $("#dlgProductoTitulo").textContent = p ? "Editar perfume" : "Nuevo perfume";
     $("#pMarca").value = p ? p.marca : ($("#fMarca").value || "");
     $("#pNombre").value = p ? p.nombre : "";
-    $("#pGenero").value = p ? p.genero : ($("#fGenero").value || "Masculino");
+    $("#pGenero").value = p ? (p.genero || "") : ($("#fGenero").value === "-" ? "" : $("#fGenero").value);
+    $("#pLinea").value = p ? (p.linea || "disenador") : ($("#fLinea").value || "disenador");
     $("#tamLista").innerHTML = "";
     (grupo.length ? grupo : [{}]).forEach(t => filaTamano(t));
     $("#fotoInput").value = "";
@@ -276,11 +278,11 @@
     const tamanos = $$("#tamLista .tam-row").map(f => ({
       id: f.dataset.id ?? null,
       ml: f.querySelector(".t-ml").value,
-      precio: +f.querySelector(".t-precio").value.replace(/[^\d]/g, ""),
+      precio: +f.querySelector(".t-precio").value.replace(/[^\d]/g, "") || null,
     }));
     const body = {
       ids: editando ? editando.map(p => p.id) : [],
-      marca: $("#pMarca").value, nombre: $("#pNombre").value, genero: $("#pGenero").value, tamanos,
+      marca: $("#pMarca").value, nombre: $("#pNombre").value, genero: $("#pGenero").value || null, linea: $("#pLinea").value, tamanos,
     };
     if (fotosCambiadas || !editando) body.fotos = fotos.map(f => f.valor);
     const quitados = editando ? editando.filter(p => !tamanos.some(t => t.id == p.id)) : [];

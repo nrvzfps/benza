@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=64">
+  <link rel="stylesheet" href="css/styles.css?v=76">
 </head><body data-page="catalogo">
 
 <!-- Barra de anuncios (ticker) -->
@@ -37,6 +37,7 @@
     <a href="catalogo.html" aria-current="page">Catálogo</a>
     <a href="catalogo.html?genero=Femenino">Mujer</a>
     <a href="catalogo.html?genero=Masculino">Hombre</a>
+    <a href="catalogo.html?linea=arabes">Árabes</a>
     <a href="index.html#marcas">Marcas</a>
     <a href="#contacto">Contacto</a>
   </nav>
@@ -46,7 +47,7 @@
   <section class="page-head">
     <nav class="crumbs" aria-label="Ruta"><a href="index.html">Inicio</a><span>/</span><a href="catalogo.html">Catálogo</a><span id="crumbTail"></span></nav>
     <h1 id="shopTitle">Catálogo</h1>
-    <p class="page-sub">Perfumes de diseñador de las grandes casas.</p>
+    <p class="page-sub" id="shopSub">Perfumes de diseñador de las grandes casas.</p>
   </section>
 
   <section class="shop" id="tienda">
@@ -56,6 +57,12 @@
           <h3>Filtros</h3>
           <button class="icon-btn only-mobile" id="filtersClose" aria-label="Cerrar filtros">✕</button>
         </div>
+        <fieldset>
+          <legend>Línea</legend>
+          <label><input type="radio" name="l" value="" checked> Todas</label>
+          <label><input type="radio" name="l" value="disenador"> Diseñador</label>
+          <label><input type="radio" name="l" value="arabe"> Árabes</label>
+        </fieldset>
         <fieldset>
           <legend>Género</legend>
           <label><input type="radio" name="g" value="" checked> Todos</label>
@@ -120,9 +127,9 @@
     </div>
     <div>
       <h4>Contacto</h4>
-      <a href="https://wa.me/5491131754109" target="_blank" rel="noopener">WhatsApp +54 9 11 3175 4109</a>
-      <a href="https://www.instagram.com/benzaimports" target="_blank" rel="noopener">Instagram @benzaimports</a>
-      <a href="https://www.tiktok.com/@benzaimports" target="_blank" rel="noopener">TikTok @benzaimports</a>
+      <a class="social" href="https://wa.me/5491131754109" target="_blank" rel="noopener" aria-label="WhatsApp +54 9 11 3175 4109"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3Z"/></svg><span>+54 9 11 3175 4109</span></a>
+      <a class="social" href="https://www.instagram.com/benzaimports" target="_blank" rel="noopener" aria-label="Instagram @benzaimports"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg><span>@benzaimports</span></a>
+      <a class="social" href="https://www.tiktok.com/@benzaimports" target="_blank" rel="noopener" aria-label="TikTok @benzaimports"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.6 2h-3.3v13.2a2.9 2.9 0 1 1-2-2.8V9a6.3 6.3 0 1 0 5.3 6.2V8.6a7.7 7.7 0 0 0 4.4 1.4V6.7a4.4 4.4 0 0 1-4.4-4.7Z"/></svg><span>@benzaimports</span></a>
     </div>
     <div>
       <h4>Cómo comprar</h4>
@@ -152,8 +159,8 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="js/productos.js?v=64"></script>
-<script src="js/envios.js?v=64"></script>
-<script src="js/app.js?v=64"></script>
+<script src="js/productos.js?v=76"></script>
+<script src="js/envios.js?v=76"></script>
+<script src="js/app.js?v=76"></script>
 </body>
 </html>

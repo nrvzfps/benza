@@ -34,6 +34,7 @@ const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "";
 
 // ---------- Datos ----------
 const GENEROS = ["Masculino", "Femenino", "Unisex"];
+const LINEAS = ["disenador", "arabe"];
 const leer = () => JSON.parse(fs.readFileSync(DATA, "utf8"));
 
 function guardar(lista, motivo) {
@@ -58,9 +59,15 @@ function validar(p, parcial) {
   const out = {};
   if (!parcial || "marca" in p) { const v = String(p.marca || "").trim().toUpperCase(); if (!v) throw new Error("Falta la marca."); out.marca = v; }
   if (!parcial || "nombre" in p) { const v = String(p.nombre || "").trim(); if (!v) throw new Error("Falta el nombre."); out.nombre = v; }
-  if (!parcial || "genero" in p) { if (!GENEROS.includes(p.genero)) throw new Error("Género inválido."); out.genero = p.genero; }
+  // Género opcional (null = sin especificar)
+  if (!parcial || "genero" in p) { const v = p.genero || null; if (v !== null && !GENEROS.includes(v)) throw new Error("Género inválido."); out.genero = v; }
+  if ("linea" in p) { const v = p.linea || "disenador"; if (!LINEAS.includes(v)) throw new Error("Línea inválida."); out.linea = v; }
   if (!parcial || "ml" in p) { const v = p.ml === "" || p.ml == null ? null : Math.round(+p.ml); if (v !== null && !(v > 0 && v < 5000)) throw new Error("Tamaño (ml) inválido."); out.ml = v; }
-  if (!parcial || "precio" in p) { const v = Math.round(+p.precio); if (!(v > 0)) throw new Error("Precio inválido."); out.precio = v; }
+  // Precio opcional: vacío = sin stock (regla del sitio)
+  if (!parcial || "precio" in p) {
+    if (p.precio === "" || p.precio == null || +p.precio === 0) out.precio = null;
+    else { const v = Math.round(+p.precio); if (!(v > 0)) throw new Error("Precio inválido."); out.precio = v; }
+  }
   return out;
 }
 
@@ -179,8 +186,8 @@ async function api(req, res, ruta) {
   // {ids: [ids actuales del grupo, vacío si es nuevo], marca, nombre, genero, foto?, tamanos: [{id?, ml, precio}]}
   if (ruta === "grupo" && req.method === "POST") {
     const b = await cuerpo(req);
-    const base = validar({ marca: b.marca, nombre: b.nombre, genero: b.genero }, true);
-    if (!base.marca || !base.nombre || !base.genero) throw new Error("Completá marca, nombre y género.");
+    const base = validar({ marca: b.marca, nombre: b.nombre, genero: b.genero, linea: b.linea }, true);
+    if (!base.marca || !base.nombre) throw new Error("Completá marca y nombre.");
     const tamanos = (b.tamanos || []).map(t => ({ id: t.id == null || t.id === "" ? null : +t.id, ...validar({ ml: t.ml, precio: t.precio }, true) }));
     if (!tamanos.length) throw new Error("Agregá al menos un tamaño.");
     const mls = tamanos.map(t => t.ml ?? "sin");
@@ -262,7 +269,7 @@ async function api(req, res, ruta) {
       a.tipo === "marca" ? (Array.isArray(a.valor) ? a.valor : [a.valor]).includes(p.marca) :
       a.tipo === "genero" ? p.genero === a.valor :
       a.tipo === "ids" ? (a.valor || []).map(Number).includes(p.id) : false;
-    const afectados = lista.filter(dentro);
+    const afectados = lista.filter(p => p.precio > 0 && dentro(p));
     if (!afectados.length) return json(res, 400, { error: "Ningún producto coincide con esa selección." });
     const cambios = afectados.map(p => ({ id: p.id, marca: p.marca, nombre: p.nombre, ml: p.ml, antes: p.precio, despues: Math.max(1, redondear(p.precio * (1 + pct / 100), paso)) }));
     if (b.vistaPrevia) return json(res, 200, { cambios });

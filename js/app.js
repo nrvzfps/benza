@@ -3,7 +3,10 @@
 
   const WA_NUMBER = "5491131754109";
   const PAGE = 12;
-  const PRODUCTS = (window.BENZA_PRODUCTOS || []).map((p, i) => ({ ...p, id: p.id ?? i, conc: concentration(p.nombre) }));
+  const PRODUCTS = (window.BENZA_PRODUCTOS || []).map((p, i) => ({ ...p, id: p.id ?? i, conc: concentration(p.nombre), linea: p.linea || "disenador" }));
+  // Regla: un perfume sin precio cargado está sin stock (se muestra, pero no se puede pedir).
+  const enStock = v => v.precio > 0;
+  const LINEAS = { disenador: "Diseñador", arabe: "Árabes" };
   // ID fijo de cada producto (no la posición): así agregar o borrar perfumes no mezcla los pedidos guardados.
   const BY_ID = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
 
@@ -13,7 +16,7 @@
     const byKey = new Map();
     for (const p of PRODUCTS) {
       const key = `${p.marca}|${p.nombre}|${p.genero}`;
-      if (!byKey.has(key)) { const g = { gid: GROUPS.length, marca: p.marca, nombre: p.nombre, genero: p.genero, conc: p.conc, variants: [] }; byKey.set(key, g); GROUPS.push(g); }
+      if (!byKey.has(key)) { const g = { gid: GROUPS.length, marca: p.marca, nombre: p.nombre, genero: p.genero || null, conc: p.conc, linea: p.linea, variants: [] }; byKey.set(key, g); GROUPS.push(g); }
       byKey.get(key).variants.push(p);
     }
     for (const g of GROUPS) {
@@ -21,7 +24,9 @@
       // Todas las fotos del perfume (de todos sus tamaños, sin repetir); la primera es la principal.
       g.fotos = [...new Set(g.variants.flatMap(v => (v.fotos && v.fotos.length ? v.fotos : v.foto ? [v.foto] : [])))];
       g.foto = g.fotos[0] || null;
-      g.min = Math.min(...g.variants.map(v => v.precio));
+      const conPrecio = g.variants.filter(enStock);
+      g.stock = conPrecio.length > 0;
+      g.min = g.stock ? Math.min(...conPrecio.map(v => v.precio)) : null;
       g.variants.forEach(v => (v.gid = g.gid));
     }
   }
@@ -32,7 +37,7 @@
   const fmt = n => "$" + n.toLocaleString("es-AR");
   const norm = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
   const titleCase = s => s.split(" ").map(w => (w === "&" ? w : w[0] + w.slice(1).toLowerCase())).join(" ");
-  const TALL = new Set(["GIORGIO ARMANI", "PACO RABANNE", "VERSACE", "DOLCE & GABBANA", "MONTBLANC"]); // logos con símbolo: un poco más altos
+  const TALL = new Set(["GIORGIO ARMANI", "PACO RABANNE", "VERSACE", "DOLCE & GABBANA", "MONTBLANC", "AL HARAMAIN"]); // logos con símbolo: un poco más altos
   const logoSrc = b => `assets/marcas/${b.toLowerCase().replace(/&/g, "y").replace(/[^a-z0-9]+/g, "-")}.svg`;
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
@@ -98,14 +103,14 @@
     const sizeHtml = multi ? `<span class="sizes">${sizes.map(x => `<span>${x}</span>`).join("")}</span>` : (sizes[0] ? " · " + sizes[0] : "");
     const name = esc(titleCase(g.marca) + " " + g.nombre);
     const href = productUrl(g);
-    return `<article class="card">
-      <a class="card-media${g.foto ? " has-photo" : ""}" href="${href}" tabindex="-1" aria-hidden="true"><span class="tag ${g.genero}">${g.genero}</span>${g.foto ? `<img src="${g.foto}" alt="" loading="lazy" width="500" height="500">${g.fotos[1] ? `<img class="alt" src="${g.fotos[1]}" alt="" loading="lazy" width="500" height="500">` : ""}` : bottle(g)}</a>
+    return `<article class="card${g.stock ? "" : " sin-stock"}">
+      <a class="card-media${g.foto ? " has-photo" : ""}" href="${href}" tabindex="-1" aria-hidden="true">${g.genero ? `<span class="tag ${g.genero}">${g.genero}</span>` : ""}${g.stock ? "" : `<span class="tag-stock">Sin stock</span>`}${g.foto ? `<img src="${g.foto}" alt="" loading="lazy" width="500" height="500">${g.fotos[1] ? `<img class="alt" src="${g.fotos[1]}" alt="" loading="lazy" width="500" height="500">` : ""}` : bottle(g)}</a>
       <div class="card-body">
         <span class="brand-sm">${titleCase(g.marca)}</span>
         <h4><a href="${href}">${esc(g.nombre)}</a></h4>
         <span class="meta">${g.conc}${sizeHtml}</span>
         <div class="card-foot">
-          <span class="price">${multi ? "<small>desde</small>" : ""}${fmt(g.min)}</span>
+          ${g.stock ? `<span class="price">${multi && g.variants.filter(enStock).length > 1 ? "<small>desde</small>" : ""}${fmt(g.min)}</span>` : `<span class="price price-na">Sin stock</span>`}
           ${cartCtrl(g, name)}
         </div>
       </div>
@@ -115,7 +120,10 @@
   const productUrl = g => `producto.html?id=${g.variants[0].id}`;
 
   // Botón de la tarjeta: "+" si no está en el pedido; "− cantidad +" si ya está.
+  const waConsulta = g => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`¡Hola Benza! Quería consultar por ${titleCase(g.marca)} ${g.nombre}. ¿Les va a ingresar?`)}`;
   function cartCtrl(g, name = esc(titleCase(g.marca) + " " + g.nombre)) {
+    // Sin stock: en lugar de "+", un botón para consultar por WhatsApp
+    if (!g.stock) return `<span class="cart-ctrl" data-gid="${g.gid}"><a class="ask" href="${waConsulta(g)}" target="_blank" rel="noopener" aria-label="Consultar por ${name} en WhatsApp">Consultar</a></span>`;
     const q = qtyOf(g);
     if (!q) return `<span class="cart-ctrl" data-gid="${g.gid}"><button class="add" data-gid="${g.gid}" aria-label="Agregar ${name} al pedido">+</button></span>`;
     return `<span class="cart-ctrl in" data-gid="${g.gid}">
@@ -143,8 +151,9 @@
   }));
 
   // Pared de marcas (inicio)
-  if ($("#brandWall")) $("#brandWall").innerHTML = brands.slice().sort().map(b =>
-    `<a class="brand-tile" href="catalogo.html?marca=${encodeURIComponent(b)}" aria-label="${titleCase(b)}"><img src="${logoSrc(b)}"${TALL.has(b) ? ' class="tall"' : ""} alt="" loading="lazy" onerror="this.parentNode.classList.add('no-logo')"><span>${b}</span></a>`).join("");
+  const tile = b => `<a class="brand-tile" href="catalogo.html?marca=${encodeURIComponent(b)}" aria-label="${titleCase(b)}"><img src="${logoSrc(b)}"${TALL.has(b) ? ' class="tall"' : ""} alt="" loading="lazy" onerror="this.parentNode.classList.add('no-logo')"><span>${b}</span></a>`;
+  // "Nuestras marcas": todas juntas (diseñador y árabes)
+  if ($("#brandWall")) $("#brandWall").innerHTML = brands.slice().sort().map(tile).join("");
 
   const isShop = !!$("#results");
   if (isShop) $("#brandChecks").innerHTML = brands.slice().sort().map(b =>
@@ -165,6 +174,7 @@
     q: params.get("q") || "",
     gender: ["Femenino", "Masculino", "Unisex"].find(g => g.toLowerCase() === gParam.toLowerCase()) || "",
     price: params.get("precio") || "",
+    linea: { arabes: "arabe", arabe: "arabe", disenador: "disenador" }[(params.get("linea") || "").toLowerCase()] || "",
     brands: new Set((params.get("marca") || "").split(",").filter(b => brands.includes(b))),
     sort: params.get("orden") || "rel",
     shown: PAGE,
@@ -174,6 +184,7 @@
     const u = new URLSearchParams();
     if (state.q) u.set("q", state.q);
     if (state.gender) u.set("genero", state.gender);
+    if (state.linea) u.set("linea", state.linea === "arabe" ? "arabes" : state.linea);
     if (state.brands.size) u.set("marca", [...state.brands].join(","));
     if (state.price) u.set("precio", state.price);
     if (state.sort !== "rel") u.set("orden", state.sort);
@@ -186,14 +197,16 @@
     const [min, max] = state.price ? state.price.split("-").map(Number) : [0, Infinity];
     const list = GROUPS.filter(g =>
       (!state.gender || g.genero === state.gender) &&
+      (!state.linea || g.linea === state.linea) &&
       (!state.brands.size || state.brands.has(g.marca)) &&
-      g.variants.some(v => v.precio >= min && v.precio <= max) &&
+      (!state.price || g.variants.some(v => enStock(v) && v.precio >= min && v.precio <= max)) &&
       terms.every(t => norm(`${g.marca} ${g.nombre} ${g.conc}`).includes(t))
     );
     if (state.sort === "asc") list.sort((a, b) => a.min - b.min);
     if (state.sort === "desc") list.sort((a, b) => b.min - a.min);
     if (state.sort === "az") list.sort((a, b) => a.nombre.localeCompare(b.nombre, "es"));
-    return list;
+    // Los que tienen stock van primero (el orden de cada grupo se mantiene)
+    return list.filter(g => g.stock).concat(list.filter(g => !g.stock));
   }
 
   const PRICE_LABEL = { "0-150000": "Hasta $150.000", "150000-200000": "$150.000 a $200.000", "200000-300000": "$200.000 a $300.000", "300000-9999999": "Más de $300.000" };
@@ -214,6 +227,7 @@
 
     // título
     const title = state.brands.size === 1 ? titleCase([...state.brands][0])
+      : state.linea === "arabe" ? (state.gender ? `Perfumes árabes ${GENDER_LABEL[state.gender].toLowerCase()}` : "Perfumes árabes")
       : state.gender ? `Perfumes ${GENDER_LABEL[state.gender].toLowerCase()}` : "Todos los perfumes";
     const t = title === "Todos los perfumes" ? "Catálogo" : title;
     const h1 = $("#shopTitle");
@@ -231,12 +245,17 @@
     }
     $("#crumbTail").innerHTML = t === "Catálogo" ? "" : `<span>/</span><span>${esc(t)}</span>`;
     document.title = `${t} · Benza Importaciones`;
+    if ($("#shopSub")) $("#shopSub").textContent = state.linea === "arabe"
+      ? "Perfumería árabe: Lattafa, Afnan, Armaf, Rasasi, Al Haramain y más."
+      : state.linea === "disenador" ? "Perfumes de diseñador de las grandes casas."
+      : "Perfumes de diseñador y árabes de las grandes casas.";
     $("#sortSel").value = state.sort;
     syncUrl();
 
     // etiquetas activas
     const tags = [];
     if (state.q) tags.push(["q", `“${esc(state.q)}”`]);
+    if (state.linea) tags.push(["linea", LINEAS[state.linea]]);
     if (state.gender) tags.push(["gender", GENDER_LABEL[state.gender]]);
     if (state.price) tags.push(["price", PRICE_LABEL[state.price]]);
     state.brands.forEach(b => tags.push(["brand:" + b, titleCase(b)]));
@@ -245,6 +264,7 @@
 
     // sincronizar controles
     $$('input[name="g"]').forEach(i => (i.checked = i.value === state.gender));
+    $$('input[name="l"]').forEach(i => (i.checked = i.value === state.linea));
     $$('input[name="p"]').forEach(i => (i.checked = i.value === state.price));
     $$("#brandChecks input").forEach(i => (i.checked = state.brands.has(i.value)));
     if ($("#q").value !== state.q) $("#q").value = state.q;
@@ -263,6 +283,7 @@
   $("#filters").addEventListener("change", e => {
     const t = e.target;
     if (t.name === "g") update({ gender: t.value });
+    else if (t.name === "l") update({ linea: t.value });
     else if (t.name === "p") update({ price: t.value });
     else if (t.type === "checkbox") {
       t.checked ? state.brands.add(t.value) : state.brands.delete(t.value);
@@ -271,19 +292,20 @@
   });
   $("#sortSel").addEventListener("change", e => update({ sort: e.target.value }));
   $("#loadMore").addEventListener("click", () => { state.shown += PAGE; render(); });
-  $("#resetFilters").addEventListener("click", () => { state.brands.clear(); update({ q: "", gender: "", price: "" }); });
+  $("#resetFilters").addEventListener("click", () => { state.brands.clear(); update({ q: "", gender: "", price: "", linea: "" }); });
   $("#activeTags").addEventListener("click", e => {
     const k = e.target.closest(".tag-x")?.dataset.k;
     if (!k) return;
     if (k === "q") update({ q: "" });
     else if (k === "gender") update({ gender: "" });
+    else if (k === "linea") update({ linea: "" });
     else if (k === "price") update({ price: "" });
     else { state.brands.delete(k.slice(6)); update({}); }
   });
 
   // Búsqueda del encabezado: en el catálogo filtra en vivo; en el inicio envía al catálogo
   $("#q").value = state.q;
-  const searchFresh = q => { state.brands.clear(); update({ q, gender: "", price: "" }); };
+  const searchFresh = q => { state.brands.clear(); update({ q, gender: "", price: "", linea: "" }); };
   $(".top-search").addEventListener("submit", e => { if (isShop) { e.preventDefault(); searchFresh($("#q").value.trim()); } });
   let searchTimer;
   $("#q").addEventListener("input", e => {
@@ -303,7 +325,7 @@
   // Único punto que cambia cantidades: actualiza tarjetas, carrito, selector y página de producto.
   function changeQty(id, d, silent) {
     const p = BY_ID[id];
-    if (!p) return;
+    if (!p || (d > 0 && !enStock(p))) return;   // no se puede sumar algo sin stock
     cart[id] = (cart[id] || 0) + d;
     if (cart[id] <= 0) delete cart[id];
     save();
@@ -339,6 +361,7 @@
   function renderSizeOptions(g) {
     $("#sizeOptions").innerHTML = g.variants.map(v => {
       const q = cart[v.id] || 0;
+      if (!enStock(v)) return `<div class="size-opt off" data-id="${v.id}"><b>${v.ml ? v.ml + " ml" : "Único"}</b><span class="price-na">Sin stock</span><span></span></div>`;
       return `<div class="size-opt${q ? " in" : ""}" data-id="${v.id}">
         <b>${v.ml ? v.ml + " ml" : "Único"}</b><span>${fmt(v.precio)}</span>
         ${q ? `<span class="stepper"><button type="button" data-id="${v.id}" data-d="-1" aria-label="Quitar uno">−</button><b>${q}</b><button type="button" data-id="${v.id}" data-d="1" aria-label="Agregar otro">+</button></span>`
@@ -370,8 +393,9 @@
     if (!b) return;
     const g = GROUPS[+b.dataset.gid];
     if (b.classList.contains("add")) {
-      if (g.variants.length === 1) addToCart(g.variants[0].id);
-      else askSize(g);
+      const disponibles = g.variants.filter(enStock);
+      if (disponibles.length === 1 && g.variants.length === 1) addToCart(disponibles[0].id);
+      else if (disponibles.length) askSize(g);
     } else {
       // "−": si hay un solo tamaño en el pedido, se saca uno; si hay varios, se elige cuál.
       const enPedido = g.variants.filter(v => cart[v.id]);
@@ -394,7 +418,8 @@
   scrim.addEventListener("click", closeAll);
   document.addEventListener("keydown", e => { if (e.key === "Escape") closeAll(); });
 
-  const lines = () => Object.entries(cart).filter(([id, q]) => BY_ID[id] && q > 0).map(([id, q]) => ({ p: BY_ID[id], q }));
+  // Si un perfume del pedido se quedó sin stock (sin precio), deja de contar.
+  const lines = () => Object.entries(cart).filter(([id, q]) => BY_ID[id] && enStock(BY_ID[id]) && q > 0).map(([id, q]) => ({ p: BY_ID[id], q }));
 
   function updateCart(bump) {
     const ls = lines();
@@ -478,11 +503,11 @@
       pdp.innerHTML = `<div class="pdp-404"><h1>No encontramos ese perfume</h1><p>Puede que ya no esté en el catálogo.</p><a class="btn btn-gold" href="catalogo.html">Ver catálogo</a></div>`;
     } else {
       const g = GROUPS[pedido.gid];
-      let sel = pedido;      // tamaño elegido
+      let sel = enStock(pedido) ? pedido : (GROUPS[pedido.gid].variants.find(enStock) || pedido);   // tamaño elegido
       let cant = 1;          // cantidad a agregar
       const multi = g.variants.length > 1;
       const marca = titleCase(g.marca);
-      const generoTxt = { Masculino: "Hombre", Femenino: "Mujer", Unisex: "Unisex" }[g.genero];
+      const generoTxt = { Masculino: "Hombre", Femenino: "Mujer", Unisex: "Unisex" }[g.genero] || "";
       const fotos = g.fotos;
       const fotoDe = v => (v.fotos && v.fotos[0]) || v.foto;
       let fi = Math.max(0, fotos.indexOf(fotoDe(pedido)));   // foto que se está viendo
@@ -492,7 +517,7 @@
       pdp.innerHTML = `
         <nav class="crumbs pdp-crumbs" aria-label="Ruta">
           <a href="index.html">Inicio</a><span>/</span><a href="catalogo.html">Catálogo</a><span>/</span>
-          <a href="catalogo.html?genero=${g.genero}">${generoTxt}</a><span>/</span><span aria-current="page">${esc(g.nombre)}</span>
+          ${g.linea === "arabe" ? `<a href="catalogo.html?linea=arabes">Árabes</a><span>/</span>` : g.genero ? `<a href="catalogo.html?genero=${g.genero}">${generoTxt}</a><span>/</span>` : ""}<span aria-current="page">${esc(g.nombre)}</span>
         </nav>
         <div class="pdp-grid">
           <div class="pdp-gallery">
@@ -512,14 +537,14 @@
               <img src="${logoSrc(g.marca)}" alt="${esc(marca)}" onerror="this.replaceWith(document.createTextNode(this.alt))">
             </a>
             <h1>${esc(g.nombre)}</h1>
-            <p class="pdp-sub">${g.conc} · ${generoTxt}</p>
+            <p class="pdp-sub">${[g.conc, generoTxt, g.linea === "arabe" ? "Perfumería árabe" : ""].filter(Boolean).join(" · ")}</p>
 
             <div class="pdp-price"><span id="pdpPrice"></span><small id="pdpPriceSize"></small></div>
 
             <div class="pdp-block">
               <span class="pdp-label">Tamaño</span>
               <div class="pdp-sizes" role="radiogroup" aria-label="Tamaño">
-                ${g.variants.map(v => `<button class="pdp-size" role="radio" data-id="${v.id}">${v.ml ? v.ml + " ml" : "Único"}${multi ? `<small>${fmt(v.precio)}</small>` : ""}</button>`).join("")}
+                ${g.variants.map(v => `<button class="pdp-size" role="radio" data-id="${v.id}">${v.ml ? v.ml + " ml" : "Único"}${multi ? `<small>${enStock(v) ? fmt(v.precio) : "Sin stock"}</small>` : ""}</button>`).join("")}
               </div>
             </div>
 
@@ -530,6 +555,7 @@
                 <button type="button" data-q="1" aria-label="Uno más">+</button>
               </div>
               <button class="btn btn-gold pdp-add" id="pdpAdd">Agregar al pedido</button>
+              <a class="btn btn-ghost pdp-add pdp-ask" id="pdpAsk" href="${waConsulta(g)}" target="_blank" rel="noopener" hidden>Sin stock · Consultar por WhatsApp</a>
             </div>
             <div class="pdp-incart" id="pdpInCart" aria-live="polite"></div>
 
@@ -558,7 +584,7 @@
                 <div><dt>Marca</dt><dd><a href="catalogo.html?marca=${encodeURIComponent(g.marca)}">${esc(marca)}</a></dd></div>
                 <div><dt>Perfume</dt><dd>${esc(g.nombre)}</dd></div>
                 <div><dt>Concentración</dt><dd>${g.conc}</dd></div>
-                <div><dt>Para</dt><dd>${generoTxt}</dd></div>
+                ${generoTxt ? `<div><dt>Para</dt><dd>${generoTxt}</dd></div>` : ""}
                 <div><dt>Tamaños</dt><dd>${g.variants.map(v => (v.ml ? v.ml + " ml" : "Único")).join(" · ")}</dd></div>
               </dl>
             </details>
@@ -624,10 +650,15 @@
       const pintarSel = () => {
         recalcularEnvio();
         $$(".pdp-size", pdp).forEach(b => { const on = +b.dataset.id === sel.id; b.classList.toggle("on", on); b.setAttribute("aria-checked", on); });
-        $("#pdpPrice").textContent = fmt(sel.precio);
+        const hay = enStock(sel);
+        $("#pdpPrice").textContent = hay ? fmt(sel.precio) : "Sin stock";
+        $(".pdp-price").classList.toggle("na", !hay);
+        $(".pdp-qty").hidden = !hay;
+        $("#pdpAdd").hidden = !hay;
+        $("#pdpAsk").hidden = hay;
         $("#pdpPriceSize").textContent = sel.ml ? `${sel.ml} ml` : "";
         $("#pdpCant").textContent = cant;
-        $("#pdpAdd").textContent = cant > 1 ? `Agregar ${cant} al pedido · ${fmt(sel.precio * cant)}` : "Agregar al pedido";
+        if (hay) $("#pdpAdd").textContent = cant > 1 ? `Agregar ${cant} al pedido · ${fmt(sel.precio * cant)}` : "Agregar al pedido";
         history.replaceState(null, "", `producto.html?id=${sel.id}`);
       };
 
@@ -671,7 +702,7 @@
         if (nav) return verFoto(fi + +nav.dataset.nav);
         const q = e.target.closest("[data-q]");
         if (q) { cant = Math.max(1, Math.min(20, cant + +q.dataset.q)); return pintarSel(); }
-        if (e.target.closest("#pdpAdd")) { changeQty(sel.id, cant); cant = 1; return pintarSel(); }
+        if (e.target.closest("#pdpAdd")) { if (enStock(sel)) changeQty(sel.id, cant); cant = 1; return pintarSel(); }
         const step = e.target.closest(".pdp-line button[data-d]");
         if (step) return changeQty(+step.dataset.id, +step.dataset.d);
         if (e.target.closest("#pdpVer")) return $("#cartOpen").click();

@@ -542,3 +542,23 @@ select:focus { border-color: var(--gold); outline: 0; }
 .cart-cp input:focus { outline: 0; border-color: var(--gold); }
 .cart-cp-note { margin: .35rem 0 0; font-size: .76rem; color: var(--muted); }
 .ship-consult { font-size: .9rem; color: var(--ink-3); }
+
+/* ---------- Sin stock (regla: sin precio = sin stock) ---------- */
+.card.sin-stock .card-media img, .card.sin-stock .card-media svg { opacity: .55; filter: grayscale(.6); }
+.tag-stock { position: absolute; top: .7rem; right: .7rem; z-index: 1; font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; padding: .22rem .55rem; border-radius: 999px; background: #fff; color: var(--ink-3); border: 1px solid var(--sand); }
+.price-na { white-space: nowrap; font-family: var(--sans) !important; font-size: .7rem !important; font-weight: 500 !important; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.ask { display: inline-flex; align-items: center; height: 34px; padding: 0 .85rem; border-radius: 999px; border: 1px solid var(--ink); color: var(--ink); text-decoration: none; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; white-space: nowrap; transition: background .2s, color .2s; }
+.ask:hover { background: var(--ink); color: var(--gold-2); }
+.size-opt.off { opacity: .6; }
+.size-opt.off:hover { border-color: var(--sand); background: var(--paper); }
+.pdp-price.na span { font-family: var(--sans); font-size: 1.2rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+.pdp-buy:has(.pdp-qty[hidden]) { grid-template-columns: 1fr; }
+.pdp-ask { text-align: center; justify-content: center; }
+
+
+/* ---------- Redes en el pie (logos) ---------- */
+.footer-cols a.social { display: flex; align-items: center; gap: .6rem; }
+.footer-cols a.social svg { width: 22px; height: 22px; flex: none; color: var(--gold-2); transition: color .2s; }
+.footer-cols a.social:hover svg { color: #fff; }
+.brand-tile img[src*="al-haramain"] { max-height: 68px; max-width: 70%; }
+@media (max-width: 560px) { .card.sin-stock .card-foot { flex-wrap: wrap; gap: .45rem; } .card-foot .cart-ctrl:has(.ask), .card-foot .ask { width: 100%; justify-content: center; } }
