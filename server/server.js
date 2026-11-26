@@ -294,6 +294,66 @@ async function api(req, res, ruta) {
   return json(res, 404, { error: "Ruta inexistente." });
 }
 
+// ---------- Envíos (GET /api/envio?cp=1425&unidades=1&subtotal=200000) ----------
+// Gratis por regla -> precio real de Correo Argentino (si hay credenciales en .env) -> tabla de zonas de js/envios.json.
+const Envios = require(path.join(ROOT, "js", "envios.js"));
+const ENVIOS_CFG = path.join(ROOT, "js", "envios.json");
+const CORREO = {
+  url: (process.env.CORREO_API_URL || "https://api.correoargentino.com.ar/micorreo/v1").replace(/\/$/, ""),
+  user: process.env.CORREO_USER || "", pass: process.env.CORREO_PASSWORD || "", customerId: process.env.CORREO_CUSTOMER_ID || "",
+};
+const correoActivo = () => !!(CORREO.user && CORREO.pass && CORREO.customerId);
+let correoTok = { value: null, exp: 0 };
+async function correoToken() {
+  if (correoTok.value && Date.now() < correoTok.exp - 60_000) return correoTok.value;
+  const r = await fetch(`${CORREO.url}/token`, {
+    method: "POST", headers: { Authorization: "Basic " + Buffer.from(`${CORREO.user}:${CORREO.pass}`).toString("base64") }, signal: AbortSignal.timeout(8000),
+  });
+  if (!r.ok) throw new Error(`token HTTP ${r.status}`);
+  const j = await r.json();
+  correoTok = { value: j.token, exp: j.expire ? Date.parse(j.expire) : Date.now() + 50 * 60_000 };
+  return correoTok.value;
+}
+// Formato según la documentación de MiCorreo (POST /rates). Verificar contra la documentación vigente al tener credenciales.
+async function cotizarCorreo(cfg, cp, unidades) {
+  const r = await fetch(`${CORREO.url}/rates`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${await correoToken()}`, "Content-Type": "application/json" },
+    body: JSON.stringify({ customerId: CORREO.customerId, postalCodeOrigin: cfg.origen.cp, postalCodeDestination: cp, dimensions: Envios.paqueteDe(unidades, cfg) }),
+    signal: AbortSignal.timeout(10000),
+  });
+  if (!r.ok) throw new Error(`rates HTTP ${r.status}`);
+  const opciones = ((await r.json()).rates || []).map(x => ({
+    tipo: x.deliveredType === "S" ? "sucursal" : "domicilio",
+    nombre: x.deliveredType === "S" ? "Retiro en sucursal de Correo" : "A domicilio",
+    precio: Math.round(+x.price),
+    dias: x.deliveryTimeMin && x.deliveryTimeMax ? `${x.deliveryTimeMin} a ${x.deliveryTimeMax} días hábiles` : "",
+  })).filter(o => o.precio > 0);
+  if (!opciones.length) throw new Error("sin tarifas en la respuesta");
+  return opciones;
+}
+const envioCache = new Map();
+async function cotizarEnvio(q) {
+  const cfg = JSON.parse(fs.readFileSync(ENVIOS_CFG, "utf8"));   // se relee: editás el JSON sin reiniciar
+  const a = Envios.analizar(cfg, q);
+  if (!a.ok || a.gratis) return a;
+  const { zonaObj, ...base } = a;
+  const key = `${a.cp}|${a.unidades}`;
+  const hit = envioCache.get(key);
+  if (hit && Date.now() - hit.t < 6 * 3600_000) return { ...base, ...hit.data };
+  let data;
+  if (correoActivo()) {
+    try { data = { fuente: "correo", opciones: await cotizarCorreo(cfg, a.cp, a.unidades) }; }
+    catch (e) { console.warn(`[correo] ${a.cp}: ${e.message} -> uso la tabla`); data = { fuente: "tabla", aviso: "No pudimos consultar a Correo Argentino; es un precio estimado por zona." }; }
+  } else data = { fuente: "tabla" };
+  if (data.fuente === "tabla") {
+    if (!zonaObj) return { ...base, ok: false, error: "No encontramos la zona de ese código postal. Escribinos y te pasamos el costo." };
+    data.opciones = Envios.opcionesTabla(zonaObj, a.unidades);
+  }
+  envioCache.set(key, { t: Date.now(), data });
+  return { ...base, ...data };
+}
+
 // ---------- Archivos estáticos ----------
 const TYPES = { ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".json": "application/json", ".jpg": "image/jpeg", ".png": "image/png", ".webp": "image/webp", ".svg": "image/svg+xml", ".ico": "image/x-icon" };
 // Sólo se sirven estas carpetas/archivos: nunca data/, server/, .env, .git, etc.
@@ -318,6 +378,10 @@ http.createServer(async (req, res) => {
   const p = decodeURIComponent(url.pathname);
   try {
     if (p.startsWith("/panel/api/")) return await api(req, res, p.slice("/panel/api/".length));
+    if (p === "/api/envio" && req.method === "GET") {
+      const out = await cotizarEnvio(Object.fromEntries(url.searchParams));
+      return json(res, out.ok ? 200 : 400, out);
+    }
     estatico(req, res, p);
   } catch (e) {
     json(res, 400, { error: e.message || "Error." });

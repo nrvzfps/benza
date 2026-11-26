@@ -493,6 +493,19 @@
             </div>
             <div class="pdp-incart" id="pdpInCart" aria-live="polite"></div>
 
+            <div class="pdp-ship">
+              <span class="pdp-label">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6h11v9H2zM13 9h4l3 3v3h-7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="6" cy="17" r="1.8" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17" cy="17" r="1.8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                Calcular envío
+              </span>
+              <form class="pdp-ship-form" id="shipForm" autocomplete="on">
+                <input id="shipCp" name="postal-code" autocomplete="postal-code" inputmode="text" maxlength="8" placeholder="Tu código postal" aria-label="Tu código postal">
+                <button class="btn btn-ghost" type="submit">Calcular</button>
+              </form>
+              <a class="pdp-ship-help" href="https://www.correoargentino.com.ar/formularios/cpa" target="_blank" rel="noopener">No sé mi código postal</a>
+              <div class="pdp-ship-result" id="shipResult" aria-live="polite"></div>
+            </div>
+
             <ul class="pdp-perks">
               <li>✦ Productos 100% originales</li>
               <li>✦ Envíos a todo el país</li>
@@ -518,7 +531,42 @@
           </div>
         </div>`;
 
+      // ---- Calcular envío (Correo Argentino) ----
+      // Con servidor: /api/envio (precio real de Correo si hay credenciales). Sin servidor: tabla de zonas en el navegador.
+      let envioCfg = null, envioCp = null, envioTimer = null;
+      async function cotizarEnvio(cp) {
+        const q = { cp, unidades: cant, subtotal: sel.precio * cant };
+        try {
+          const r = await fetch(`/api/envio?${new URLSearchParams(q)}`, { signal: AbortSignal.timeout(8000) });
+          if ((r.headers.get("content-type") || "").includes("application/json")) return await r.json();
+        } catch { /* sin servidor: se calcula acá */ }
+        if (!window.BenzaEnvios) return { ok: false, error: "No pudimos calcular el envío. Escribinos y te pasamos el costo." };
+        envioCfg = envioCfg || await fetch("js/envios.json").then(r => r.json());
+        return window.BenzaEnvios.cotizarTabla(envioCfg, q);
+      }
+      async function calcularEnvio(cp, silencioso) {
+        const out = $("#shipResult");
+        if (!silencioso) out.innerHTML = `<p class="ship-loading">Calculando…</p>`;
+        const r = await cotizarEnvio(cp);
+        if (!r.ok) { out.innerHTML = `<p class="ship-error">${esc(r.error)}</p>`; envioCp = null; return; }
+        envioCp = cp;
+        try { localStorage.setItem("benza-cp", cp); } catch { /* sin almacenamiento */ }
+        const lugar = [r.cp, r.provincia].filter(Boolean).join(" · ");
+        const cuanto = cant > 1 ? ` para ${cant} unidades` : "";
+        out.innerHTML = `
+          <p class="ship-dest">Envío a <b>${esc(lugar)}</b>${cuanto}</p>
+          ${r.gratis ? `<p class="ship-free">${esc(r.opciones[0].nombre)}</p>` : `
+          <ul class="ship-opts">${r.opciones.map(o => `<li><span><b>${esc(o.nombre)}</b>${o.dias ? `<small>${esc(o.dias)}</small>` : ""}</span><em>${fmt(o.precio)}</em></li>`).join("")}</ul>`}
+          ${r.aviso ? `<p class="ship-note">${esc(r.aviso)}</p>` : ""}
+          <p class="ship-note">${r.fuente === "correo" ? "Tarifa de Correo Argentino." : "Costo aproximado con Correo Argentino."} Se confirma al coordinar el pedido.</p>`;
+      }
+      $("#shipForm").addEventListener("submit", e => { e.preventDefault(); calcularEnvio($("#shipCp").value.trim()); });
+      try { const cpGuardado = localStorage.getItem("benza-cp"); if (cpGuardado) $("#shipCp").value = cpGuardado; } catch { /* sin almacenamiento */ }
+      // Si cambia el tamaño o la cantidad, se recalcula (cambian el peso y el monto para envío gratis).
+      const recalcularEnvio = () => { if (!envioCp) return; clearTimeout(envioTimer); envioTimer = setTimeout(() => calcularEnvio(envioCp, true), 250); };
+
       const pintarSel = () => {
+        recalcularEnvio();
         $$(".pdp-size", pdp).forEach(b => { const on = +b.dataset.id === sel.id; b.classList.toggle("on", on); b.setAttribute("aria-checked", on); });
         $("#pdpPrice").textContent = fmt(sel.precio);
         $("#pdpPriceSize").textContent = sel.ml ? `${sel.ml} ml` : "";

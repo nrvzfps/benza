@@ -1,0 +1,111 @@
+{
+  "_ayuda": "Configuración de envíos del sitio (la usan el servidor y la página). Los precios de zonas son DE EJEMPLO: reemplazalos por los de tu tarifa de Correo Argentino. Con el servidor andando, los cambios se toman sin reiniciar.",
+  "origen": {
+    "cp": "1657",
+    "_nota": "Código postal desde donde despachás. Se usa para cotizar con la API de Correo Argentino."
+  },
+  "paquete": {
+    "_nota": "Peso y medidas del paquete según la cantidad de perfumes. Gramos y centímetros.",
+    "pesoBaseGr": 250,
+    "pesoPorUnidadGr": 450,
+    "altoCm": 12,
+    "anchoCm": 12,
+    "largoBaseCm": 18,
+    "largoPorUnidadCm": 7
+  },
+  "gratis": {
+    "_nota": "Envío gratis: CPs sueltos, rangos [desde, hasta] (de 4 dígitos) y/o a partir de un monto. Poné montoMinimo en 0 para desactivarlo.",
+    "cps": [
+      "1657"
+    ],
+    "rangos": [],
+    "montoMinimo": 600000,
+    "texto": "Envío gratis"
+  },
+  "zonas": [
+    {
+      "id": "amba",
+      "nombre": "CABA y GBA",
+      "rangos": [
+        [
+          "1000",
+          "1999"
+        ]
+      ],
+      "provincias": [],
+      "precio": {
+        "domicilio": 7500,
+        "sucursal": 6000
+      },
+      "extraPorUnidad": 900,
+      "dias": "2 a 4 días hábiles"
+    },
+    {
+      "id": "centro",
+      "nombre": "Centro",
+      "rangos": [],
+      "provincias": [
+        "Buenos Aires",
+        "Santa Fe",
+        "Córdoba",
+        "Entre Ríos",
+        "La Pampa"
+      ],
+      "precio": {
+        "domicilio": 9800,
+        "sucursal": 8200
+      },
+      "extraPorUnidad": 1100,
+      "dias": "3 a 6 días hábiles"
+    },
+    {
+      "id": "norte-cuyo",
+      "nombre": "Norte, Litoral y Cuyo",
+      "rangos": [],
+      "provincias": [
+        "Mendoza",
+        "San Juan",
+        "San Luis",
+        "La Rioja",
+        "Catamarca",
+        "Tucumán",
+        "Santiago del Estero",
+        "Salta",
+        "Jujuy",
+        "Chaco",
+        "Formosa",
+        "Corrientes",
+        "Misiones"
+      ],
+      "precio": {
+        "domicilio": 11500,
+        "sucursal": 9600
+      },
+      "extraPorUnidad": 1300,
+      "dias": "4 a 8 días hábiles"
+    },
+    {
+      "id": "patagonia",
+      "nombre": "Patagonia",
+      "rangos": [],
+      "provincias": [
+        "Neuquén",
+        "Río Negro",
+        "Chubut",
+        "Santa Cruz",
+        "Tierra del Fuego"
+      ],
+      "precio": {
+        "domicilio": 13900,
+        "sucursal": 11800
+      },
+      "extraPorUnidad": 1500,
+      "dias": "5 a 10 días hábiles"
+    }
+  ],
+  "correccionesProvincia": {
+    "2400": "Córdoba",
+    "2600": "Santa Fe",
+    "_nota": "Si un CP de 4 dígitos cae en la provincia equivocada, corregilo acá. Ej: \"2400\": \"Córdoba\""
+  }
+}
